@@ -1,0 +1,18 @@
+:root {
+  /* Color Palette - Easy to customize */
+  --nav-bg-color: #000000;
+  --nav-text-color: #ffffff;
+  --nav-hover-gradient-start: #a49ce0;
+  --nav-hover-gradient-end: #a7c3e7;
+  --nav-mobile-bg: #000000;
+  --nav-mobile-hover-gradient-start: #99bcf0;
+  --nav-mobile-hover-gradient-end: #36d1dc;
+
+  /* Typography */
+  --nav-font-primary: "Prociono", sans-serif;
+  --nav-font-secondary: "MediumFont", sans-serif;
+}
+
+body {
+  background-color: var(--nav-bg-color);
+}

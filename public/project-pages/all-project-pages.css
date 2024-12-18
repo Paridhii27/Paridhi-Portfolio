@@ -1,0 +1,133 @@
+/* * {
+  border: 1px solid rgb(199, 60, 60);
+} */
+/* Import fonts */
+@import url("https://use.typekit.net/ifl4sqh.css");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+
+/* Base Styles */
+:root {
+  /* Color Palette */
+  --page-bg-color: #000000;
+  --project-desc-text-color: #ffffff;
+  --nav-hover-gradient-start: #a49ce0;
+  --nav-hover-gradient-end: #a7c3e7;
+  --nav-mobile-bg: #000000;
+  --nav-mobile-hover-gradient-start: #99bcf0;
+  --nav-mobile-hover-gradient-end: #36d1dc;
+  --hover-color: #a7dbeb;
+  --border-color: rgba(255, 255, 255, 0.669);
+
+  /* Typography */
+  --font-primary: "Prociono", sans-serif;
+  --font-secondary: "Instrument Sans", sans-serif;
+  --font-title: "spirits-neutral", serif;
+
+  --page-margin: 5%;
+}
+
+body {
+  margin: var(--page-margin);
+  background-color: var(--page-bg-color);
+  color: var(--project-desc-text-color);
+  font-family: var(--font-primary);
+}
+
+#main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  display: block;
+  margin: 0 auto;
+}
+
+.keywords {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-style: dashed;
+  border-width: 0.001cm;
+  border-color: #046b8a;
+  padding: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.keywords h2 {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.project-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.details {
+  width: 30%;
+  padding: var(--page-margin);
+}
+
+.documentation {
+  width: 60%;
+  padding: var(--page-margin);
+  overflow-y: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.three-img-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .project-container {
+    flex-direction: column;
+  }
+
+  .details,
+  .documentation {
+    width: 100%;
+    padding: 0;
+  }
+
+  .documentation {
+    max-height: 50vh;
+  }
+
+  .keywords {
+    padding: 0.5rem;
+  }
+
+  .keywords h2 {
+    font-size: 1rem;
+  }
+
+  .project-visual {
+    height: 40vh;
+  }
+}
+
+/* Small screens */
+@media screen and (max-width: 480px) {
+  :root {
+    --page-margin: 3%;
+  }
+
+  .project-visual {
+    height: 30vh;
+  }
+
+  .keywords {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
