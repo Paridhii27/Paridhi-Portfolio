@@ -29,11 +29,315 @@
           <span></span>
           <span></span>
           <ul id="menu">
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="./about.html">About</a></li>
+            <li><a href="./projects.html">PROJECTS</a></li>
+            <li><a href="./about.html">ABOUT</a></li>
           </ul>
         </div>
       </nav>
     </div>
+
+    <div class="about-pg-container">
+      <div class="about-container">
+        <div class="introduction-section">
+          <div id="pg-title">
+            <h1>About me</h1>
+          </div>
+          <div class="introduction-text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </div>
+          <div class="main-image">
+            <img src="./assets/images/about/main1.jpeg" />
+          </div>
+          <div class="contact-links">
+            <a
+              href="mailto: paridhigarg27@gmail.com"
+              class="footer-link"
+              id="email"
+            >
+              <img
+                src="./assets/images/logos/contact/email.png"
+                alt="Email Logo"
+                class="logo"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/paridhiii_27/"
+              target="_blank"
+              class="footer-link"
+              id="instagram"
+            >
+              <img
+                src="./assets/images/logos/contact/instagram.png"
+                alt="Instagram Logo"
+                class="logo"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/paridhi-garg-a15824234/"
+              target="_blank"
+              class="footer-link"
+              id="linkedin"
+            >
+              <img
+                src="./assets/images/logos/contact/linkedin.png"
+                alt="LinkedIn Logo"
+                class="logo"
+              />
+            </a>
+            <a
+              href="https://github.com/Paridhii27"
+              target="_blank"
+              class="footer-link"
+              id="github"
+            >
+              <img
+                src="./assets/images/logos/contact/github.png"
+                alt="GitHub Logo"
+                class="logo"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="resume-gallery-section">
+          <div class="side-image-container">
+            <img src="./assets/images/about/main2.jpg" class="side-image" />
+          </div>
+          <div class="buttons-container">
+            <button class="button" onclick="openModal('resume')">Resume</button>
+            <button class="button" onclick="openModal('gallery')">
+              Gallery
+            </button>
+          </div>
+        </div>
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+
+            <!-- Resume Modal Content -->
+            <div
+              id="resume-content"
+              style="display: none"
+              class="resume-content"
+            >
+              <div class="resume-header">
+                <h1>Paridhi Garg</h1>
+                <button class="download-btn" onclick="downloadResume()">
+                  Download Resume
+                </button>
+              </div>
+
+              <div class="resume-section experience">
+                <h2>Experience</h2>
+                <p>
+                  <strong>The New School X IBM Quantum Design Jam</strong> - Oct
+                  2022-Mar 2023
+                </p>
+                <p>
+                  Collaborated in a team to develop a motion capture project,
+                  investigating the intersection of quantum computing with art
+                  and design
+                </p>
+                <p>
+                  Exhibited at the Microscope Gallery and Sheila C. Johnson
+                  Design Center in New York.
+                </p>
+                <p><strong>Google AI Hackathon</strong> - Apr 2024-May 2024</p>
+                <p>Frontend and Backend development</p>
+                <p>
+                  Developed a web-based cooking AI application that uses
+                  Google’s Gemini API. It incorporates features such as image
+                  analysis, text-based chat, and user input functionality to
+                  enhance user interaction.
+                </p>
+                <p>
+                  <strong>Parsons school of Design x KISD </strong> - Oct
+                  2024-Dec 2024
+                </p>
+                <p>
+                  Created and pitched an interactive installation project for
+                  DLR Institute for AI safety and Security as part of a team.
+                </p>
+                <p>
+                  Developer for the installation interface depicting quantum
+                  computing
+                </p>
+              </div>
+
+              <div class="resume-section education">
+                <h2>Education</h2>
+                <p>
+                  <strong>Parsons School of Design, New York</strong>
+                </p>
+                <p>BFA Design and Technology, Creative Technology</p>
+                <p>
+                  <strong> Sardar Patel Vidyalaya, New Delhi</strong>
+                </p>
+                <p>Higher Education-Science</p>
+              </div>
+
+              <div class="resume-section skills">
+                <h2>Skills</h2>
+                <p>
+                  <strong>Frameworks: </strong>Touchdesigner, Blender 3D, Unity,
+                  Figma Madmapper, Adobe Illustrator, Adobe Photoshop, Adobe
+                  InDesign, Microsoft suite, Arduino
+                </p>
+                <p>
+                  <strong>Programming Languages: </strong>Python, HTML/CSS,
+                  JavaScript, node.js, API calls, C++(Arduino IDE), SQL
+                </p>
+                <p>
+                  <strong>Digital Fabrication: </strong>Laser Cutting, 3D
+                  Printing
+                </p>
+                <p>
+                  <strong>Advanced Computing: </strong> Training text-based and
+                  image-based machine Learning models, styleGANs, AI
+                  applications using openAI, gemini and stable diffusion, video
+                  generation in runwayML
+                </p>
+              </div>
+            </div>
+
+            <!-- Gallery Modal Content -->
+            <div
+              id="gallery-content"
+              style="display: none"
+              class="gallery-content"
+            >
+              <!-- Using placeholder images for gallery -->
+              <div class="image-grid">
+                <div class="grid-column">
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/1.jpeg"
+                      alt="Gallery image 1"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/2.JPG"
+                      alt="Gallery image 2"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/3.jpg"
+                      alt="Gallery image 3"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/4.jpeg"
+                      alt="Gallery image 4"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/16.png"
+                      alt="Gallery image 5"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid-column">
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/4.jpeg"
+                      alt="Gallery image 6"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/6.JPG"
+                      alt="Gallery image 7"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/7.JPG"
+                      alt="Gallery image 8"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/8.JPG"
+                      alt="Gallery image 9"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/15.png"
+                      alt="Gallery image 10"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/14.jpeg"
+                      alt="Gallery image 11"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid-column">
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/13.JPG"
+                      alt="Gallery image 12"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/10.jpeg"
+                      alt="Gallery image 13"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/11.JPG"
+                      alt="Gallery image 14"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/12.JPG"
+                      alt="Gallery image 15"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="/Images/about/13.JPG"
+                      alt="Gallery image 16"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="../script.js"></script>
 </html>

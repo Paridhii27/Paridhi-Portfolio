@@ -1,27 +1,23 @@
-/* * {
-  border: 1px solid rgb(199, 60, 60);
-} */
-/* Import fonts */
-@import url("https://use.typekit.net/ifl4sqh.css");
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
 
-/* Base Styles */
 :root {
-  /* Color Palette */
-  --nav-bg-color: #000000;
-  --nav-text-color: #ffffff;
-  --nav-hover-gradient-start: #a49ce0;
-  --nav-hover-gradient-end: #a7c3e7;
-  --nav-mobile-bg: #000000;
-  --nav-mobile-hover-gradient-start: #99bcf0;
-  --nav-mobile-hover-gradient-end: #36d1dc;
-  --hover-color: #a7dbeb;
+  /* Color Palette - Easy to customize */
+  --bg-color: #000000;
+  --text-color: #ffffff;
   --border-color: rgba(255, 255, 255, 0.669);
+  --hover-color: #a7dbeb;
 
   /* Typography */
-  --font-primary: "Prociono", sans-serif;
-  --font-secondary: "Instrument Sans", sans-serif;
-  --font-title: "spirits-neutral", serif;
+  /* Font families */
+  --heading-font: "Inter", sans-serif;
+  --subheading-font: "Quicksand", sans-serif;
+  --content-font: "Open Sans", sans-serif;
+
+  /* Font Weights */
+  --heading-bold: 700;
+  --project-keywords: 500;
+  --project-container-titles: 300;
+  --content: 300;
 
   /* Spacing */
   --section-spacing: 5vw;
@@ -36,34 +32,34 @@
 body {
   max-width: 90vw;
   margin: 0 auto;
-  background-color: var(--nav-bg-color);
-  color: var(--nav-text-color);
-  font-family: var(--font-primary);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--content-font);
   cursor: url("./assets/images/logos/logo.png"), auto;
   box-sizing: border-box;
   padding: var(--section-spacing);
 }
 
 a {
-  color: var(--nav-text-color);
+  color: var(--text-color);
   font-size: 20px;
   text-decoration: none;
   margin: var(--container-spacing);
 }
 
 p {
-  font-family: var(--font-secondary);
+  font-family: var(--content-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   margin: var(--container-spacing);
-  color: var(--nav-text-color);
+  color: var(--text-color);
 }
 
 /* Project Section */
 #projects-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--section-spacing);
   margin: var(--section-spacing);
   width: 100%;
@@ -103,8 +99,8 @@ p {
 
 /* Project Title */
 #title {
-  font-family: var(--font-title);
-  font-weight: 400;
+  font-family: var(--heading-font);
+  font-weight: var(--heading-bold);
   font-size: clamp(25px, 3vw, 35px);
   white-space: normal;
   word-wrap: break-word;
@@ -126,7 +122,7 @@ p {
 
 .tool-name span {
   font-size: 14px;
-  border: 1px solid var(--nav-text-color);
+  border: 1px solid var(--text-color);
   border-radius: var(--border-radius);
   padding: 8px 12px;
   display: inline-block;

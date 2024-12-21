@@ -1,18 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
+
 :root {
   /* Color Palette - Easy to customize */
-  --nav-bg-color: #000000;
-  --nav-text-color: #ffffff;
-  --nav-hover-gradient-start: #a49ce0;
-  --nav-hover-gradient-end: #a7c3e7;
-  --nav-mobile-bg: #000000;
-  --nav-mobile-hover-gradient-start: #99bcf0;
-  --nav-mobile-hover-gradient-end: #36d1dc;
+  --bg-color: #000000;
+  --text-color: #ffffff;
 
   /* Typography */
-  --nav-font-primary: "Prociono", sans-serif;
-  --nav-font-secondary: "MediumFont", sans-serif;
+  /* Font families */
+  --heading-font: "Inter", sans-serif;
+  --subheading-font: "Quicksand", sans-serif;
+  --content-font: "Open Sans", sans-serif;
+
+  /* Font Weights */
+  --heading-bold: 700;
+  --project-keywords: 500;
+  --project-container-titles: 300;
+  --content: 300;
 }
 
-body {
-  background-color: var(--nav-bg-color);
+.homepage-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow-y: hidden;
 }

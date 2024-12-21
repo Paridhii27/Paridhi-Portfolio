@@ -1,3 +1,365 @@
-body {
-  background-color: var(--nav-bg-color);
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
+
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --border-color: rgba(255, 255, 255, 0.669);
+  --border-radius: 10px;
+  --pg-margin: 5%;
+  --heading-font: "Inter", sans-serif;
+  --subheading-font: "Quicksand", sans-serif;
+  --content-font: "Open Sans", sans-serif;
 }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: var(--pg-margin);
+  font-family: var(--content-font);
+}
+
+.about-container {
+  display: flex;
+  width: 100%;
+  margin-top: 5%;
+  height: calc(100vh - 80px);
+  gap: var(--pg-margin);
+}
+
+/* Left Section */
+.introduction-section {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.introduction-section > * {
+  flex-shrink: 0;
+}
+
+.pg-title {
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.pg-title h1 {
+  font-family: var(--heading-font);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.introduction-text {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.main-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.contact-links a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-links a:hover {
+  color: #4a90e2;
+}
+
+/* Right Section */
+.resume-gallery-section {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* gap: 1.25rem; */
+}
+
+.side-image-container {
+  height: 55%;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 5%;
+}
+
+.button {
+  flex: 1;
+  padding: 1.2rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: var(--text-color);
+  font-family: var(--subheading-font);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  width: 90vw;
+  height: 75vh;
+  background-color: var(--bg-color);
+  border: 0.01px solid var(--text-color);
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto;
+  color: white;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #bacbf1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: white;
+}
+
+.resume-content {
+  padding: 20px;
+  color: white;
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.resume-header h1 {
+  font-size: 2rem;
+  font-family: var(--heading-font);
+}
+
+.download-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--subheading-font);
+  transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+  background-color: #357abd;
+}
+
+.resume-section {
+  /* width: 70%; */
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 5%;
+}
+
+.resume-section h2 {
+  font-family: var(--subheading-font);
+  color: #4a90e2;
+  margin-bottom: 1rem;
+}
+
+.resume-section p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.education {
+  width: 50%;
+  position: fixed;
+  top: 50%;
+}
+
+.skills {
+  width: 50%;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+}
+
+.experience {
+  width: 50%;
+  position: fixed;
+  top: 50%;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.grid-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.grid-item {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.03);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+  }
+
+  .introduction-section,
+  .resume-gallery-section {
+    width: 100%;
+  }
+
+  .side-image-container {
+    height: 200px;
+  }
+}
+
+/* #email:hover {
+  background-image: linear-gradient(to right, #dc3636, #eec7c7, #b62020);
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-color 0.3s;
+}
+
+#instagram:hover {
+  background-image: linear-gradient(
+    to right,
+    #dcbe36,
+    #e5a95b,
+    #e57c36,
+    #a21f6c,
+    #dc36d1
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-color 0.3s;
+}
+
+#linkedin:hover {
+  background-image: linear-gradient(
+    to right,
+    #36d1dc,
+    #5b86e5,
+    #6193e9,
+    #2b3cbf,
+    #367edc
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-color 0.3s;
+}
+
+#github:hover {
+  background-image: linear-gradient(
+    to right,
+    #36d1dc,
+    #5b86e5,
+    #7d36e5,
+    #ad3de5,
+    #4423db
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-color 0.3s;
+} */
