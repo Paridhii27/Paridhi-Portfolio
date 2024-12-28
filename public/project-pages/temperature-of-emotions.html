@@ -17,7 +17,7 @@
               class="default-logo"
             />
             <img
-              src="./assets/images/logos/logo.png"
+            src="../assets/images/logos/logo hover.png"
               alt="Hover Logo"
               class="hover-logo"
             />
@@ -37,23 +37,68 @@
     </div>
 
     <div class="project-visual">
-        <img src="../assets/images/thumbnails/temperaure.png" id="main-img"/>
+        <img src="../assets/images/thumbnails/temperaure-of-emotions.png" id="main-img"/>
       </div>
 
       <div class="keywords" style="border-color: #e6e6e0">
-        <h2 style="color: #6c9bd9">Interface</h2>
-        <h2 style="color: #99a6f2">LED motion</h2>
-        <h2 style="color: #4453a6">Quantum</h2>
+        <h2 style="color: #cee4eb">Physical computing</h2>
+        <h2 style="color: #6096a7">Laser cutting</h2>
+        <h2 style="color: #1a7691">Research</h2>
       </div>
     </div>
     <div class="project-container">
       <div class="details">
         <h1>Temperature of Emotions</h1>
         <p>Arduino | 2022</p>
+        <a class="project-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8174739/#:~:text=For%20example%2C%20being%20accompanied%20by,efficient%20%5B31%E2%80%9333%5D" target=" ">Research Reference </a>
       </div>
       <div class="documentation">
-        <p>Fleeting States</p>
-        <p>Measured Values</p>
+        <p>
+          According to research published on the National Library of Medicine
+          website under the title of “The Temperature of emotions”, there is a close
+          correlation between emotions and temperature through embodied processes.
+          We can see evidence of this in the way we tend to describe emotions
+          through the language of temperature. Feeling warm or heartwarming is often
+          associated with happiness and the feeling of being content. Being cold
+          with someone or chilled with fear on the other hand often has negative
+          connotations. Emotional temperature is implicitly and explicitly seen in
+          many aspects of our life. This research went into the subtilities of these
+          findings to understand how emotions and temperature are related
+          cognitively. The research on this concept is still scarce but they found
+          out that the region of hypothalamus in our brain which is responsible for
+          maintaining the body’s internal balance does so by regulating temperature,
+          through a process of homeostasis. Emotions are homeostasis responses to
+          maintain our body’s internal balance.
+        </p>
+        <p>
+          Further,” the theory of constructed emotions suggests that emotions are
+          categorizations of past experiences molded by embodied knowledge. Emotions
+          do not come from specific brain structures, rather the brain creates them
+          as concepts by parsing sensory information, affect and physiological
+          changes.” The brain triggers these responses depending on the way
+          different sensory inputs and physiological processes are interpreted which
+          is closely tied to the process of homeostasis.
+        </p>
+      
+        <p>
+          For my project I created a temperature change visualizer using physical
+          computing. There is a DHT11 Temperature and Humidity sensor attached to a
+          8x8 dot matrix. I wanted the device to be able to sense a change in
+          temperature when a person holds the sensor in their hand. The device
+          simultaneously shows a color visualization of the measured temperature.
+          The temperature is reflective of the heat index (saturation and hue) of
+          the colour and the humidity gives us the alpha or blur of the colours.
+          This was a project built to visualize the concept of the temperature of
+          emotions. Colours are a means of reflecting these emotions in the device.
+        </p>
+        <p>
+          This project came with a lot of challenges in terms of the compatibility
+          of the DHT11 temperature sensor with the LED matrix. I studied many
+          different temperature sensors and got a sense of how they worked by the
+          end of it. The DHT11 Temperature and Humidity sensor features a
+          temperature and humidity sensor complex with a calibrated digital signal
+          output.
+        </p>
       </div>
     </div>
 
@@ -240,6 +285,5 @@
       </div>
     </div>
     <hr />
-    <p id="credits">Paridhi Garg © 2024</p>
   </body>
 </html>

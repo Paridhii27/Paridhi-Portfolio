@@ -4,11 +4,15 @@
   --bg-color: #000000;
   --text-color: #ffffff;
   --border-color: rgba(255, 255, 255, 0.669);
-  --border-radius: 10px;
-  --pg-margin: 5%;
+  --secondary-color: #a49ce0;
+  --hover-color: #3d479c;
+
   --heading-font: "Inter", sans-serif;
   --subheading-font: "Quicksand", sans-serif;
   --content-font: "Open Sans", sans-serif;
+
+  --border-radius: 10px;
+  --pg-margin: 5%;
 }
 
 body {
@@ -72,15 +76,51 @@ body {
   padding: 1rem;
 }
 
-.contact-links a {
-  color: var(--text-color);
-  font-size: 1.5rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--logo-size);
+  min-width: var(--logo-size); /* Replace fixed aspect ratio */
+  margin: 0px;
+  overflow: hidden;
+  transition: transform var(--transition-medium);
 }
 
-.contact-links a:hover {
-  color: #4a90e2;
+.logo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo .default-logo,
+.logo .hover-logo {
+  transition: opacity var(--transition-medium);
+}
+
+.logo .default-logo {
+  z-index: 2;
+}
+
+.logo .hover-logo {
+  z-index: 1;
+  opacity: 0;
+}
+
+.logo:hover .default-logo {
+  opacity: 0;
+}
+
+.logo:hover .hover-logo {
+  z-index: 2;
+  opacity: 1;
 }
 
 /* Right Section */
@@ -181,14 +221,44 @@ body {
 
 .resume-content {
   padding: 20px;
-  color: white;
+  color: var(--text-color);
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .resume-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+.resume-header h1 {
+  font-size: 2rem;
+  font-family: var(--heading-font);
+}
+
+.resume-content {
+  padding: 20px;
+  color: var(--text-color);
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .resume-header h1 {
@@ -198,8 +268,8 @@ body {
 
 .download-btn {
   padding: 0.75rem 1.5rem;
-  background-color: #4a90e2;
-  color: white;
+  background-color: var(--hover-color);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -208,45 +278,43 @@ body {
 }
 
 .download-btn:hover {
-  background-color: #357abd;
+  background-color: var(--secondary-color);
+}
+
+.resume-sections-container {
+  display: flex;
+  gap: 20px;
+  height: calc(70vh - 120px); /* Adjust based on header height */
+  position: relative;
+  margin-bottom: 1.2rem;
 }
 
 .resume-section {
-  /* width: 70%; */
-  margin-bottom: 1.5rem;
+  flex: 1;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex items from overflowing */
 }
 
 .resume-section h2 {
   font-family: var(--subheading-font);
-  color: #4a90e2;
-  margin-bottom: 1rem;
+  color: var(--secondary-color);
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-content {
+  padding: 1rem;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .resume-section p {
   margin-bottom: 0.5rem;
   line-height: 1.6;
-}
-
-.education {
-  width: 50%;
-  position: fixed;
-  top: 50%;
-}
-
-.skills {
-  width: 50%;
-  position: fixed;
-  top: 20%;
-  left: 40%;
-}
-
-.experience {
-  width: 50%;
-  position: fixed;
-  top: 50%;
 }
 
 .image-grid {
@@ -312,6 +380,30 @@ body {
 
   .side-image-container {
     height: 200px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .resume-sections-container {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+
+  .resume-section {
+    height: 300px;
+  }
+
+  .resume-content {
+    height: auto;
+    padding: 10px;
+  }
+
+  .resume-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 }
 

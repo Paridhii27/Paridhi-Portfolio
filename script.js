@@ -34,19 +34,32 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Download resume as image
-function downloadResume() {
-  html2canvas(resumeContent).then((canvas) => {
-    const link = document.createElement("a");
-    link.download = "resume.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  });
+
+function downloadPDF() {
+  const downloadLink = document.getElementById("downloadLink");
+  downloadLink.click();
 }
 
-// function downloadImage() {
-//   var downloadLink = document.getElementById("downloadLink");
-//   downloadLink.click();
-// }
+const backToTopButton = document.getElementById("back-to-top");
+
+window.onscroll = function () {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+};
+
+backToTopButton.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
 // function myFunction() {
 //   var x = document.getElementById("myTopnav");
 //   if (x.className === "topnav") {
