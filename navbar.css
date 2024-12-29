@@ -24,11 +24,9 @@
   --transition-slow: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-/* Reset */
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--nav-bg);
 }
 
 /* Navigation Container */
