@@ -76,49 +76,50 @@ body {
   padding: 1rem;
 }
 
-.logo {
+.contact {
   position: relative;
   display: flex;
   align-items: center;
-  height: var(--logo-size);
-  min-width: var(--logo-size); /* Replace fixed aspect ratio */
   margin: 0px;
-  overflow: hidden;
+  overflow: visible;
   transition: transform var(--transition-medium);
+  height: 40px;
 }
 
-.logo img {
+.contact img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
   width: auto;
   object-fit: contain;
+  max-width: none; /* Ensures image isn't constrained by width */
 }
 
-.logo:hover {
+.contact:hover {
   transform: scale(1.02);
 }
 
-.logo .default-logo,
-.logo .hover-logo {
+.contact .default-logo,
+.contact .hover-logo {
   transition: opacity var(--transition-medium);
 }
 
-.logo .default-logo {
+.contact .default-logo {
   z-index: 2;
 }
 
-.logo .hover-logo {
+.contact .hover-logo {
   z-index: 1;
   opacity: 0;
 }
 
-.logo:hover .default-logo {
+.contact:hover .default-logo {
   opacity: 0;
 }
 
-.logo:hover .hover-logo {
+.contact:hover .hover-logo {
   z-index: 2;
   opacity: 1;
 }
@@ -166,7 +167,7 @@ body {
 }
 
 .button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--secondary-color);
 }
 
 /* Modal Styles */
@@ -219,19 +220,6 @@ body {
   color: white;
 }
 
-.resume-content {
-  padding: 20px;
-  color: var(--text-color);
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
 .resume-header {
   display: flex;
   justify-content: space-between;
@@ -252,13 +240,19 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .resume-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 2rem;
+  flex-shrink: 0;
 }
 
 .resume-header h1 {
@@ -270,8 +264,8 @@ body {
   padding: 0.75rem 1.5rem;
   background-color: var(--hover-color);
   color: var(--text-color);
-  border: none;
-  border-radius: 5px;
+  border: 0.1px dashed var(--text-color);
+  border-radius: 10px;
   cursor: pointer;
   font-family: var(--subheading-font);
   transition: background-color 0.3s;
@@ -284,18 +278,23 @@ body {
 .resume-sections-container {
   display: flex;
   gap: 20px;
-  height: calc(70vh - 120px); /* Adjust based on header height */
   position: relative;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
+  overflow-x: hidden;
+  width: 100%;
+  height: 600px;
+  flex-shrink: 0;
 }
 
 .resume-section {
   flex: 1;
-  border: 1px solid var(--border-color);
+  border: 1px dashed var(--border-color);
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  min-width: 0; /* Prevents flex items from overflowing */
+  min-width: 0;
+  max-width: 100%;
+  height: 500px;
 }
 
 .resume-section h2 {
@@ -303,18 +302,32 @@ body {
   color: var(--secondary-color);
   padding: 1rem;
   margin: 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px dashed var(--border-color);
 }
 
 .section-content {
   padding: 1rem;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-grow: 1;
+  word-wrap: break-word;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .resume-section p {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+}
+
+.section-content {
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+  word-wrap: break-word;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .image-grid {
@@ -355,20 +368,61 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media screen and (max-width: 1000px) {
+  .introduction-text {
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .side-image-container {
+    height: 500px;
+    margin-bottom: 1rem;
+  }
+
+  .buttons-container {
+    gap: 0.75rem;
+  }
+
+  .button {
+    flex: 1;
+    padding: 0.9rem;
+    font-size: 1.2rem;
+  }
+
+  .contact-links {
+    padding: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact img {
+    height: 85%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .modal-content {
+    width: 80vw;
+    height: 75vh;
+    margin: 10% auto;
+    overflow-x: hidden;
+  }
+
+  .resume-sections-container {
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 0;
+  }
+  .resume-header {
+    padding: 20px;
+  }
+
+  .resume-header h1 {
+    font-size: 2rem;
+    font-family: var(--heading-font);
   }
 }
 
-@media (max-width: 480px) {
-  .image-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .about-container {
     flex-direction: column;
   }
@@ -378,16 +432,107 @@ body {
     width: 100%;
   }
 
-  .side-image-container {
-    height: 200px;
+  .modal-content {
+    width: 80vw;
+    height: 75vh;
+    margin: 10% auto;
+    overflow-x: hidden;
   }
-}
 
-@media screen and (max-width: 768px) {
+  .resume-content {
+    height: auto;
+    padding: 10px;
+    overflow-x: none;
+  }
+
+  .resume-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    padding-bottom: 2rem;
+    flex-shrink: 0;
+    gap: 15px;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .resume-section h2 {
+    text-align: center;
+  }
+
   .resume-sections-container {
     flex-direction: column;
     height: auto;
-    gap: 15px;
+    overflow-x: none;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    width: 95%;
+    margin-bottom: 1.2rem;
+  }
+
+  .resume-section {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+  }
+
+  .resume-section h2 {
+    padding: 0.8rem;
+  }
+
+  .resume-section p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .side-image-container {
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+
+  .buttons-container {
+    gap: 0.65rem;
+    height: 2%;
+  }
+
+  .button {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  .contact-links {
+    padding: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact img {
+    height: 75%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .introduction-section {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .pg-title h1 {
+    font-size: 2.2rem;
+  }
+
+  .introduction-text {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
   }
 
   .resume-section {
@@ -399,59 +544,68 @@ body {
     padding: 10px;
   }
 
-  .resume-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
+  .side-image-container {
+    height: 200px;
     margin-bottom: 1rem;
   }
-}
 
-/* #email:hover {
-  background-image: linear-gradient(to right, #dc3636, #eec7c7, #b62020);
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: background-color 0.3s;
-}
+  .buttons-container {
+    gap: 0.65rem;
+    height: 2%;
+  }
 
-#instagram:hover {
-  background-image: linear-gradient(
-    to right,
-    #dcbe36,
-    #e5a95b,
-    #e57c36,
-    #a21f6c,
-    #dc36d1
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: background-color 0.3s;
-}
+  .button {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+  }
 
-#linkedin:hover {
-  background-image: linear-gradient(
-    to right,
-    #36d1dc,
-    #5b86e5,
-    #6193e9,
-    #2b3cbf,
-    #367edc
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: background-color 0.3s;
-}
+  .contact-links {
+    padding: 0.8rem;
+    margin-bottom: 2rem;
+  }
 
-#github:hover {
-  background-image: linear-gradient(
-    to right,
-    #36d1dc,
-    #5b86e5,
-    #7d36e5,
-    #ad3de5,
-    #4423db
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: background-color 0.3s;
-} */
+  .contact img {
+    height: 75%;
+    width: auto;
+    object-fit: contain;
+  }
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    padding-bottom: 2rem;
+    flex-shrink: 0;
+  }
+
+  .resume-section h2 {
+    text-align: center;
+  }
+
+  .resume-sections-container {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .resume-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resume-section h2 {
+    padding: 0.8rem;
+  }
+
+  .resume-section p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+}
