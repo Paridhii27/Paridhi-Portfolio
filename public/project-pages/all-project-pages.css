@@ -112,7 +112,7 @@ h1 {
   flex: 1;
   min-width: 250px;
   width: 20%;
-  padding: var(--mobile-padding);
+  padding: 2% 5%;
   border: 0.01cm dashed var(--border-color);
   border-radius: var(--border-radius);
 }
@@ -157,12 +157,12 @@ h1 {
 .documentation {
   flex: 3;
   font-family: var(--content-font);
-  padding: var(--mobile-padding);
+  padding: 2% 5%;
   max-height: 50vh;
   overflow-y: auto;
   border: 0.01cm dashed var(--border-color);
   border-radius: var(--border-radius);
-  line-height: 1.8;
+  line-height: 1.5;
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
 }
