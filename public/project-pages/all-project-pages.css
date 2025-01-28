@@ -46,6 +46,10 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+::selection {
+  background: #3d479c;
+}
+
 /* Main container containing image and keywords */
 .project-visual {
   margin-top: 2rem;
@@ -421,32 +425,33 @@ h1 {
   }
 
   .keywords {
+    width: 95%;
     display: flex;
     flex-direction: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 0.75rem;
     flex-wrap: wrap;
     gap: 0.75rem;
   }
 
   .keywords h2 {
-    margin: 0.4rem;
+    margin: 0.5rem;
     font-size: clamp(0.9rem, 1.8vw, 1.3rem);
   }
 
   .project-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* width: calc(100% - (2 * var(--mobile-padding))); */
     max-width: 900px;
   }
 
   .details,
   .documentation {
-    width: 100%;
+    width: calc(100% - (2 * var(--mobile-padding)));
+    padding: var(--mobile-padding);
     max-height: 55vh;
-    margin: 0;
+    margin-left: -15px !important;
   }
 
   .project-gallery {
@@ -516,9 +521,10 @@ h1 {
 
   .details,
   .documentation {
-    width: 100%;
+    width: calc(100% - (2 * var(--mobile-padding)));
+    padding: var(--mobile-padding);
     max-height: 55vh;
-    margin: 0;
+    margin-left: -15px !important;
   }
 
   .documentation {
@@ -535,19 +541,6 @@ h1 {
     z-index: 1;
     flex-direction: column;
   } */
-
-  .project-link {
-    padding: 12px 20px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .project-link:hover {
-    padding-right: 30px;
-    padding-left: 15px;
-  }
 
   .project-visual {
     padding: 0;
@@ -573,8 +566,9 @@ h1 {
 
   .keywords {
     flex-direction: column;
-    /* padding: 0.75rem;
-    gap: 0.75rem; */
+    width: 100%;
+    padding: 0.75rem;
+    gap: 0.75rem;
     justify-content: center;
   }
 
@@ -697,7 +691,7 @@ h1 {
 
   /* Project container */
   .project-container {
-    max-width: 440px;
+    /* max-width: 440px; */
     padding: 0;
     z-index: 1;
   }
@@ -713,37 +707,23 @@ h1 {
   .details {
     font-size: clamp(1rem, 1.4vw, 1.1rem);
     line-height: 1.5;
-    padding: 10 auto;
   }
 
   .documentation {
     max-height: 45vh;
   }
 
-  /* Project links */
-  .project-link {
-    width: calc(100% - 60px);
-    padding: 5px 5px;
-    text-align: center;
-  }
-
-  .project-link:after {
-    right: 15px;
-  }
-
-  .project-link:hover {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-
-  .project-link:hover:after {
-    right: 15px;
-  }
-
   /* Navigation */
   .nextPrev {
     padding: 0 var(--mobile-padding);
     margin: var(--container-margin) 0;
+  }
+
+  .previous,
+  .next {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
   }
 
   /* Gallery styles */
@@ -753,7 +733,7 @@ h1 {
 
   #mz-gallery {
     height: 40vh;
-    margin: 0.25rem 0;
+    /* margin: 0.25rem 0; */
   }
 
   #mz-gallery::-webkit-scrollbar {

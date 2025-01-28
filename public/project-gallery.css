@@ -61,7 +61,6 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--section-spacing);
-  margin: var(--section-spacing);
   margin-top: calc(var(--nav-height) + var(--nav-padding) * 2);
   width: 100%;
 }

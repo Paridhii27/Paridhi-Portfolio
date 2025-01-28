@@ -24,9 +24,12 @@
   --transition-slow: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
+/* * {
+  border: #99bcf0 solid;
+} */
+
 body {
-  margin: 0;
-  padding: 0;
+  padding-top: calc(var(--nav-height) + 1rem);
 }
 
 /* Navigation Container */
@@ -39,16 +42,20 @@ body {
   background-color: var(--nav-bg);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  padding-bottom: 1rem;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 70%;
+  max-width: 90vw;
+  margin: 0 auto;
   padding: var(--nav-padding);
   font-family: var(--nav-font-primary);
   font-weight: var(--nav-font-weight);
+  position: relative;
 }
 
 /* Logo Styles */
@@ -56,7 +63,8 @@ nav {
   position: relative;
   display: flex;
   align-items: center;
-  height: var(--logo-size);
+  height: 100%;
+  max-height: var(--logo-size);
   aspect-ratio: 1 / 1;
   margin-left: var(--nav-padding);
   overflow: hidden;
@@ -71,9 +79,9 @@ nav {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  height: 80%;
+  width: auto;
+  object-fit: contain;
 }
 
 .logo .default-logo,
@@ -107,6 +115,7 @@ nav {
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 3rem;
 }
 
 #menu li {
@@ -136,7 +145,8 @@ nav {
 
 #menuToggle {
   display: flex;
-  padding: 0 3vw 0 2vw;
+  align-items: center;
+  height: 100%;
   margin-left: auto;
 }
 
@@ -157,7 +167,7 @@ nav {
     display: block;
     position: absolute;
     top: 30px;
-    right: 0;
+    right: 20;
     z-index: 1;
     user-select: none;
   }
