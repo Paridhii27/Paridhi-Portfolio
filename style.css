@@ -36,3 +36,63 @@
   height: 100vh;
   overflow: hidden;
 }
+
+/* body {
+  display: flex;
+  padding-top: 5em;
+  padding-left: 2em;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.typewriter {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  width: fit-content;
+}
+.typewriter h1 {
+  color: #fff;
+  font-family: var(--subheading-font);
+  font-size: 1.5rem;
+  overflow: hidden;
+  border-right: 0.15em solid rgb(255, 255, 255);
+  white-space: nowrap;
+  margin: 0 auto;
+  width: 0;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(31, end) forwards,
+    blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 31ch;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(255, 255, 255);
+  }
+}
+
+@media (max-width: 768px) {
+  .typewriter h1 {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .typewriter {
+    width: 90%;
+  }
+} */

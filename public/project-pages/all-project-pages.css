@@ -162,7 +162,7 @@ h1 {
   flex: 3;
   font-family: var(--content-font);
   padding: 2% 5%;
-  max-height: 50vh;
+  max-height: 70vh;
   overflow-y: auto;
   border: 0.01cm dashed var(--border-color);
   border-radius: var(--border-radius);
@@ -442,16 +442,32 @@ h1 {
   .project-container {
     display: flex;
     flex-direction: row;
-    /* width: calc(100% - (2 * var(--mobile-padding))); */
     max-width: 900px;
   }
 
   .details,
   .documentation {
     width: calc(100% - (2 * var(--mobile-padding)));
-    padding: var(--mobile-padding);
-    max-height: 55vh;
+    max-height: 70vh;
     margin-left: -15px !important;
+  }
+
+  .documentation {
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .details {
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .project-link {
+    text-align: left;
+    line-height: 1.2;
+    font-size: 0.9rem;
   }
 
   .project-gallery {
@@ -506,7 +522,7 @@ h1 {
   .project-visual,
   .project-container,
   .project-gallery {
-    width: calc(100% - (2 * var(--mobile-padding)));
+    width: calc(100% - (4 * var(--mobile-padding)));
     margin: 1rem auto;
     padding: var(--mobile-padding);
   }
@@ -514,21 +530,30 @@ h1 {
   .project-container {
     width: 100%;
     max-width: 700px;
-    /* margin: 1.5rem auto;
-    padding: 0 var(--mobile-padding); */
     flex-direction: column;
   }
 
-  .details,
   .documentation {
-    width: calc(100% - (2 * var(--mobile-padding)));
-    padding: var(--mobile-padding);
-    max-height: 55vh;
-    margin-left: -15px !important;
+    max-height: 225vh;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    width: calc(100% - (4 * var(--mobile-padding)));
   }
 
-  .documentation {
-    max-height: 50vh;
+  .details {
+    width: calc(100% - (4 * var(--mobile-padding)));
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .project-link {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+    font-size: 0.9rem;
   }
 
   /* .project-container {
@@ -691,26 +716,35 @@ h1 {
 
   /* Project container */
   .project-container {
-    /* max-width: 440px; */
     padding: 0;
     z-index: 1;
   }
 
   /* Details and documentation sections */
-  .details,
+
   .documentation {
-    width: 100%;
-    padding: var(--mobile-padding);
+    max-height: 45vh;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    width: calc(100% - (2 * var(--mobile-padding)));
     margin-left: -10px !important;
   }
 
   .details {
-    font-size: clamp(1rem, 1.4vw, 1.1rem);
-    line-height: 1.5;
+    width: calc(100% - (2 * var(--mobile-padding)));
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin-left: -10px !important;
   }
 
-  .documentation {
-    max-height: 45vh;
+  .project-link {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+    font-size: 0.9rem;
   }
 
   /* Navigation */
