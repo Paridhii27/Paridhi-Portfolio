@@ -432,6 +432,13 @@ body {
     width: 100%;
   }
 
+  .introduction-section {
+    z-index: 1;
+  }
+  .resume-gallery-section {
+    z-index: 1;
+  }
+
   .modal-content {
     width: 80vw;
     height: 75vh;
@@ -527,7 +534,7 @@ body {
   }
   .introduction-section {
     width: 100%;
-    margin-bottom: 5rem;
+    margin-bottom: 0rem;
     position: relative;
   }
 
@@ -560,7 +567,6 @@ body {
     margin-bottom: 1rem;
     position: relative;
     z-index: 2;
-    margin-top: 3.5rem;
     clear: both;
   }
 
