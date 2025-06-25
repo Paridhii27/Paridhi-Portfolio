@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="./all-project-pages.css" />
     <title>Paridhi's Portfolio</title>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-6F7Y5HSK0Z"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-6F7Y5HSK0Z");
+  </script>
   <body>
     <div class="navigation-container">
       <nav>
@@ -70,8 +84,11 @@
           and kicks in the sound. The visuals respond to these snares and kicks
           in many different ways such as the movement of shapes and the density
           of particles. A snare and kick gives a sudden boost to the visual
-          while the audio spectrum is visualized by using 3D geometries, noise
-          and particle systems.
+          while
+          <span class="highlight">
+            the audio spectrum is visualized by using 3D geometries, noise and
+            particle systems.</span
+          >
         </p>
       </div>
     </div>
@@ -155,15 +172,16 @@
     </div>
     <div class="nextPrev">
       <div class="prev-project">
-        <a href="./light-and-darkness.html" class="previous">&#8249;</a>
+        <a href="./hivemind.html" class="previous">&#8249;</a>
         <p>Previous Project</p>
       </div>
       <div class="next-project">
         <p>Next Project</p>
-        <a href="./hivemind.html" class="next">&#8250;</a>
+        <a href="./echoes.html" class="next">&#8250;</a>
       </div>
     </div>
     <hr />
   </body>
   <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="./highlight.js"></script>
 </html>

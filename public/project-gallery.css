@@ -27,6 +27,11 @@
   /* Breakpoints */
   --mobile-width: 750px;
   --tablet-width: 950px;
+
+  /* Animation Variables */
+  --animation-duration: 0.8s;
+  --animation-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --stagger-delay: 0.15s;
 }
 
 body {
@@ -65,6 +70,7 @@ p {
   width: 100%;
 }
 
+/* Animation Styles for Project Containers */
 .container {
   display: flex;
   flex-direction: column;
@@ -72,6 +78,54 @@ p {
   border: 0.1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-sizing: border-box;
+
+  /* Initial hidden state for animation */
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all var(--animation-duration) var(--animation-easing);
+
+  /* Add a subtle filter for extra polish */
+  filter: blur(2px);
+}
+
+/* Animated state when container comes into view */
+.container.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Staggered animation delays for grid layout */
+.container:nth-child(odd).animate {
+  transition-delay: 0s;
+}
+
+.container:nth-child(even).animate {
+  transition-delay: var(--stagger-delay);
+}
+
+/* Additional staggering for when more than 2 items are visible */
+.container:nth-child(3).animate {
+  transition-delay: calc(var(--stagger-delay) * 2);
+}
+
+.container:nth-child(4).animate {
+  transition-delay: calc(var(--stagger-delay) * 3);
+}
+
+.container:nth-child(5).animate {
+  transition-delay: calc(var(--stagger-delay) * 2);
+}
+
+.container:nth-child(6).animate {
+  transition-delay: calc(var(--stagger-delay) * 3);
+}
+
+/* Hover effect enhancement - only lift, no scale */
+.container.animate:hover {
+  /* transform: translateY(-8px); */
+  border-color: var(--hover-color);
+  box-shadow: 0 10px 30px rgba(167, 219, 235, 0.2);
 }
 
 /* Thumbnail Images */
@@ -89,12 +143,13 @@ p {
   height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius);
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform-origin: center;
+  will-change: transform;
 }
 
 .thumbnail:hover img {
-  transform: scale(1.07);
+  transform: scale(1.1);
 }
 
 /* Project Title */
@@ -125,8 +180,16 @@ p {
   border-radius: var(--border-radius);
   padding: 8px 12px;
   display: inline-block;
+  transition: all 0.3s ease;
 }
 
+.tool-name span:hover {
+  background-color: var(--hover-color);
+  color: var(--bg-color);
+  border-color: var(--hover-color);
+}
+
+/* Enhanced Back to Top Button */
 #back-to-top {
   display: none;
   position: fixed;
@@ -141,19 +204,27 @@ p {
   font-size: 18px;
   width: 40px;
   height: 40px;
-  transition: opacity 0.3s;
-  opacity: 0.7;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
   z-index: 1000;
+}
+
+#back-to-top.visible {
+  display: block;
+  opacity: 0.7;
+  transform: translateY(0);
 }
 
 #back-to-top:hover {
   opacity: 1;
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
 }
 
 /* Responsiveness for smaller screen */
 @media screen and (max-width: 950px) {
   body {
-    /* max-width: 95vw; */
     width: 100%;
     padding: calc(var(--section-spacing) / 2) 5%;
   }
@@ -163,6 +234,30 @@ p {
     grid-template-columns: 1fr;
     gap: calc(var(--section-spacing) / 2);
     margin-top: calc(var(--nav-height) + var(--nav-padding));
+  }
+
+  /* Single column animation adjustments */
+  .container:nth-child(n).animate {
+    transition-delay: calc(var(--stagger-delay) * 0.5);
+  }
+
+  .container:nth-child(1).animate {
+    transition-delay: 0s;
+  }
+  .container:nth-child(2).animate {
+    transition-delay: calc(var(--stagger-delay) * 0.5);
+  }
+  .container:nth-child(3).animate {
+    transition-delay: calc(var(--stagger-delay) * 1);
+  }
+  .container:nth-child(4).animate {
+    transition-delay: calc(var(--stagger-delay) * 1.5);
+  }
+  .container:nth-child(5).animate {
+    transition-delay: calc(var(--stagger-delay) * 2);
+  }
+  .container:nth-child(6).animate {
+    transition-delay: calc(var(--stagger-delay) * 2.5);
   }
 
   p {
@@ -200,6 +295,11 @@ p {
     padding: 6px 10px;
   }
 
+  /* Faster animations on mobile for better UX */
+  .container {
+    transition-duration: 0.6s;
+  }
+
   #back-to-top {
     bottom: 10px;
     right: 10px;
@@ -223,4 +323,43 @@ p {
   #projects-section {
     margin-top: calc(var(--nav-height) + var(--nav-padding));
   }
+
+  /* Even faster animations on very small screens */
+  .container {
+    transition-duration: 0.4s;
+  }
 }
+
+/* Alternative Animation Effects - Uncomment to try different styles */
+
+/* Slide from left effect */
+/*
+.container {
+  transform: translateX(-100px) scale(0.9);
+  filter: blur(3px);
+}
+
+.container.animate {
+  transform: translateX(0) scale(1);
+  filter: blur(0);
+}
+*/
+
+/* Rotate entrance effect */
+/*
+.container {
+  transform: translateY(30px) rotate(5deg) scale(0.9);
+}
+
+.container.animate {
+  transform: translateY(0) rotate(0deg) scale(1);
+}
+*/
+
+/* Fade from bottom with bounce */
+/*
+.container {
+  transform: translateY(80px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+*/

@@ -90,24 +90,33 @@ body {
   -webkit-text-stroke: 1px #ffffff;
 }
 
-.typewriter {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
-  width: fit-content;
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
-.typewriter h1 {
+
+.fadeInText {
+  animation: 1.5s fadeInUp;
+}
+
+.typewriter h3 {
   color: #fff;
   font-family: var(--subheading-font);
   font-size: 1.5rem;
   overflow: hidden;
   border-right: 0.15em solid rgb(255, 255, 255);
-  white-space: nowrap;
   margin: 0 auto;
   width: 0;
   letter-spacing: 0.15em;
-  animation: typing 3.5s steps(31, end) forwards,
+  animation: typing 3.5s steps(100, end) forwards,
     blink-caret 0.5s step-end infinite;
+  /* word-wrap: break-word; */
 }
 
 @keyframes typing {
@@ -115,7 +124,7 @@ body {
     width: 0;
   }
   to {
-    width: 31ch;
+    width: 100%;
   }
 }
 

@@ -6,6 +6,20 @@
     <link rel="stylesheet" href="./about.css" />
     <title>Paridhi's Portfolio</title>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-6F7Y5HSK0Z"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-6F7Y5HSK0Z");
+  </script>
   <body>
     <div class="navigation-container">
       <nav>
@@ -39,10 +53,8 @@
     <div class="about-pg-container">
       <div class="about-container">
         <div class="introduction-section">
-          <!-- <div id="pg-title">
-            <h1>About</h1>
-          </div> -->
-          <div class="introduction-text">
+          <!-- ABOUT ME  -->
+          <div class="introduction-text fadeInText">
             <p>
               Hi, I’m Paridhi Garg — a creative technologist currently based in
               New York majoring in design and technology at Parsons School of
@@ -63,20 +75,27 @@
               it.
             </p>
           </div>
+
+          <!-- IMAGE  -->
           <div class="main-image">
             <img src="./assets/images/about/main1.jpeg" />
           </div>
         </div>
+
         <div class="resume-gallery-section">
+          <!-- IMAGE  -->
           <div class="side-image-container">
             <img src="./assets/images/about/main2.jpg" class="side-image" />
           </div>
+
+          <!-- BUTTONS RESUME AND GALLERY  -->
           <div class="buttons-container">
             <button class="button" onclick="openModal('resume')">Resume</button>
             <button class="button" onclick="openModal('gallery')">
               Gallery
             </button>
 
+            <!-- CONTACTS  -->
             <div class="contact-links">
               <div class="contact">
                 <a
@@ -159,18 +178,19 @@
             </div>
           </div>
         </div>
+
         <div id="modal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
 
-            <!-- Resume Modal Content -->
+            <!-- RESUME MODAL -->
             <div
               id="resume-content"
               style="display: none"
               class="resume-content"
             >
               <div class="resume-header">
-                <h1>Paridhi Garg</h1>
+                <h1></h1>
                 <button class="download-btn" onclick="downloadPDF()">
                   Download Resume
                 </button>
@@ -184,31 +204,9 @@
               </div>
               <div class="resume-sections-container">
                 <div class="resume-section experience">
+                  <!-- RESUME EXPERIENCE  -->
                   <h2>Experience</h2>
                   <div class="section-content">
-                    <p>
-                      <strong>The New School X IBM Quantum Design Jam</strong> -
-                      Oct 2022-Mar 2023
-                    </p>
-                    <p>
-                      Collaborated in a team to develop a motion capture
-                      project, investigating the intersection of quantum
-                      computing with art and design
-                    </p>
-                    <p>
-                      Exhibited at the Microscope Gallery and Sheila C. Johnson
-                      Design Center in New York.
-                    </p>
-                    <p>
-                      <strong>Google AI Hackathon</strong> - Apr 2024-May 2024
-                    </p>
-                    <p>Frontend and Backend development</p>
-                    <p>
-                      Developed a web-based cooking AI application that uses
-                      Google’s Gemini API. It incorporates features such as
-                      image analysis, text-based chat, and user input
-                      functionality to enhance user interaction.
-                    </p>
                     <p>
                       <strong>Parsons school of Design x KISD </strong> - Oct
                       2024-Dec 2024
@@ -222,24 +220,55 @@
                       Developer for the installation interface depicting quantum
                       computing
                     </p>
+                    <p>
+                      <strong>Google AI Hackathon</strong> - Apr 2024-May 2024
+                    </p>
+                    <p>Frontend and Backend development</p>
+                    <p>
+                      Developed a web-based cooking AI application that uses
+                      Google’s Gemini API. It incorporates features such as
+                      image analysis, text-based chat, and user input
+                      functionality to enhance user interaction.
+                    </p>
+                    <p>
+                      <strong>The New School X IBM Quantum Design Jam</strong> -
+                      Oct 2022-Mar 2023
+                    </p>
+                    <p>
+                      Collaborated in a team to develop a motion capture
+                      project, investigating the intersection of quantum
+                      computing with art and design
+                    </p>
+                    <p>
+                      Exhibited at the Microscope Gallery and Sheila C. Johnson
+                      Design Center in New York.
+                    </p>
                   </div>
                 </div>
 
                 <div class="resume-section education">
+                  <!-- RESUME EDUCATION  -->
                   <h2>Education</h2>
                   <div class="section-content">
                     <p>
-                      <strong>Parsons School of Design, New York</strong>
+                      <strong
+                        >Parsons School of Design <br />
+                        New York</strong
+                      >
                     </p>
                     <p>BFA Design and Technology, Creative Technology</p>
                     <p>
-                      <strong> Sardar Patel Vidyalaya, New Delhi</strong>
+                      <strong>
+                        Sardar Patel Vidyalaya <br />
+                        New Delhi</strong
+                      >
                     </p>
                     <p>Higher Education-Science</p>
                   </div>
                 </div>
 
                 <div class="resume-section skills">
+                  <!-- RESUME SKILLS  -->
                   <h2>Skills</h2>
                   <div class="section-content">
                     <p>
@@ -266,14 +295,14 @@
               </div>
             </div>
 
-            <!-- Gallery Modal Content -->
+            <!-- GALLERY MODAL -->
             <div
               id="gallery-content"
               style="display: none"
               class="gallery-content"
             >
-              <!-- Using placeholder images for gallery -->
               <div class="image-grid">
+                <!-- Column 1 -->
                 <div class="grid-column">
                   <div class="grid-item">
                     <img
@@ -291,7 +320,7 @@
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/4.jpeg"
+                      src="./assets/images/about/18.png"
                       alt="Gallery image 3"
                       loading="lazy"
                     />
@@ -312,60 +341,75 @@
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/23.png"
-                      alt="Gallery image 16"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grid-item">
-                    <img
                       src="./assets/images/about/22.png"
-                      alt="Gallery image 16"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                <div class="grid-column">
-                  <div class="grid-item">
-                    <img
-                      src="./assets/images/about/7.JPG"
                       alt="Gallery image 6"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/8.JPG"
+                      src="./assets/images/about/23.png"
                       alt="Gallery image 7"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/9.JPG"
+                      src="./assets/images/about/37.png"
                       alt="Gallery image 8"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/10.jpeg"
+                      src="./assets/images/about/26.jpeg"
                       alt="Gallery image 9"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/11.JPG"
+                      src="./assets/images/about/28.jpeg"
                       alt="Gallery image 10"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/20.png"
-                      alt="Gallery image 16"
+                      src="./assets/images/about/29.jpeg"
+                      alt="Gallery image 11"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/31.jpeg"
+                      alt="Gallery image 12"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="grid-column">
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/7.JPG"
+                      alt="Gallery image 13"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/8.JPG"
+                      alt="Gallery image 14"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/12.png"
+                      alt="Gallery image 15"
                       loading="lazy"
                     />
                   </div>
@@ -376,71 +420,149 @@
                       loading="lazy"
                     />
                   </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/20.png"
+                      alt="Gallery image 17"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/11.JPG"
+                      alt="Gallery image 18"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/10.png"
+                      alt="Gallery image 19"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/9.JPG"
+                      alt="Gallery image 20"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/27.jpeg"
+                      alt="Gallery image 21"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/32.jpeg"
+                      alt="Gallery image 22"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/33.jpg"
+                      alt="Gallery image 23"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
 
+                <!-- Column 3 -->
                 <div class="grid-column">
                   <div class="grid-item">
                     <img
                       src="./assets/images/about/13.JPG"
-                      alt="Gallery image 12"
+                      alt="Gallery image 24"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
                       src="./assets/images/about/14.jpeg"
-                      alt="Gallery image 13"
+                      alt="Gallery image 25"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
                       src="./assets/images/about/15.png"
-                      alt="Gallery image 14"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grid-item">
-                    <img
-                      src="./assets/images/about/16.png"
-                      alt="Gallery image 15"
+                      alt="Gallery image 26"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
                       src="./assets/images/about/17.jpeg"
-                      alt="Gallery image 16"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grid-item">
-                    <img
-                      src="./assets/images/about/18.png"
-                      alt="Gallery image 16"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grid-item">
-                    <img
-                      src="./assets/images/about/25.png"
-                      alt="Gallery image 16"
+                      alt="Gallery image 27"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
                       src="./assets/images/about/19.png"
-                      alt="Gallery image 16"
+                      alt="Gallery image 28"
                       loading="lazy"
                     />
-                    <div class="grid-item">
-                      <img
-                        src="./assets/images/about/main4.png"
-                        alt="Gallery image 16"
-                        loading="lazy"
-                      />
-                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/16.png"
+                      alt="Gallery image 29"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/36.png"
+                      alt="Gallery image 30"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/3.png"
+                      alt="Gallery image 31"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/main4.png"
+                      alt="Gallery image 32"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/30.jpeg"
+                      alt="Gallery image 33"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/32.jpeg"
+                      alt="Gallery image 34"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/34.jpg"
+                      alt="Gallery image 35"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <img
+                      src="./assets/images/about/35.JPG"
+                      alt="Gallery image 36"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>
@@ -451,4 +573,5 @@
     </div>
   </body>
   <script src="../script.js"></script>
+  <script src="./scroll.js"></script>
 </html>

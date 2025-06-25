@@ -58,6 +58,21 @@ body {
   font-weight: 300;
 }
 
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(10%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadeInText {
+  animation: 1.5s fadeInUp;
+}
+
 .main-image img {
   width: 100%;
   border-radius: var(--border-radius);
@@ -173,7 +188,7 @@ body {
   position: fixed;
   z-index: 1000;
   left: 0;
-  top: 0;
+  top: -50;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
@@ -279,7 +294,7 @@ body {
   margin-bottom: 1rem;
   overflow-x: hidden;
   width: 100%;
-  height: 600px;
+  height: 505px;
   flex-shrink: 0;
 }
 
@@ -351,17 +366,86 @@ body {
   overflow: hidden;
   break-inside: avoid;
   margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  /* Gallery animation initial state - hidden and positioned */
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Gallery animated state */
+.grid-item.gallery-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .grid-item img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+/* Gallery hover effects */
+.grid-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .grid-item:hover img {
   transform: scale(1.03);
+}
+
+/* Gallery image loading state */
+.grid-item img[style*="opacity: 0"] {
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  background-size: 400% 400%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Gallery staggered animation delays for different columns */
+.grid-column:nth-child(1) .grid-item {
+  transition-delay: 0s;
+}
+
+.grid-column:nth-child(2) .grid-item {
+  transition-delay: 0.1s;
+}
+
+.grid-column:nth-child(3) .grid-item {
+  transition-delay: 0.2s;
+}
+
+/* Gallery accessibility improvements */
+.grid-item:focus-within {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Gallery reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .grid-item {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+
+  .grid-item.gallery-animate {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Responsive Design */
