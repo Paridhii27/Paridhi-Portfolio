@@ -1,6 +1,4 @@
-// Enhanced Gallery Modal with Scroll Animations - Integration Version
 document.addEventListener("DOMContentLoaded", function () {
-  // Original scroll animations for project gallery (keep existing code)
   const observerOptions = {
     threshold: 0.15,
     rootMargin: "0px 0px -50px 0px",
@@ -19,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(container);
   });
 
-  // Gallery Animation Setup Function
+  // Gallery Animation Function
   function setupGalleryAnimations() {
     const galleryObserverOptions = {
       threshold: 0.1,
@@ -100,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     img.style.transition = "opacity 0.5s ease";
   });
 
-  // Back to top button functionality (keep existing)
+  // Back to top button functionality
   const backToTopButton = document.getElementById("back-to-top");
   if (backToTopButton) {
     window.addEventListener("scroll", () => {
