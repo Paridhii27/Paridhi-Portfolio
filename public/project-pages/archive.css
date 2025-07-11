@@ -38,14 +38,6 @@ body {
   color: var(--project-desc-text-color);
   font-family: var(--heading-font);
   line-height: 1.2;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
 
 h1 {
@@ -182,6 +174,7 @@ h1 {
 .highlight {
   position: relative;
   display: inline;
+  /* background: linear-gradient(90deg, #667eea, #764ba2); */
   background: linear-gradient(
     90deg,
     rgba(164, 164, 234, 0.6),
@@ -231,7 +224,7 @@ h1 {
   scrollbar-width: auto;
   animation: background 300s linear infinite;
   &::-webkit-scrollbar {
-    height: 12px;
+    height: 12px; /* Set scrollbar height */
     -webkit-appearance: none;
   }
 
@@ -263,6 +256,7 @@ h1 {
   z-index: 10;
 }
 
+/* Hide it when actually scrolling */
 #mz-gallery:hover::after {
   opacity: 0;
 }
@@ -451,7 +445,7 @@ h1 {
   text-align: center;
 }
 
-/* Tablet and Small Desktop Responsiveness */
+/* Responsiveness for Small screens */
 @media screen and (max-width: 1000px) {
   body {
     line-height: 1.5;
@@ -569,101 +563,201 @@ h1 {
   }
 }
 
-/* Portrait Mobile Devices */
-@media screen and (max-width: 768px) and (orientation: portrait) {
+@media screen and (max-width: 768px) {
   :root {
-    --mobile-padding: 1rem;
+    --mobile-padding: 0.85rem;
     --container-width: calc(100% - (2 * var(--mobile-padding)));
-  }
-
-  body {
-    margin: 0.75rem;
-    line-height: 1.5;
-  }
-
-  h1 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
-    margin-bottom: 1rem;
-  }
-
-  .project-visual {
-    margin-top: 1rem;
-  }
-
-  #main-img {
-    max-height: 50vh;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  .video-container {
-    max-height: 50vh;
-    width: 100%;
-    margin: 1rem auto;
   }
 
   .project-container,
   .project-gallery,
-  .keywords {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+  .keywords,
+  .documentation,
+  .details {
+    width: calc(100% - (2 * var(--page-margin)));
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .project-container {
+    width: 100%;
     flex-direction: column;
-    gap: 1rem;
   }
 
+  /* Documentation and details specific */
   .documentation {
-    max-height: 50vh;
-    line-height: 1.6;
+    max-height: 55vh;
+    line-height: 1.5;
     font-size: 0.9rem;
-    padding: 1rem;
-    order: 2;
+    padding: 15px;
   }
 
   .details {
-    line-height: 1.3;
+    line-height: 1.2;
     font-size: 0.9rem;
-    padding: 1rem;
-    order: 1;
+    padding: 15px;
   }
 
+  /* Keywords specific */
   .keywords {
-    gap: 0.5rem;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
+    gap: 0.65rem;
   }
 
   .keywords h2 {
-    font-size: clamp(0.85rem, 3vw, 1.1rem);
-    margin: 0.25rem;
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem);
   }
 
+  /* Project link specific */
   .project-link {
-    display: block;
-    text-align: center;
-    line-height: 1.3;
-    font-size: 0.85rem;
-    padding: 12px 16px;
-    margin-bottom: 0.75rem;
-    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.2;
+    font-size: 0.9rem;
   }
 
-  /* Gallery adjustments for portrait */
-  .project-gallery {
-    padding: 0.75rem;
-    margin-top: 1rem;
-  }
-
+  /* Gallery specific */
   #mz-gallery-container {
-    padding: 0.5rem 0;
+    padding: 0;
+    margin: 0;
   }
 
   #mz-gallery {
-    height: 45vh;
-    margin: 0.5rem 0;
+    height: 40vh;
+    margin: 0;
+  }
+
+  #mz-gallery::-webkit-scrollbar {
+    height: 15px;
+  }
+
+  #mz-gallery figure {
+    height: calc(100% - 24px);
+    margin: 0 25px;
+    padding: 1.5rem;
+    max-width: calc(95vw - 80px);
+    scroll-snap-align: center;
+  }
+
+  #mz-gallery figure:nth-child(1) {
+    margin-left: 25px;
+  }
+
+  #mz-gallery figure img {
+    max-height: 100%;
+    max-width: 95%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  #mz-gallery figure div {
+    width: 15px;
+    height: 15px;
+  }
+
+  #mz-gallery figure:hover {
+    padding: calc(1.5rem / 3);
+  }
+
+  #mz-gallery figure:hover img {
+    height: calc(100% - 12px);
+  }
+
+  #mz-gallery figure:hover div {
+    width: 18%;
+    height: 18%;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  :root {
+    --page-margin: 1rem;
+    --content-padding: 1.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+  }
+
+  /* Layout containers */
+  .project-container,
+  .project-gallery,
+  .video-container,
+  .keywords,
+  .documentation,
+  .details {
+    width: calc(100% - (2 * var(--page-margin)));
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .project-container {
+    width: 100%;
+  }
+
+  .details,
+  .documentation {
+    padding: 15px;
+  }
+
+  /* Visual elements */
+  #main-img {
+    width: 100%;
+    max-height: 45vh;
+    object-fit: cover;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* .video-container {
+    max-height: 45vh;
+  } */
+
+  /* .documentation,
+  .details {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  } */
+
+  /* .keywords {
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  .keywords h2 {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    width: 100%;
+  }
+
+  .project-link {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 0.9rem;
+  }
+
+  /* Navigation */
+  .nextPrev {
+    margin: var(--spacing-md) 0;
+  }
+
+  .previous,
+  .next {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  /* Gallery styles */
+  #mz-gallery-container {
+    padding: var(--spacing-sm) 0;
+  }
+
+  #mz-gallery {
+    height: 40vh;
   }
 
   #mz-gallery::-webkit-scrollbar {
@@ -672,26 +766,27 @@ h1 {
 
   #mz-gallery figure {
     height: calc(100% - 20px);
-    margin: 0 20px;
-    padding: 10px;
-    max-width: calc(85vw - 40px);
+    margin: 0 var(--spacing-md);
+    padding: var(--spacing-sm);
+    max-width: calc(90vw - 50px);
     scroll-snap-align: center;
   }
 
-  #mz-gallery figure:nth-child(1) {
-    margin-left: 20px;
+  #mz-gallery figure:first-child {
+    margin-left: var(--spacing-md);
   }
 
   #mz-gallery figure img {
     max-height: 100%;
-    max-width: 100%;
+    max-width: 90%;
     width: auto;
     height: auto;
     object-fit: contain;
   }
 
+  /* Gallery hover effects */
   #mz-gallery figure:hover {
-    padding: 5px;
+    padding: 0 5px;
   }
 
   #mz-gallery figure:hover img {
@@ -699,8 +794,8 @@ h1 {
   }
 
   #mz-gallery figure:hover div {
-    width: 15%;
-    height: 15%;
+    width: 12%;
+    height: 12%;
     opacity: 1;
   }
 
@@ -709,563 +804,33 @@ h1 {
     height: 12px;
   }
 
-  .nextPrev {
-    margin: 1rem 0;
+  /* Gallery corner styles */
+  #mz-gallery figure div:nth-child(2) {
+    border-radius: 10px 0 0 0;
   }
-
-  .previous,
-  .next {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    min-height: 44px;
-    min-width: 44px;
+  #mz-gallery figure div:nth-child(3) {
+    border-radius: 0 10px 0 0;
   }
-}
-
-/* Landscape Mobile Devices */
-@media screen and (max-width: 768px) and (orientation: landscape) {
-  :root {
-    --mobile-padding: 0.75rem;
+  #mz-gallery figure div:nth-child(4) {
+    border-radius: 0 0 10px 0;
   }
-
-  body {
-    margin: 0.5rem;
-    line-height: 1.4;
-  }
-
-  h1 {
-    font-size: clamp(1.25rem, 4vw, 2rem);
-    margin-bottom: 0.75rem;
-  }
-
-  .project-visual {
-    margin-top: 0.75rem;
-  }
-
-  #main-img {
-    max-height: 60vh;
-    width: 100%;
-    margin-bottom: 0.75rem;
-  }
-
-  .video-container {
-    max-height: 60vh;
-    width: 100%;
-    margin: 0.75rem auto;
-  }
-
-  .project-container {
-    flex-direction: row;
-    gap: 0.75rem;
-  }
-
-  .documentation {
-    max-height: 65vh;
-    line-height: 1.5;
-    font-size: 0.85rem;
-    padding: 0.75rem;
-    flex: 2;
-  }
-
-  .details {
-    line-height: 1.2;
-    font-size: 0.85rem;
-    padding: 0.75rem;
-    flex: 1;
-    min-width: 200px;
-  }
-
-  .keywords {
-    gap: 0.5rem;
-    padding: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .keywords h2 {
-    font-size: clamp(0.8rem, 2.5vw, 1rem);
-    margin: 0.25rem;
-  }
-
-  .project-link {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Gallery adjustments for landscape */
-  .project-gallery {
-    padding: 0.5rem;
-    margin-top: 0.75rem;
-  }
-
-  #mz-gallery-container {
-    padding: 0.25rem 0;
-  }
-
-  #mz-gallery {
-    height: 55vh;
-    margin: 0.25rem 0;
-  }
-
-  #mz-gallery::-webkit-scrollbar {
-    height: 10px;
-  }
-
-  #mz-gallery figure {
-    height: calc(100% - 16px);
-    margin: 0 15px;
-    padding: 8px;
-    max-width: calc(80vw - 30px);
-  }
-
-  #mz-gallery figure:nth-child(1) {
-    margin-left: 15px;
-  }
-
-  #mz-gallery figure img {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-
-  #mz-gallery figure:hover {
-    padding: 3px;
-  }
-
-  #mz-gallery figure:hover img {
-    height: calc(100% - 6px);
-  }
-
-  .nextPrev {
-    margin: 0.75rem 0;
-  }
-
-  .previous,
-  .next {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
+  #mz-gallery figure div:nth-child(5) {
+    border-radius: 0 0 0 10px;
   }
 }
 
-/* Small Portrait Mobile Devices */
-@media screen and (max-width: 480px) and (orientation: portrait) {
-  :root {
-    --page-margin: 0.75rem;
-    --mobile-padding: 0.75rem;
-  }
-
-  body {
-    margin: var(--page-margin);
-  }
-
-  h1 {
-    font-size: clamp(1.25rem, 7vw, 2rem);
-    margin-bottom: 0.75rem;
-  }
-
-  #main-img {
-    max-height: 40vh;
-    width: 100%;
-    margin-bottom: 0.75rem;
-  }
-
-  .video-container {
-    max-height: 40vh;
-    width: 100%;
-    margin: 0.75rem auto;
-  }
-
-  .project-container {
-    width: 100%;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .details,
-  .documentation {
-    width: 100%;
-    padding: 0.75rem;
-  }
-
-  .documentation {
-    max-height: 45vh;
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-
-  .details {
-    font-size: 0.85rem;
-    line-height: 1.3;
-  }
-
-  .keywords {
-    width: 100%;
-    padding: 0.5rem;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .keywords h2 {
-    font-size: clamp(0.8rem, 4vw, 1rem);
-    margin: 0.25rem;
-    width: 100%;
-  }
-
-  .project-link {
-    display: block;
-    text-align: center;
-    line-height: 1.3;
-    font-size: 0.8rem;
-    padding: 12px 16px;
-    margin-bottom: 0.5rem;
-    min-height: 44px;
-  }
-
-  /* Gallery for small portrait screens */
-  .project-gallery {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.75rem;
-  }
-
-  #mz-gallery-container {
-    padding: 0.25rem 0;
-  }
-
-  #mz-gallery {
-    height: 35vh;
-    margin: 0.25rem 0;
-  }
-
-  #mz-gallery::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  #mz-gallery figure {
-    height: calc(100% - 16px);
-    margin: 0 12px;
-    padding: 8px;
-    max-width: calc(80vw - 24px);
-    scroll-snap-align: center;
-  }
-
-  #mz-gallery figure:first-child {
-    margin-left: 12px;
-  }
-
-  #mz-gallery figure img {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-
-  #mz-gallery figure:hover {
-    padding: 4px;
-  }
-
-  #mz-gallery figure:hover img {
-    height: calc(100% - 8px);
-  }
-
-  #mz-gallery figure:hover div {
-    width: 10%;
-    height: 10%;
-    opacity: 1;
-  }
-
-  #mz-gallery figure div {
-    width: 8px;
-    height: 8px;
-  }
-
-  .nextPrev {
-    margin: 0.75rem 0;
-  }
-
-  .previous,
-  .next {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-/* Small Landscape Mobile Devices */
-@media screen and (max-width: 480px) and (orientation: landscape) {
-  :root {
-    --page-margin: 0.5rem;
-    --mobile-padding: 0.5rem;
-  }
-
-  body {
-    margin: var(--page-margin);
-  }
-
-  h1 {
-    font-size: clamp(1rem, 5vw, 1.5rem);
-    margin-bottom: 0.5rem;
-  }
-
-  #main-img {
-    max-height: 50vh;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .video-container {
-    max-height: 50vh;
-    width: 100%;
-    margin: 0.5rem auto;
-  }
-
-  .project-container {
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-
-  .documentation {
-    max-height: 60vh;
-    line-height: 1.4;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    flex: 2;
-  }
-
-  .details {
-    line-height: 1.2;
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    flex: 1;
-    min-width: 150px;
-  }
-
-  .keywords {
-    gap: 0.25rem;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .keywords h2 {
-    font-size: clamp(0.7rem, 3vw, 0.9rem);
-    margin: 0.15rem;
-  }
-
-  .project-link {
-    font-size: 0.75rem;
-    padding: 6px 10px;
-    margin-bottom: 0.25rem;
-  }
-
-  /* Gallery for small landscape screens */
-  .project-gallery {
-    padding: 0.25rem;
-    margin-top: 0.5rem;
-  }
-
-  #mz-gallery-container {
-    padding: 0.15rem 0;
-  }
-
-  #mz-gallery {
-    height: 45vh;
-    margin: 0.15rem 0;
-  }
-
-  #mz-gallery::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  #mz-gallery figure {
-    height: calc(100% - 12px);
-    margin: 0 8px;
-    padding: 6px;
-    max-width: calc(75vw - 16px);
-  }
-
-  #mz-gallery figure:first-child {
-    margin-left: 8px;
-  }
-
-  #mz-gallery figure img {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-
-  #mz-gallery figure:hover {
-    padding: 2px;
-  }
-
-  #mz-gallery figure:hover img {
-    height: calc(100% - 4px);
-  }
-
-  .nextPrev {
-    margin: 0.5rem 0;
-  }
-
-  .previous,
-  .next {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-}
-
-/* Extra Small Mobile Devices */
+/* Fix for very small screens */
 @media screen and (max-width: 320px) {
   :root {
-    --page-margin: 0.5rem;
     --mobile-padding: 0.5rem;
   }
 
-  body {
-    margin: var(--page-margin);
-  }
-
-  h1 {
-    font-size: clamp(1rem, 6vw, 1.5rem);
-    margin-bottom: 0.5rem;
-  }
-
-  #main-img {
-    max-height: 35vh;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .video-container {
-    max-height: 35vh;
-    width: 100%;
-    margin: 0.5rem auto;
-  }
-
-  .project-container {
-    width: 100%;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .details,
-  .documentation {
-    width: 100%;
-    padding: 0.5rem;
-  }
-
-  .documentation {
-    max-height: 40vh;
-    font-size: 0.75rem;
-    line-height: 1.4;
-  }
-
-  .details {
-    font-size: 0.75rem;
-    line-height: 1.2;
-  }
-
-  .keywords {
-    width: 100%;
-    padding: 0.5rem;
-    gap: 0.25rem;
-    margin-bottom: 0.5rem;
-  }
-
   .keywords h2 {
-    font-size: clamp(0.75rem, 5vw, 0.9rem);
-    margin: 0.2rem;
-    width: 100%;
+    font-size: 0.875rem;
   }
 
   .project-link {
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-    font-size: 0.75rem;
-    padding: 10px 12px;
-    margin-bottom: 0.5rem;
-    min-height: 44px;
-  }
-
-  /* Gallery for extra small screens */
-  .project-gallery {
-    width: 100%;
-    padding: 0.25rem;
-    margin-top: 0.5rem;
-  }
-
-  #mz-gallery-container {
-    padding: 0.15rem 0;
-  }
-
-  #mz-gallery {
-    height: 30vh;
-    margin: 0.15rem 0;
-  }
-
-  #mz-gallery::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  #mz-gallery figure {
-    height: calc(100% - 12px);
-    margin: 0 8px;
-    padding: 6px;
-    max-width: calc(75vw - 16px);
-    scroll-snap-align: center;
-  }
-
-  #mz-gallery figure:first-child {
-    margin-left: 8px;
-  }
-
-  #mz-gallery figure img {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-
-  #mz-gallery figure:hover {
-    padding: 3px;
-  }
-
-  #mz-gallery figure:hover img {
-    height: calc(100% - 6px);
-  }
-
-  #mz-gallery figure:hover div {
-    width: 8%;
-    height: 8%;
-    opacity: 1;
-  }
-
-  #mz-gallery figure div {
-    width: 6px;
-    height: 6px;
-  }
-
-  .nextPrev {
-    margin: 0.5rem 0;
-  }
-
-  .previous,
-  .next {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-    min-height: 44px;
-    min-width: 44px;
+    font-size: 14px;
   }
 }
 
@@ -1276,7 +841,6 @@ h1 {
   .next {
     padding: 12px 16px;
     min-height: 44px;
-    min-width: 44px;
   }
 
   #mz-gallery {
@@ -1287,72 +851,7 @@ h1 {
   #mz-gallery figure {
     scroll-snap-align: center;
     scroll-snap-stop: always;
-  }
-
-  /* Increase touch targets on mobile */
-  @media screen and (max-width: 768px) {
-    .project-link {
-      min-height: 48px;
-      padding: 14px 18px;
-    }
-
-    .previous,
-    .next {
-      min-height: 48px;
-      min-width: 48px;
-    }
-  }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  #mz-gallery figure div {
-    border-width: 0.5px;
-  }
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  #mz-gallery {
-    scroll-behavior: auto;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page-bg-color: #000000;
-    --project-desc-text-color: #ffffff;
-    --border-color: #e6e6e0;
-  }
-}
-
-/* Print styles */
-@media print {
-  body {
-    background-color: white;
-    color: black;
-    margin: 1cm;
-  }
-
-  .project-link,
-  .nextPrev,
-  #mz-gallery {
-    display: none;
-  }
-
-  .project-container {
-    flex-direction: column;
-  }
-
-  .documentation {
-    max-height: none;
-    overflow: visible;
+    min-width: 80%;
+    margin: 0 auto;
   }
 }
