@@ -260,7 +260,7 @@ nav {
   #menu a {
     display: block;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--nav-text);
     text-decoration: none;
     font-weight: 450;
@@ -316,7 +316,7 @@ nav {
 /* For larger mobile screens */
 @media screen and (min-width: 481px) and (max-width: 768px) {
   #menu a {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     padding: 1.2rem;
   }
 
