@@ -323,7 +323,7 @@ p {
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 756px) {
   body {
     width: 100%;
     padding: calc(var(--section-spacing) / 3) 5%;
@@ -344,25 +344,23 @@ p {
     padding: 6px 10px;
   }
 
-  /* Faster animations on mobile for better UX */
   .container {
     transition-duration: 0.6s;
   }
 
   #filterBtns {
-    flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
     max-width: 100%;
     padding: 10px;
-    margin-bottom: -20px;
-    margin-top: 70px;
   }
 
   .btn {
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-    font-size: 14px;
+    flex: 1;
+    min-width: 140px;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   #back-to-top {
@@ -394,15 +392,9 @@ p {
     transition-duration: 0.4s;
   }
 
-  #filterBtns {
-    padding: 8px;
-    gap: 8px;
-    margin-bottom: -15px;
-    margin-top: 65px;
-  }
-
   .btn {
-    padding: 10px;
-    font-size: 12px;
+    width: 100px;
+    padding: 6px 8px;
+    font-size: 11px;
   }
 }

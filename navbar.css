@@ -163,8 +163,8 @@ nav {
     display: block;
     position: absolute;
     top: 30px;
-    right: 20px; /* Fixed: was missing 'px' */
-    z-index: 1;
+    right: 20px;
+    z-index: 1001; /* Higher than menu */
     user-select: none;
   }
 
@@ -177,10 +177,10 @@ nav {
     left: -5px;
     cursor: pointer;
     opacity: 0;
-    z-index: 2;
+    z-index: 1002; /* Highest z-index */
   }
 
-  /* Hamburger Icon */
+  /* Hamburger Icon - FIXED ANIMATION */
   #menuToggle span {
     display: block;
     width: 25px;
@@ -189,43 +189,51 @@ nav {
     position: relative;
     background: var(--nav-text);
     border-radius: 3px;
-    z-index: 1;
+    z-index: 1001;
     transform-origin: 4px 0;
     transition: transform var(--transition-slow),
-      background var(--transition-slow), opacity 0.55s ease;
+      background var(--transition-slow), opacity var(--transition-slow); /* Fixed: was 0.55s ease */
   }
 
+  /* Fixed transform origins for proper animation */
   #menuToggle span:first-child {
     transform-origin: 0% 0%;
   }
 
-  #menuToggle span:nth-last-child(2) {
+  #menuToggle span:nth-child(3) {
+    /* Second span (middle line) */
+    transform-origin: 0% 50%;
+  }
+
+  #menuToggle span:nth-child(4) {
+    /* Third span (bottom line) */
     transform-origin: 0% 100%;
   }
 
-  /* Hamburger Animation */
+  /* FIXED: Hamburger to X Animation */
   #menuToggle input:checked ~ span {
     opacity: 1;
     transform: rotate(45deg) translate(-2px, -1px);
     background: var(--nav-text);
   }
 
-  #menuToggle input:checked ~ span:nth-last-child(3) {
+  #menuToggle input:checked ~ span:nth-child(3) {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
   }
 
-  #menuToggle input:checked ~ span:nth-last-child(2) {
+  #menuToggle input:checked ~ span:nth-child(4) {
+    opacity: 1;
     transform: rotate(-45deg) translate(0, -1px);
   }
 
-  /* Mobile Menu - UPDATED FOR PROPER CENTERING */
+  /* Mobile Menu */
   #menu {
-    position: fixed; /* Changed from absolute to fixed */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
     background: var(--nav-bg);
@@ -238,9 +246,9 @@ nav {
     gap: 2rem;
 
     /* Animation */
-    transform: translateX(100%); /* Start off-screen to the right */
+    transform: translateX(100%);
     transition: transform var(--transition-slow);
-    z-index: 999; /* Below hamburger but above everything else */
+    z-index: 999;
   }
 
   #menu li {
@@ -252,7 +260,7 @@ nav {
   #menu a {
     display: block;
     padding: 1rem;
-    font-size: 1.5rem; /* Responsive font size */
+    font-size: 1.5rem;
     color: var(--nav-text);
     text-decoration: none;
     font-weight: 450;
@@ -284,7 +292,7 @@ nav {
 
   /* Show menu when checkbox is checked */
   #menuToggle input:checked ~ ul {
-    transform: translateX(0); /* Slide in from right */
+    transform: translateX(0);
   }
 
   .logo {
