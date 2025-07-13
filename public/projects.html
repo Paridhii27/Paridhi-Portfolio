@@ -50,10 +50,26 @@
       </nav>
     </div>
 
+    <div id="filterBtns">
+      <button class="btn active" onclick="filterSelection('all')">
+        All Projects
+      </button>
+      <button class="btn" onclick="filterSelection('aiweb')">
+        AI Application
+      </button>
+      <button class="btn" onclick="filterSelection('interactive')">
+        Interactive Installation
+      </button>
+      <button class="btn" onclick="filterSelection('narrative')">
+        3D Environment
+      </button>
+      <button class="btn" onclick="filterSelection('others')">Others</button>
+    </div>
+
     <!-- Project Gallery -->
     <div id="projects-section">
       <!-- Project 1 : This machine is a Stranger -->
-      <div class="container">
+      <div class="container interactive aiweb">
         <a href="./project-pages/this-machine-is-a-stranger.html" id="title"
           >This Machine is a Stranger</a
         >
@@ -79,7 +95,7 @@
       </div>
 
       <!-- Project 2 : Fleeting States + Measured Values -->
-      <div class="container">
+      <div class="container interactive">
         <a href="./project-pages/fleeting-states.html" id="title"
           >Fleeting States + Measured Values</a
         >
@@ -107,7 +123,7 @@
       </div>
 
       <!-- Project 3 : Move A Bit -->
-      <div class="container">
+      <div class="container interactive">
         <a href="./project-pages/move-a-bit.html" id="title">Move A Bit</a>
         <div class="thumbnail">
           <a href="./project-pages/move-a-bit.html">
@@ -130,7 +146,7 @@
       </div>
 
       <!-- Project 4 : Computerized Memories -->
-      <div class="container">
+      <div class="container narrative">
         <a href="./project-pages/computerized-memories.html" id="title"
           >Computerized Memories</a
         >
@@ -153,7 +169,7 @@
       </div>
 
       <!-- Project 5 : Two kinds of Love -->
-      <div class="container">
+      <div class="container narrative">
         <a href="./project-pages/two-kinds-of-love.html" id="title"
           >Two kinds of Love</a
         >
@@ -179,7 +195,7 @@
       </div>
 
       <!-- Project 6 : Sights and Insights-->
-      <div class="container">
+      <div class="container aiweb">
         <a href="./project-pages/sights-and-insights.html" id="title"
           >Sights and Insights</a
         >
@@ -200,7 +216,7 @@
       </div>
 
       <!-- Project 7 : Granny Bytes -->
-      <div class="container">
+      <div class="container aiweb">
         <a href="./project-pages/granny-bytes.html" id="title">Granny Bytes</a>
         <div class="thumbnail">
           <a href="./project-pages/granny-bytes.html">
@@ -218,7 +234,7 @@
       </div>
 
       <!-- Project 8 : Firefly Symphony -->
-      <div class="container">
+      <div class="container others">
         <a href="./project-pages/firefly-symphony.html" id="title"
           >A Firefly Symphony</a
         >
@@ -239,7 +255,7 @@
       </div>
 
       <!-- Project 9 : Warped Memories of Digital Ghosts -->
-      <div class="container">
+      <div class="container narrative">
         <a href="./project-pages/warped-memories.html" id="title"
           >Warped Memories of Digital Ghosts</a
         >
@@ -264,7 +280,7 @@
       </div>
 
       <!-- Project 10 : Hivemind -->
-      <div class="container">
+      <div class="container others">
         <a href="./project-pages/hivemind.html" id="title">Hivemind</a>
         <div class="thumbnail">
           <a href="./project-pages/hivemind.html">
@@ -285,7 +301,7 @@
       </div>
 
       <!-- Project 11 : VJ Set -->
-      <div class="container">
+      <div class="container interactive">
         <a href="./project-pages/vj-set.html" id="title">Audiovisual</a>
         <div class="thumbnail">
           <a href="./project-pages/vj-set.html">
@@ -304,7 +320,7 @@
       </div>
 
       <!-- Project 12 : Echoes -->
-      <div class="container">
+      <div class="container interactive">
         <a href="./project-pages/echoes.html" id="title">Echoes</a>
         <div class="thumbnail">
           <a href="./project-pages/echoes.html">
@@ -326,7 +342,7 @@
       </div>
 
       <!-- Project 13 : Light and Darkness -->
-      <div class="container">
+      <div class="container aiweb">
         <a href="./project-pages/light-and-darkness.html" id="title"
           >Light and Darkness</a
         >
@@ -350,7 +366,7 @@
       </div>
 
       <!-- Project 14 : Temperature of Emotions -->
-      <div class="container">
+      <div class="container others">
         <a href="./project-pages/temperature-of-emotions.html" id="title"
           >Temperature of emotions</a
         >
@@ -379,5 +395,6 @@
 
     <script src="../script.js"></script>
     <script src="scroll.js"></script>
+    <script src="filter.js"></script>
   </body>
 </html>

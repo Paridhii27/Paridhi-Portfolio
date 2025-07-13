@@ -24,10 +24,6 @@
   --transition-slow: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-/* * {
-  border: #99bcf0 solid;
-} */
-
 body {
   padding-top: calc(var(--nav-height) + 1rem);
 }
@@ -167,7 +163,7 @@ nav {
     display: block;
     position: absolute;
     top: 30px;
-    right: 20;
+    right: 20px; /* Fixed: was missing 'px' */
     z-index: 1;
     user-select: none;
   }
@@ -223,23 +219,56 @@ nav {
     transform: rotate(-45deg) translate(0, -1px);
   }
 
-  /* Mobile Menu */
+  /* Mobile Menu - UPDATED FOR PROPER CENTERING */
   #menu {
-    position: absolute;
-    width: 120vw;
-    height: 100vh;
-    margin: -50px 0 0 0;
-    padding: 2%;
-    right: -40px;
+    position: fixed; /* Changed from absolute to fixed */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
     background: var(--nav-bg);
+
+    /* Flexbox centering */
+    display: flex;
     flex-direction: column;
-    transform: translate(100%, 0);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    /* Animation */
+    transform: translateX(100%); /* Start off-screen to the right */
     transition: transform var(--transition-slow);
+    z-index: 999; /* Below hamburger but above everything else */
   }
 
   #menu li {
     text-align: center;
-    line-height: 2;
+    list-style: none;
+    width: 100%;
+  }
+
+  #menu a {
+    display: block;
+    padding: 1rem;
+    font-size: 1.5rem; /* Responsive font size */
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: 450;
+    transition: all var(--transition-fast);
+
+    margin: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #menu a:focus {
+    outline: none;
+    box-shadow: none;
   }
 
   #menu li:hover a {
@@ -253,12 +282,37 @@ nav {
     color: transparent;
   }
 
+  /* Show menu when checkbox is checked */
   #menuToggle input:checked ~ ul {
-    transform: none;
+    transform: translateX(0); /* Slide in from right */
   }
 
   .logo {
     height: 40px;
     margin-left: 15px;
+  }
+}
+
+/* Additional responsive adjustments for very small screens */
+@media screen and (max-width: 480px) {
+  #menu a {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  #menu {
+    gap: 1.5rem;
+  }
+}
+
+/* For larger mobile screens */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #menu a {
+    font-size: 1.8rem;
+    padding: 1.2rem;
+  }
+
+  #menu {
+    gap: 2.5rem;
   }
 }
