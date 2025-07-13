@@ -25,14 +25,14 @@ body {
 .about-container {
   display: flex;
   width: 100%;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
   gap: var(--pg-margin);
 }
 
 /* Left Section */
 .introduction-section {
   width: 60%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -139,10 +139,9 @@ body {
 /* Right Section */
 .resume-gallery-section {
   width: 40%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  /* gap: 1.25rem; */
 }
 
 .side-image-container {
@@ -509,18 +508,23 @@ body {
 @media screen and (max-width: 768px) {
   .about-container {
     flex-direction: column;
+    min-height: auto;
+    gap: 2rem;
   }
 
   .introduction-section,
   .resume-gallery-section {
     width: 100%;
+    min-height: auto;
   }
 
   .introduction-section {
-    z-index: 1;
+    margin-bottom: 2rem;
+    order: 1;
   }
   .resume-gallery-section {
-    z-index: 1;
+    order: 2;
+    margin-top: 0;
   }
 
   .modal-content {
@@ -563,6 +567,14 @@ body {
     margin-bottom: 1.2rem;
   }
 
+  .introduction-section {
+    z-index: auto;
+  }
+
+  .resume-gallery-section {
+    z-index: auto;
+  }
+
   .resume-section {
     display: flex;
     flex-direction: column;
@@ -586,7 +598,8 @@ body {
 
   .buttons-container {
     gap: 0.65rem;
-    height: 2%;
+    height: auto;
+    min-height: 100px;
   }
 
   .button {
@@ -612,13 +625,16 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+  .about-container {
+    gap: 1.5rem;
+  }
   .introduction-section,
   .resume-gallery-section {
     width: 100%;
   }
   .introduction-section {
     width: 100%;
-    margin-bottom: 0rem;
+    margin-bottom: 1.5rem;
     position: relative;
   }
 
@@ -642,21 +658,29 @@ body {
 
   .main-image {
     width: 100%;
-    position: relative;
-    z-index: 1;
+    margin-bottom: 1rem;
   }
 
   .side-image-container {
     height: 200px;
     margin-bottom: 1rem;
-    position: relative;
-    z-index: 2;
     clear: both;
+  }
+
+  .introduction-section > *,
+  .resume-gallery-section > * {
+    flex-shrink: 0;
+  }
+
+  .introduction-section,
+  .resume-gallery-section {
+    position: relative;
   }
 
   .buttons-container {
     gap: 0.65rem;
-    height: 2%;
+    height: auto;
+    min-height: 100px;
   }
 
   .button {
