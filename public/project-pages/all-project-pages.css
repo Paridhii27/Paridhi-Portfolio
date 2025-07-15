@@ -34,6 +34,7 @@
 
 body {
   margin: var(--page-margin);
+  padding-top: 20px;
   background-color: var(--page-bg-color);
   color: var(--project-desc-text-color);
   font-family: var(--heading-font);
@@ -204,7 +205,7 @@ h1 {
 /* project image gallery */
 .project-gallery {
   position: relative;
-  width: calc(100% - (2 * var(--mobile-padding)));
+  width: 100%;
   padding: var(--mobile-padding);
   border: 0.01cm dashed var(--border-color);
   border-radius: var(--border-radius);
@@ -457,6 +458,7 @@ h1 {
 @media screen and (max-width: 1000px) {
   body {
     line-height: 1.5;
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   .project-visual,
@@ -510,7 +512,6 @@ h1 {
 
   .details,
   .documentation {
-    /* width: calc(100% - (2 * var(--mobile-padding))); */
     width: 100%;
     max-height: 80vh;
   }
@@ -582,6 +583,7 @@ h1 {
   body {
     margin: 0.75rem;
     line-height: 1.5;
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   h1 {
@@ -735,6 +737,7 @@ h1 {
   body {
     margin: 0.5rem;
     line-height: 1.4;
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   h1 {
@@ -863,6 +866,7 @@ h1 {
 
   body {
     margin: var(--page-margin);
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   h1 {
@@ -1010,6 +1014,7 @@ h1 {
 
   body {
     margin: var(--page-margin);
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   h1 {
@@ -1134,6 +1139,7 @@ h1 {
 
   body {
     margin: var(--page-margin);
+    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
 
   h1 {

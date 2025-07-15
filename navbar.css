@@ -13,7 +13,7 @@
   --nav-font-weight: 700;
 
   /* Layout */
-  --nav-height: 60px;
+  --nav-height: 75px;
   --nav-padding: 20px;
   --logo-size: 50px;
   --menu-font-size: 20px;
@@ -26,6 +26,10 @@
 
 body {
   padding-top: calc(var(--nav-height) + 1rem);
+}
+
+.home-page .navigation-container {
+  background-color: transparent !important;
 }
 
 /* Navigation Container */
@@ -45,7 +49,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70%;
+  height: var(--nav-height);
   max-width: 90vw;
   margin: 0 auto;
   padding: var(--nav-padding);
@@ -156,6 +160,7 @@ nav {
   body {
     margin: 5%;
     padding: 0;
+    padding-top: calc(var(--nav-height) + 1rem); /* Preserve navbar padding */
     overflow-x: hidden;
   }
 
