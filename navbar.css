@@ -30,6 +30,7 @@ body {
 
 .home-page .navigation-container {
   background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Navigation Container */
