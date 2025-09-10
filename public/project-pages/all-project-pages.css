@@ -230,26 +230,29 @@ h1 {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-color: var(--border-color) #222;
-  scrollbar-width: auto;
+  scrollbar-color: var(--border-color) transparent;
+  scrollbar-width: thin;
   animation: background 300s linear infinite;
+  padding-bottom: 20px; /* Add padding for captions */
   &::-webkit-scrollbar {
-    height: 12px;
+    height: 6px;
     -webkit-appearance: none;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
+    background: var(--border-color);
+    border-radius: 3px;
+    opacity: 0.8;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--hover-color);
+    opacity: 1;
   }
 }
 
@@ -279,31 +282,11 @@ h1 {
   }
 }
 
-#mz-gallery::-webkit-scrollbar {
-  height: 25px;
-}
-
-#mz-gallery::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#mz-gallery::-webkit-scrollbar-thumb {
-  background: #666;
-}
-
-#mz-gallery::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-#mz-gallery::-webkit-scrollbar-thumb:active {
-  background: #444;
-}
-
 #mz-gallery figure {
   position: relative;
   margin: unset;
   flex: 0 0 auto;
-  height: calc(100% - 40px);
+  height: calc(100% - 60px); /* Increased to account for captions */
   margin: 0 30px;
   padding: 20px;
   scroll-snap-align: center;
@@ -407,6 +390,28 @@ h1 {
   height: 20%;
   opacity: 1;
   transition: all 0.3s ease-in-out;
+}
+
+/* Caption styling */
+#mz-gallery figure figcaption {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--content-font);
+  font-size: 0.75rem;
+  color: var(--project-desc-text-color);
+  opacity: 0.7;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.2;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#mz-gallery figure:hover figcaption {
+  opacity: 1;
 }
 
 /* Previous and next project buttons */
@@ -553,11 +558,11 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 20px;
+    height: 6px;
   }
 
   #mz-gallery figure {
-    height: calc(100% - 30px);
+    height: calc(100% - 50px); /* Increased to account for captions */
     margin: 0 40px;
     padding: 15px;
   }
@@ -675,11 +680,11 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
+    height: 6px;
   }
 
   #mz-gallery figure {
-    height: calc(100% - 20px);
+    height: calc(100% - 40px); /* Increased to account for captions */
     margin: 0 20px;
     padding: 10px;
     max-width: calc(85vw - 40px);
@@ -717,6 +722,13 @@ h1 {
   #mz-gallery figure div {
     width: 12px;
     height: 12px;
+  }
+
+  /* Caption styling for portrait mobile */
+  #mz-gallery figure figcaption {
+    bottom: -25px;
+    font-size: 0.7rem;
+    max-width: 150px;
   }
 
   .nextPrev {
@@ -820,11 +832,11 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 10px;
+    height: 6px;
   }
 
   #mz-gallery figure {
-    height: calc(100% - 16px);
+    height: calc(100% - 36px); /* Increased to account for captions */
     margin: 0 15px;
     padding: 8px;
     max-width: calc(80vw - 30px);
@@ -850,6 +862,13 @@ h1 {
   #mz-gallery figure:hover img,
   #mz-gallery figure:hover video {
     height: calc(100% - 6px);
+  }
+
+  /* Caption styling for landscape mobile */
+  #mz-gallery figure figcaption {
+    bottom: -20px;
+    font-size: 0.65rem;
+    max-width: 120px;
   }
 
   .nextPrev {
@@ -956,11 +975,11 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
   }
 
   #mz-gallery figure {
-    height: calc(100% - 16px);
+    height: calc(100% - 36px); /* Increased to account for captions */
     margin: 0 12px;
     padding: 8px;
     max-width: calc(80vw - 24px);
@@ -1099,7 +1118,7 @@ h1 {
   }
 
   #mz-gallery figure {
-    height: calc(100% - 12px);
+    height: calc(100% - 32px); /* Increased to account for captions */
     margin: 0 8px;
     padding: 6px;
     max-width: calc(75vw - 16px);
@@ -1233,7 +1252,7 @@ h1 {
   }
 
   #mz-gallery figure {
-    height: calc(100% - 12px);
+    height: calc(100% - 32px); /* Increased to account for captions */
     margin: 0 8px;
     padding: 6px;
     max-width: calc(75vw - 16px);
