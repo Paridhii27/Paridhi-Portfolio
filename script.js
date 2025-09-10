@@ -4,6 +4,13 @@ const galleryContent = document.getElementById("gallery-content");
 
 function openModal(type) {
   modal.style.display = "block";
+
+  // Trigger modal animation
+  setTimeout(() => {
+    modal.classList.add("show");
+    modal.querySelector(".modal-content").classList.add("show");
+  }, 10);
+
   if (type === "resume") {
     resumeContent.style.display = "block";
     galleryContent.style.display = "none";
@@ -14,9 +21,16 @@ function openModal(type) {
 }
 
 function closeModal() {
-  modal.style.display = "none";
-  resumeContent.style.display = "none";
-  galleryContent.style.display = "none";
+  // Remove animation classes
+  modal.classList.remove("show");
+  modal.querySelector(".modal-content").classList.remove("show");
+
+  // Hide modal after animation completes
+  setTimeout(() => {
+    modal.style.display = "none";
+    resumeContent.style.display = "none";
+    galleryContent.style.display = "none";
+  }, 300);
 }
 
 // Close modal when clicking outside
