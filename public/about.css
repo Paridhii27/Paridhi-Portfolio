@@ -7,6 +7,11 @@
   --secondary-color: #a49ce0;
   --hover-color: #3d479c;
 
+  /* Section colors */
+  --skills-color: #3d479c;
+  --education-color: #a49ce0;
+  --experience-color: #5a7c8a;
+
   --heading-font: "Inter", sans-serif;
   --subheading-font: "Quicksand", sans-serif;
   --content-font: "Open Sans", sans-serif;
@@ -14,6 +19,8 @@
   --border-radius: 10px;
   --pg-margin: 5%;
 }
+
+/* ===== BASE STYLES ===== */
 
 body {
   background-color: var(--bg-color);
@@ -28,6 +35,8 @@ body {
   min-height: calc(100vh - 80px);
   gap: var(--pg-margin);
 }
+
+/* ===== LAYOUT SECTIONS ===== */
 
 /* Left Section */
 .introduction-section {
@@ -192,7 +201,7 @@ body {
   background-color: var(--secondary-color);
 }
 
-/* Modal Styles */
+/* ===== MODAL STYLES ===== */
 .modal {
   display: none;
   position: fixed;
@@ -216,20 +225,22 @@ body {
   height: 75vh;
   background-color: var(--bg-color);
   border: 0.01px solid var(--text-color);
-  margin: 10% auto;
+  margin: auto;
   padding: 25px;
   border-radius: 10px;
-  position: relative;
-  overflow-y: auto;
-  color: white;
-  transform: translateY(-50px) scale(0.95);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  color: white;
 }
 
 .modal-content.show {
-  transform: translateY(0) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
@@ -314,6 +325,7 @@ body {
   font-size: 2.5rem;
   font-family: var(--heading-font);
   font-weight: 700;
+  font-style: normal;
   color: var(--text-color);
   margin: 0;
 }
@@ -330,19 +342,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
-}
-
-.resume-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 2rem;
-  flex-shrink: 0;
-}
-
-.resume-header h1 {
-  font-size: 2rem;
-  font-family: var(--heading-font);
 }
 
 .download-btn {
@@ -385,6 +384,8 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(61, 71, 156, 0.3);
 }
+
+/* ===== RESUME LAYOUT ===== */
 
 .resume-sections-container {
   display: flex;
@@ -446,9 +447,10 @@ body {
   color: var(--secondary-color);
   padding: 1.5rem 1rem 1rem 1rem;
   margin: 0;
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 1px dashed var(--text-color);
   font-size: 1.5rem;
   font-weight: 700;
+  font-style: normal;
   position: relative;
   z-index: 1;
   background: rgba(0, 0, 0, 0.4);
@@ -473,20 +475,19 @@ body {
   margin-bottom: 1rem;
   line-height: 1.8;
   font-size: 1rem;
+  font-style: italic;
   transition: all 0.3s ease;
   padding: 0.5rem 0;
   position: relative;
 }
 
-.resume-section p:hover {
-  color: var(--secondary-color);
-  transform: translateX(5px);
-}
+/* Removed text hover effects - using section-level hover instead */
 
 .resume-section p strong {
   color: var(--text-color);
   font-weight: 700;
   font-size: 1.05rem;
+  font-style: normal;
   display: block;
   margin-bottom: 0.3rem;
   font-family: var(--heading-font);
@@ -494,8 +495,9 @@ body {
 
 /* Company/Organization names */
 .resume-section p strong:first-child {
-  color: var(--secondary-color);
+  color: var(--text-color);
   font-size: 1.1rem;
+  font-style: normal;
   margin-bottom: 0.5rem;
   padding-bottom: 0.2rem;
   border-bottom: 1px dashed var(--border-color);
@@ -503,7 +505,6 @@ body {
 
 /* Date ranges */
 .resume-section p:has(strong) + p {
-  font-style: italic;
   color: var(--border-color);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
@@ -512,14 +513,12 @@ body {
 
 /* Job descriptions */
 .resume-section p:not(:has(strong)):not(:first-child) {
-  margin-left: 1rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.02);
   border-radius: 0 5px 5px 0;
 }
 
-/* Skills section specific styling */
+/* ===== RESUME CONTENT STYLING ===== */
+
+/* Skills section content styling */
 .resume-section.skills .section-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -527,60 +526,200 @@ body {
 }
 
 .resume-section.skills p {
-  background: rgba(164, 156, 224, 0.1);
+  background: linear-gradient(
+    135deg,
+    rgba(61, 71, 156, 0.12) 0%,
+    rgba(61, 71, 156, 0.05) 100%
+  );
   padding: 1rem;
   border-radius: 8px;
-  border: 1px dashed var(--border-color);
+  border: 1px dashed var(--skills-color);
   margin-bottom: 0.8rem;
+  font-style: italic;
+  color: var(--border-color);
+  transition: all 0.3s ease;
 }
 
 .resume-section.skills p strong {
-  color: var(--secondary-color);
+  color: var(--text-color);
   font-size: 1rem;
+  font-style: normal;
   margin-bottom: 0.5rem;
   display: block;
 }
 
-/* Education section specific styling */
-.resume-section.education p {
-  background: rgba(61, 71, 156, 0.1);
+/* ===== ITEM STYLING ===== */
+
+.experience-item {
+  background: linear-gradient(
+    135deg,
+    rgba(90, 124, 138, 0.12) 0%,
+    rgba(90, 124, 138, 0.05) 100%
+  );
   padding: 1rem;
   border-radius: 8px;
-  border: 1px dashed var(--border-color);
+  border: 1px dashed var(--experience-color);
   margin-bottom: 1rem;
+  transition: all 0.3s ease;
 }
 
-.resume-section.education p strong {
-  color: var(--secondary-color);
-  font-size: 1.1rem;
+.education-item {
+  background: linear-gradient(
+    135deg,
+    rgba(164, 156, 224, 0.12) 0%,
+    rgba(164, 156, 224, 0.05) 100%
+  );
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px dashed var(--education-color);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.experience-item p,
+.education-item p {
+  margin-bottom: 0.5rem;
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-style: italic;
+  color: var(--border-color);
+}
+
+.experience-item p:last-child,
+.education-item p:last-child {
+  margin-bottom: 0;
+}
+
+.experience-item p strong,
+.education-item p strong {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-style: normal;
   margin-bottom: 0.5rem;
   display: block;
 }
 
-/* Experience section specific styling */
-.resume-section.experience .section-content {
+/* ===== SECTION-SPECIFIC STYLING ===== */
+
+/* Experience Section */
+.resume-section.experience {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 71, 156, 0.08) 0%,
+    rgba(61, 71, 156, 0.03) 50%,
+    rgba(61, 71, 156, 0.05) 100%
+  );
+  border-color: var(--experience-color);
+}
+
+.resume-section.experience h2 {
+  color: var(--text-color);
+  border-bottom-color: var(--experience-color);
+}
+
+.resume-section.experience::before {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 71, 156, 0.1) 0%,
+    rgba(61, 71, 156, 0.05) 100%
+  );
+}
+
+.resume-section.experience:hover {
+  border-color: var(--experience-color);
+  box-shadow: 0 15px 35px rgba(61, 71, 156, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Experience section - remove dashed line from strong element and add it after the paragraph */
+.resume-section.experience .experience-item p:first-child strong {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.resume-section.experience .experience-item p:first-child {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.resume-section.experience .experience-item p:first-child::after {
+  content: "";
+  display: block;
+  border-bottom: 1px dashed var(--border-color);
+  margin: 0.3rem 0;
+}
+
+/* Skills Section */
+.resume-section.skills {
+  background: linear-gradient(
+    135deg,
+    rgba(164, 156, 224, 0.08) 0%,
+    rgba(164, 156, 224, 0.03) 50%,
+    rgba(164, 156, 224, 0.05) 100%
+  );
+  border-color: var(--skills-color);
+}
+
+.resume-section.skills h2 {
+  color: var(--text-color);
+  border-bottom-color: var(--skills-color);
+}
+
+.resume-section.skills::before {
+  background: linear-gradient(
+    135deg,
+    rgba(164, 156, 224, 0.1) 0%,
+    rgba(164, 156, 224, 0.05) 100%
+  );
+}
+
+.resume-section.skills:hover {
+  border-color: var(--skills-color);
+  box-shadow: 0 15px 35px rgba(164, 156, 224, 0.3);
+}
+
+/* Education Section */
+.resume-section.education {
+  background: linear-gradient(
+    135deg,
+    rgba(90, 124, 138, 0.08) 0%,
+    rgba(90, 124, 138, 0.03) 50%,
+    rgba(90, 124, 138, 0.05) 100%
+  );
+  border-color: var(--education-color);
+}
+
+.resume-section.education h2 {
+  color: var(--text-color);
+  border-bottom-color: var(--education-color);
+}
+
+.resume-section.education::before {
+  background: linear-gradient(
+    135deg,
+    rgba(90, 124, 138, 0.1) 0%,
+    rgba(90, 124, 138, 0.05) 100%
+  );
+}
+
+.resume-section.education:hover {
+  border-color: var(--education-color);
+  box-shadow: 0 15px 35px rgba(90, 124, 138, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Section content styling */
+.resume-section.experience .section-content,
+.resume-section.education .section-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.resume-section.experience p:has(strong) {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px dashed var(--border-color);
-  margin-bottom: 0.5rem;
-}
-
-.section-content {
-  padding: 1rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  flex-grow: 1;
-  word-wrap: break-word;
-  width: 100%;
-  box-sizing: border-box;
-}
+/* ===== GALLERY STYLING ===== */
 
 .image-grid {
   display: grid;
@@ -627,15 +766,7 @@ body {
   transition: transform 0.3s ease, opacity 0.5s ease;
 }
 
-/* Gallery hover effects */
-.grid-item:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.grid-item:hover img {
-  transform: scale(1.03);
-}
+/* Gallery hover effects removed for cleaner look */
 
 /* Gallery image loading state */
 .grid-item img[style*="opacity: 0"] {
@@ -688,7 +819,17 @@ body {
   }
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large screens */
+@media screen and (max-width: 1200px) {
+  .modal-content {
+    width: 85vw;
+    height: 80vh;
+    padding: 20px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .about-container {
     margin-top: 5%;
@@ -725,9 +866,10 @@ body {
   }
 
   .modal-content {
-    width: 80vw;
-    height: 75vh;
-    margin: 10% auto;
+    width: 85vw;
+    height: 80vh;
+    padding: 20px;
+    margin: 15px;
     overflow-x: hidden;
   }
 
@@ -769,9 +911,10 @@ body {
   }
 
   .modal-content {
-    width: 80vw;
-    height: 75vh;
-    margin: 10% auto;
+    width: 90vw;
+    height: 85vh;
+    padding: 15px;
+    margin: 20px;
     overflow-x: hidden;
   }
 
@@ -822,8 +965,8 @@ body {
   }
 
   .resume-section.skills p,
-  .resume-section.education p,
-  .resume-section.experience p:has(strong) {
+  .experience-item,
+  .education-item {
     padding: 0.8rem;
   }
 
@@ -881,6 +1024,8 @@ body {
 
   .image-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
   }
 }
 
@@ -914,6 +1059,20 @@ body {
   .resume-content {
     height: auto;
     padding: 10px;
+  }
+
+  .modal-content {
+    width: 95vw;
+    height: 90vh;
+    padding: 10px;
+    margin: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  .modal-content.show {
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .main-image {
@@ -961,6 +1120,8 @@ body {
   }
   .image-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px;
   }
 
   .resume-header {
