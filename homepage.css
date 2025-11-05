@@ -38,6 +38,7 @@
   /* Spacing */
   --section-spacing: 5vw;
   --container-padding: 5%;
+  --nav-height: 75px;
 }
 
 body.home-page {
@@ -51,7 +52,7 @@ body.home-page {
 /* ===== WELCOME SECTION ===== */
 .welcome-section {
   padding: 2rem var(--container-padding) 1.5rem;
-  margin-top: 6vh;
+  margin-top: calc(var(--nav-height) + 2rem);
   text-align: center;
 }
 
@@ -77,6 +78,26 @@ body.home-page {
 
 .title-text {
   white-space: nowrap;
+  display: inline-block;
+}
+
+.title-line {
+  display: block;
+}
+
+@media screen and (min-width: 769px) {
+  .title-text {
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .title-line {
+    display: inline;
+  }
+
+  .title-line:first-child::after {
+    content: " ";
+  }
 }
 
 .special-letter {
@@ -105,15 +126,46 @@ body.home-page {
   height: 100%;
 }
 
-.main-featured-project img {
+.main-featured-project a {
+  display: block;
   width: 90%;
+  align-self: flex-start;
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.main-featured-project a:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.main-featured-project a:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.main-featured-project a:focus {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.main-featured-project a:focus-visible {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.main-featured-project img {
+  width: 100%;
   max-width: 100%;
   height: auto;
   max-height: 500px;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
-  align-self: flex-start;
+  display: block;
 }
 
 .project-info {
@@ -121,6 +173,36 @@ body.home-page {
   padding-right: 40px;
   width: 90%;
   box-sizing: border-box;
+}
+
+.featured-project-title-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.featured-project-title-link:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.featured-project-title-link:active {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+.featured-project-title-link:focus {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.featured-project-title-link:focus-visible {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .featured-project-title {
@@ -399,14 +481,65 @@ body.home-page {
     touch-action: manipulation;
   }
 
+  /* Enhanced touch interactions for all links */
+  a:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  a:focus {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Logo link touch interactions */
+  .logo a:active {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+
+  .logo a:focus {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .logo a:focus-visible {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
   .welcome-section {
     padding: 1.5rem var(--container-padding) 1rem;
-    margin-top: 4vh;
+    margin-top: calc(var(--nav-height) + 1rem);
   }
 
   .welcome-title {
     gap: 0.75rem;
-    font-size: clamp(1.5rem, 6.5vw, 2.5rem);
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    flex-wrap: wrap;
+  }
+
+  .title-text {
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .title-line {
+    display: block;
+    line-height: 1.2;
   }
 
   .decorative-line {
@@ -437,6 +570,10 @@ body.home-page {
     height: auto;
   }
 
+  .main-featured-project a {
+    width: 100%;
+  }
+
   .main-featured-project img {
     width: 100%;
     max-width: 100%;
@@ -450,6 +587,12 @@ body.home-page {
 
   .project-thumbnail:nth-child(3) {
     width: 100%;
+  }
+
+  .project-thumbnail img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .project-info {
@@ -556,6 +699,10 @@ body.home-page {
     padding: 1.25rem 1rem;
   }
 
+  .decorative-line {
+    display: none;
+  }
+
   /* Touch-based interactions for mobile */
   .nav-button {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
@@ -599,23 +746,71 @@ body.home-page {
     outline-offset: 2px;
   }
 
+  /* Enhanced touch interactions for all links */
+  a:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  a:focus {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Logo link touch interactions */
+  .logo a:active {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+
+  .logo a:focus {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .logo a:focus-visible {
+    outline: 2px solid var(--hover-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
   .welcome-section {
     padding: 1.25rem 1rem 0.75rem;
-    margin-top: 6vh;
+    margin-top: calc(var(--nav-height) + 1rem);
   }
 
   .welcome-title {
     flex-direction: row;
     gap: 0.5rem;
-    font-size: clamp(1.3rem, 7.5vw, 1.8rem);
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    flex-wrap: wrap;
+  }
+
+  .title-text {
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .title-line {
+    display: block;
+    line-height: 1.2;
   }
 
   .decorative-line {
     width: 30px;
-  }
-
-  .title-text {
-    font-size: clamp(1.3rem, 7.5vw, 1.8rem);
   }
 
   .featured-projects-section {
@@ -629,6 +824,10 @@ body.home-page {
 
   .main-featured-project {
     gap: 0.75rem;
+  }
+
+  .main-featured-project a {
+    width: 100%;
   }
 
   .main-featured-project img {
@@ -645,6 +844,12 @@ body.home-page {
 
   .project-thumbnail:nth-child(3) {
     width: 100%;
+  }
+
+  .project-thumbnail img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .featured-project-title {

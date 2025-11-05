@@ -5,24 +5,28 @@ const projects = {
     title: "This Machine is a Stranger",
     description:
       '"This Machine is a Stranger" is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
+    url: "./public/project-pages/this-machine-is-a-stranger.html",
   },
   "fleeting-states": {
     image: "./public/assets/images/thumbnails/fleeting-states-two.png",
     title: "Fleeting States + Measured Values",
     description:
       "This project depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
+    url: "./public/project-pages/fleeting-states.html",
   },
   "move-a-bit": {
     image: "./public/assets/images/thumbnails/move-a-bit.jpg",
     title: "Move A Bit",
     description:
       "Move a Bit is a live motion capture project bringing quantum computing to life through an interactive display that visually showcases entanglement.",
+    url: "./public/project-pages/move-a-bit.html",
   },
   "sights-and-insights": {
     image: "./public/assets/images/thumbnails/sights-and-insights.png",
     title: "Sights and Insights",
     description:
       "Sights and Insights is a web based application that transforms ordinary walks into ones filled with curious interventions. It is a voice based AI application encouraging users to engage with the spaces they finds themselves in.",
+    url: "./public/project-pages/sights-and-insights.html",
   },
 };
 
@@ -47,6 +51,8 @@ function updateFeaturedProject(projectId) {
 
   // Get DOM elements
   const mainImage = document.getElementById("main-featured-image");
+  const mainLink = document.getElementById("main-featured-link");
+  const mainTitleLink = document.getElementById("main-featured-title-link");
   const mainTitle = document.getElementById("main-featured-title");
   const mainDescription = document.getElementById("main-featured-description");
 
@@ -54,6 +60,12 @@ function updateFeaturedProject(projectId) {
   if (mainImage) {
     mainImage.src = project.image;
     mainImage.alt = project.title;
+  }
+  if (mainLink && project.url) {
+    mainLink.href = project.url;
+  }
+  if (mainTitleLink && project.url) {
+    mainTitleLink.href = project.url;
   }
   if (mainTitle) {
     mainTitle.textContent = project.title;
