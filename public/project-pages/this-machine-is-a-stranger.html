@@ -4,16 +4,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../navbar.css" />
     <link rel="stylesheet" href="./all-project-pages.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../assets/images/logos/favicon.ico"
+    />
     <title>Paridhi's Portfolio</title>
   </head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6F7Y5HSK0Z"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-6F7Y5HSK0Z"
+  ></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    gtag('config', 'G-6F7Y5HSK0Z');
+    gtag("config", "G-6F7Y5HSK0Z");
   </script>
   <body>
     <div class="navigation-container">
@@ -77,20 +87,58 @@
         <p>Some questions that I kept coming back to when assessing if I trusted a stranger were “Would you take advice from a stranger you’ve never met?”, “ Would you trust a stranger with a secret?”, “Would you take something from a stranger?” and “ Would you trust them if your life depended on it?” I guess the answer would differ based on how sceptical or trusting you are in life.</p>
         <h3>Design and Development</h3>
         <p>The project is built to have three core components:</p>
-        <li>Web interface which acts as a means to navigate through the experience and input responses</li>
-        <li>Wall projection which displays both the machine-generated responses as well as visual elements reflecting the user's surrounding environment</li>
-        <li>Sound consisting of Machine voice and environmental sounds</li>
-        <p>The web interface features a frontend built with HTML/CSS and backend built with Node.js, Express.js, and several other dependencies. User interactions on the frontend trigger requests to the backend server, which then calls the Anthropic AI API to generate machine responses. These text responses are subsequently processed through the ElevenLabs API to convert them into speech before it’s heard by the user.</p>
+        <ul>
+          <li>Web interface which acts as a means to navigate through the experience and input responses</li>
+          <li>Wall projection which displays both the machine-generated responses as well as visual elements reflecting the user's surrounding environment</li>
+          <li>Sound consisting of Machine voice and environmental sounds</li>
+        </ul>
+        <div class="inline-img-container">
+          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/installation.png">
+        </div>
+        <p>The web interface features a frontend built with HTML/CSS and backend built with Node.js, Express.js, and several other dependencies. User interactions on the frontend trigger requests to the backend server, which then calls the Anthropic AI API to generate machine responses. These text responses are subsequently processed through the ElevenLabs API to convert them into speech before it's heard by the user.</p>
         <p>The generated machine responses are projected on the wall, accompanied by visual effects and textual indicators that evolve as users navigate through their journey on the web interface. TouchDesigner– a node-based visual programming language used for interactive multimedia– handles the visual rendering and projects the final scene on the wall. </p>
         <p>Since these core components are built on different platforms, they require cross platform communication for them to be connected which is done through the use of WebSockets– a communication protocol that enable real-time, two-way communication between different platforms– in this case, the web interface and TouchDesigner. The WebSockets connection transmits machine-generated responses to the user to TouchDesigner where they appear as subtitles for the user to read as they hear the machine voice.</p>
         <h3>Machine Persona</h3>
         <p>The way the machine speaks reveals a lot about its personality and the kind of interactions the machine provides. The machine is prompted to have a complex personality balancing two core traits: </p>
-        <li>Insatiable curiosity which relents itself to an obsessive drive to gather information and understand human behavior, often pushing boundaries to satisfy intellectual hunger</li>
-        <li>Rigid boundaries where it maintains strict personal and ethical boundaries, sometimes to the point of being overly cautious or withholding privileged information</li>
-        <p>“Gizmo-1305” is a strange machine found in the northeastern sector of the Whispering Woods. The user finds that the machine is capable of providing navigational assistance but along with that it provides unsolicited advice which the user can choose to accept or decline. The machine craves to know more about the human experience and keeps prodding the user asking them questions about them without even telling them where they should head. It’s trying to balance its curious personality along with parts of its identity which value efficiency and boundaries. </p>
+        <ul>
+          <li>Insatiable curiosity which relents itself to an obsessive drive to gather information and understand human behavior, often pushing boundaries to satisfy intellectual hunger</li>
+          <li>Rigid boundaries where it maintains strict personal and ethical boundaries, sometimes to the point of being overly cautious or withholding privileged information</li>
+        </ul>
+        <div class="inline-img-container right-align">
+          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/3.jpg">
+        </div>
+        <p>"Gizmo-1305" is a strange machine found in the northeastern sector of the Whispering Woods. The user finds that the machine is capable of providing navigational assistance but along with that it provides unsolicited advice which the user can choose to accept or decline. The machine craves to know more about the human experience and keeps prodding the user asking them questions about them without even telling them where they should head. It's trying to balance its curious personality along with parts of its identity which value efficiency and boundaries. </p>
+        <div class="inline-img-container">
+          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/5.jpg">
+        </div>
         <h3>User Experience</h3>
         <p>There are three scenarios that the user comes across in their journey: share, seek and take. These scenarios are reflective of the different modes of showing and questioning trust. Each path tackling a different contradiction and providing the user with a choice they have to make, to trust or not to trust the machine.</p>
-        <p>At the end of their journey, the user gets a sentiment analysis from Gizmo-1305 on how much information they were willing to share with it and how much they trusted it. This sentiment analysis reveals if the user felt aligned or if they were at odds with the machine, leading them to ponder– “how did this experience increase or decrease my trust in the machine?"</p>
+        <div class="inline-img-container side-by-side">
+          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/2.jpg">
+          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/1.jpg">
+        </div>
+        <p>At the end of their journey, the user gets a sentiment analysis from Gizmo-1305 on how much information they were willing to share with it and how much they trusted it. This sentiment analysis reveals if the user felt aligned or if they were at odds with the machine, leading them to ponder– "how did this experience increase or decrease my trust in the machine?"</p>
+
+        <div class="credits-container">
+          <h4>Credits & References</h4>
+          <ul class="credits-list">
+            <ul>
+              <div class="credits-category">Thesis Advisors and Professors</div>
+              <div class="credits-detail">Jesse Harding, Binna Lee, Justin Bakse, Lai Yi Ohlsen, Colleen Macklin</div>
+            </ul>
+            <ul>
+              <div class="credits-category">Project References</div>
+              <div class="credits-detail">Books</div>
+              <div class="credits-detail">Articles</div>
+              <div class="credits-detail">Artist Projects</div>
+              <div class="credits-detail">Podcasts</div>
+            </ul>
+            <ul>
+              <div class="credits-category">Exhibition</div>
+              <div class="credits-detail"><a href="https://parsons.edu/dt-2025/this-machine-is-a-stranger/" target="_blank">Mosaic Parsons DT 2025</a></div>
+            </ul>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -234,18 +282,6 @@
           <figure>
             <img
             src="../assets/images/project-pages/this-machine-is-a-stranger/i7.png"
-              width="700"
-              height="700"
-            />
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </figure>
-
-          <figure>
-            <img
-            src="../assets/images/project-pages/this-machine-is-a-stranger/installation.png"
               width="700"
               height="700"
             />

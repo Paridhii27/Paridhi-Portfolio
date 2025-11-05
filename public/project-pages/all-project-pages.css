@@ -1,7 +1,8 @@
-/* * {
-  border: 1px solid blue;
-} */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
+
+/* ============================================================================
+   CSS VARIABLES
+   ============================================================================ */
 
 :root {
   /* Color Palette */
@@ -24,6 +25,14 @@
   --project-container-titles: 300;
   --content: 300;
 
+  /* Font Sizes - Consistent across all pages */
+  --font-size-paragraph: 1rem; /* 16px - Base paragraph text */
+  --font-size-h1: clamp(2rem, 4.5vw, 3.5rem); /* Large page titles */
+  --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem); /* Section titles */
+  --font-size-h3: clamp(1.25rem, 3vw, 1.75rem); /* Subsection titles */
+  --font-size-button: 1rem; /* 16px - Base buttons */
+  --font-size-button-large: 1.1rem; /* 17.6px - CTA buttons */
+
   /* Spacing */
   --page-margin: clamp(1rem, 5vw, 5%);
   --container-gap: clamp(1rem, 3vw, 2rem);
@@ -31,6 +40,10 @@
   --mobile-padding: 1rem;
   --border-radius: 10px;
 }
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
 
 body {
   margin: var(--page-margin);
@@ -51,7 +64,7 @@ body {
 
 h1 {
   font-family: var(--heading-font);
-  font-size: clamp(2rem, 5vw, 40px);
+  font-size: var(--font-size-h1);
   margin-bottom: 1.5rem;
 }
 
@@ -59,12 +72,15 @@ h1 {
   background: #3d479c;
 }
 
-/* Main container containing image and keywords */
+/* ============================================================================
+   PROJECT VISUAL SECTION
+   ============================================================================ */
+
 .project-visual {
   margin-top: 2rem;
 }
 
-/* Top image on the page */
+/* Main project image */
 #main-img {
   width: 100%;
   height: auto;
@@ -92,7 +108,7 @@ h1 {
   border: none;
 }
 
-/* project key themes */
+/* Project keywords/tags */
 .keywords {
   display: flex;
   flex-direction: wrap;
@@ -107,12 +123,16 @@ h1 {
 
 .keywords h2 {
   margin: 0.5rem;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: var(--font-size-h3);
   text-align: center;
   width: auto;
 }
 
-/* Main container containing details, documentation gallery and next/prev buttons */
+/* ============================================================================
+   PROJECT CONTAINER LAYOUT
+   ============================================================================ */
+
+/* Main container for details, documentation, and gallery */
 .project-container {
   display: flex;
   flex-direction: row;
@@ -120,7 +140,10 @@ h1 {
   margin-top: 2rem;
 }
 
-/* project details */
+/* ============================================================================
+   PROJECT DETAILS CONTAINER
+   ============================================================================ */
+
 .details {
   flex: 1;
   min-width: 250px;
@@ -132,7 +155,16 @@ h1 {
   overflow-y: auto;
 }
 
-/* external project links */
+/* Make h1 headings in details container use h2 font size (smaller) */
+.details h1 {
+  font-family: var(--heading-font);
+  font-size: var(--font-size-h2);
+  font-weight: var(--heading-bold);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+/* External project links */
 .project-link {
   border-radius: 10px;
   border: 1px solid white;
@@ -140,7 +172,7 @@ h1 {
   display: inline-block;
   position: relative;
   text-align: center;
-  font-size: 16px;
+  font-size: var(--font-size-button);
   padding: 10px 10px;
   margin-bottom: 0.5rem;
   transition: all 0.5s;
@@ -168,7 +200,10 @@ h1 {
   right: 10px;
 }
 
-/* project text description */
+/* ============================================================================
+   DOCUMENTATION SECTION
+   ============================================================================ */
+
 .documentation {
   flex: 3;
   font-family: var(--content-font);
@@ -180,6 +215,121 @@ h1 {
   line-height: 1.8;
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
+}
+
+.documentation h3 {
+  font-family: var(--heading-font);
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--project-desc-text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.documentation h3:first-child {
+  margin-top: 0;
+}
+
+.documentation p {
+  margin-bottom: 1.25rem;
+  color: var(--project-desc-text-color);
+  font-size: var(--font-size-paragraph);
+  line-height: 1.8;
+}
+
+.documentation ul {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.documentation li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: var(--project-desc-text-color);
+  font-size: var(--font-size-paragraph);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.documentation li::before {
+  content: "•";
+  color: var(--border-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  font-size: var(--font-size-h3);
+  line-height: 1.4;
+}
+
+.documentation li:last-child {
+  margin-bottom: 1.25rem;
+}
+
+.documentation p:last-child {
+  margin-bottom: 1rem;
+}
+
+/* Credits and references section */
+.documentation .credits-container {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.documentation .credits-container h4 {
+  font-family: var(--heading-font);
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--project-desc-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.documentation .credits-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.documentation .credits-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px dotted var(--border-color);
+  margin-bottom: 0.5rem;
+  padding-left: 0;
+}
+
+.documentation .credits-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.documentation .credits-list .credits-category {
+  font-weight: 600;
+  color: var(--border-color);
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-paragraph);
+}
+
+.documentation .credits-list .credits-detail {
+  color: var(--project-desc-text-color);
+  margin-bottom: 0;
+  font-size: var(--font-size-paragraph);
+  line-height: 1.5;
+}
+
+.documentation .credits-list .credits-detail a {
+  color: var(--hover-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.documentation .credits-list .credits-detail a:hover {
+  color: var(--image-border-secondary);
+  text-decoration: underline;
 }
 
 .highlight {
@@ -202,7 +352,59 @@ h1 {
   background-size: 100% 100%;
 }
 
-/* project image gallery */
+/* Inline images in documentation */
+.documentation .inline-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+  padding: 0.5rem;
+}
+
+.documentation .inline-img-container.side-by-side {
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.documentation .inline-img-container.right-align {
+  justify-content: flex-end;
+}
+
+.documentation .inline-img-container.left-align {
+  justify-content: flex-start;
+}
+
+.documentation .inline-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border: 1px solid var(--border-color);
+  opacity: 0.9;
+  display: block;
+  margin: 0 auto;
+  max-height: 50vh;
+  object-fit: contain;
+}
+
+.documentation .inline-img-container.side-by-side .inline-img {
+  max-width: calc(50% - 0.5rem);
+  margin: 0;
+}
+
+.documentation .inline-img-container.right-align .inline-img,
+.documentation .inline-img-container.left-align .inline-img {
+  margin: 0;
+  max-width: 60%;
+}
+
+/* ============================================================================
+   PROJECT IMAGE GALLERY
+   ============================================================================ */
+
 .project-gallery {
   position: relative;
   width: 100%;
@@ -399,7 +601,7 @@ h1 {
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--content-font);
-  font-size: 0.75rem;
+  font-size: var(--font-size-paragraph);
   color: var(--project-desc-text-color);
   opacity: 0.7;
   text-align: center;
@@ -414,7 +616,10 @@ h1 {
   opacity: 1;
 }
 
-/* Previous and next project buttons */
+/* ============================================================================
+   NAVIGATION BUTTONS
+   ============================================================================ */
+
 .nextPrev {
   display: flex;
   width: 100%;
@@ -442,7 +647,7 @@ h1 {
   border-radius: 50%;
   text-decoration: none;
   padding: 0;
-  font-size: 24px;
+  font-size: var(--font-size-h2);
   line-height: 1;
 }
 
@@ -461,7 +666,10 @@ h1 {
   text-align: center;
 }
 
-/* Tablet and Small Desktop Responsiveness */
+/* ============================================================================
+   RESPONSIVE DESIGN - TABLET & SMALL DESKTOP
+   ============================================================================ */
+
 @media screen and (max-width: 1000px) {
   body {
     line-height: 1.5;
@@ -525,20 +733,89 @@ h1 {
 
   .documentation {
     padding: 1.5rem;
-    font-size: 1rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.5;
+  }
+
+  .documentation h3 {
+    font-size: var(--font-size-h2);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .documentation p {
+    margin-bottom: 1rem;
+    font-size: var(--font-size-paragraph);
+    line-height: 1.7;
+  }
+
+  .documentation ul {
+    margin: 1rem 0;
+    padding-left: 0;
+  }
+
+  .documentation li {
+    margin-bottom: 0.5rem;
+    font-size: var(--font-size-paragraph);
+    padding-left: 1.25rem;
+  }
+
+  .documentation li::before {
+    font-size: var(--font-size-button-large);
+  }
+
+  .documentation .credits-container {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+
+  .documentation .credits-container h4 {
+    font-size: var(--font-size-button-large);
+    margin-bottom: 0.875rem;
+  }
+
+  .documentation .credits-list li {
+    padding: 0.625rem 0;
+  }
+
+  .documentation .credits-list .credits-category,
+  .documentation .credits-list .credits-detail {
+    font-size: var(--font-size-paragraph);
   }
 
   .details {
     padding: 1.5rem;
-    font-size: 1rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.2;
+  }
+
+  /* Maintain h2 font size for h1 in details container on tablet */
+  .details h1 {
+    font-size: var(--font-size-h2);
+  }
+
+  .documentation .inline-img {
+    max-height: 45vh;
+  }
+
+  .documentation .inline-img-container {
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .documentation .inline-img-container.side-by-side .inline-img {
+    max-width: calc(50% - 0.5rem);
+  }
+
+  .documentation .inline-img-container.right-align .inline-img,
+  .documentation .inline-img-container.left-align .inline-img {
+    max-width: 65%;
   }
 
   .project-link {
     text-align: left;
     line-height: 1.2;
-    font-size: 0.9rem;
+    font-size: var(--font-size-paragraph);
   }
 
   .project-gallery {
@@ -581,15 +858,19 @@ h1 {
   }
 }
 
-/* Portrait Mobile Devices */
+/* ============================================================================
+   RESPONSIVE DESIGN - PORTRAIT MOBILE DEVICES
+   ============================================================================ */
+
 @media screen and (max-width: 768px) and (orientation: portrait) {
   :root {
     --mobile-padding: 1rem;
     --container-width: calc(100% - (2 * var(--mobile-padding)));
+    --page-margin: 1.5rem;
   }
 
   body {
-    margin: 0.75rem;
+    margin: var(--page-margin);
     line-height: 1.5;
     padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
@@ -631,22 +912,100 @@ h1 {
   .documentation {
     /* max-height: 50vh; */
     line-height: 1.6;
-    font-size: 0.9rem;
+    font-size: var(--font-size-paragraph);
     padding: 1rem;
     order: 2;
   }
 
+  .documentation h3 {
+    font-size: var(--font-size-h3);
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .documentation p {
+    margin-bottom: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .documentation ul {
+    margin: 0.875rem 0;
+    padding-left: 0;
+  }
+
+  .documentation li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    padding-left: 1rem;
+  }
+
+  .documentation li::before {
+    font-size: var(--font-size-paragraph);
+  }
+
+  .documentation li:last-child {
+    margin-bottom: 0.875rem;
+  }
+
+  .documentation .credits-container {
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+  }
+
+  .documentation .credits-container h4 {
+    font-size: var(--font-size-paragraph);
+    margin-bottom: 0.75rem;
+  }
+
+  .documentation .credits-list li {
+    padding: 0.5rem 0;
+  }
+
+  .documentation .credits-list .credits-category,
+  .documentation .credits-list .credits-detail {
+    font-size: var(--font-size-paragraph);
+  }
+
   .details {
     line-height: 1.3;
-    font-size: 0.9rem;
+    font-size: var(--font-size-paragraph);
     padding: 1rem;
     order: 1;
+  }
+
+  /* Maintain h2 font size for h1 in details container on mobile */
+  .details h1 {
+    font-size: var(--font-size-h2);
   }
 
   .keywords {
     gap: 0.5rem;
     padding: 0.75rem;
     margin-bottom: 1rem;
+  }
+
+  .documentation .inline-img {
+    max-height: 40vh;
+    border-radius: 6px;
+  }
+
+  .documentation .inline-img-container {
+    margin: 1rem 0;
+    padding: 0.25rem;
+  }
+
+  .documentation .inline-img-container.side-by-side {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .documentation .inline-img-container.side-by-side .inline-img {
+    max-width: 100%;
+  }
+
+  .documentation .inline-img-container.right-align .inline-img,
+  .documentation .inline-img-container.left-align .inline-img {
+    max-width: 75%;
   }
 
   .keywords h2 {
@@ -658,7 +1017,7 @@ h1 {
     display: block;
     text-align: center;
     line-height: 1.3;
-    font-size: 0.9rem;
+    font-size: var(--font-size-paragraph);
     padding: 12px 16px;
     margin-bottom: 0.75rem;
     min-height: 44px;
@@ -727,7 +1086,7 @@ h1 {
   /* Caption styling for portrait mobile */
   #mz-gallery figure figcaption {
     bottom: -25px;
-    font-size: 0.7rem;
+    font-size: var(--font-size-paragraph);
     max-width: 150px;
   }
 
@@ -739,20 +1098,24 @@ h1 {
   .next {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: var(--font-size-paragraph);
     min-height: 44px;
     min-width: 44px;
   }
 }
 
-/* Landscape Mobile Devices */
+/* ============================================================================
+   RESPONSIVE DESIGN - LANDSCAPE MOBILE DEVICES
+   ============================================================================ */
+
 @media screen and (max-width: 768px) and (orientation: landscape) {
   :root {
     --mobile-padding: 0.75rem;
+    --page-margin: 1rem;
   }
 
   body {
-    margin: 0.5rem;
+    margin: var(--page-margin);
     line-height: 1.4;
     padding-top: calc(60px + 1rem); /* Add top padding for navbar */
   }
@@ -786,17 +1149,71 @@ h1 {
   .documentation {
     max-height: 65vh;
     line-height: 1.5;
-    font-size: 0.85rem;
+    font-size: var(--font-size-paragraph);
     padding: 0.75rem;
     flex: 2;
   }
 
+  .documentation h3 {
+    font-size: var(--font-size-button-large);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .documentation p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .documentation ul {
+    margin: 0.75rem 0;
+    padding-left: 0;
+  }
+
+  .documentation li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+    padding-left: 0.875rem;
+  }
+
+  .documentation li::before {
+    font-size: var(--font-size-paragraph);
+  }
+
+  .documentation li:last-child {
+    margin-bottom: 0.75rem;
+  }
+
+  .documentation .credits-container {
+    margin-top: 1.5rem;
+    padding-top: 0.875rem;
+  }
+
+  .documentation .credits-container h4 {
+    font-size: var(--font-size-paragraph);
+    margin-bottom: 0.625rem;
+  }
+
+  .documentation .credits-list li {
+    padding: 0.4rem 0;
+    margin-bottom: 0.3rem;
+  }
+
+  .documentation .credits-list .credits-category,
+  .documentation .credits-list .credits-detail {
+    font-size: var(--font-size-paragraph);
+  }
+
   .details {
     line-height: 1.2;
-    font-size: 0.85rem;
+    font-size: var(--font-size-paragraph);
     padding: 0.75rem;
     flex: 1;
     min-width: 200px;
+  }
+
+  .details h1 {
+    font-size: var(--font-size-h2);
   }
 
   .keywords {
@@ -811,7 +1228,7 @@ h1 {
   }
 
   .project-link {
-    font-size: 0.8rem;
+    font-size: var(--font-size-paragraph);
     padding: 8px 12px;
     margin-bottom: 0.5rem;
   }
@@ -883,10 +1300,13 @@ h1 {
   }
 }
 
-/* Small Portrait Mobile Devices */
+/* ============================================================================
+   RESPONSIVE DESIGN - SMALL PORTRAIT MOBILE DEVICES
+   ============================================================================ */
+
 @media screen and (max-width: 480px) and (orientation: portrait) {
   :root {
-    --page-margin: 0.75rem;
+    --page-margin: 1.5rem;
     --mobile-padding: 0.75rem;
   }
 
@@ -924,14 +1344,43 @@ h1 {
     padding: 0.75rem;
   }
 
+  .details h1 {
+    font-size: var(--font-size-h2);
+  }
+
   .documentation {
     /* max-height: 45vh; */
-    font-size: 0.85rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.5;
   }
 
+  .documentation h3 {
+    font-size: var(--font-size-paragraph);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .documentation p {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .documentation ul {
+    margin: 0.75rem 0;
+    padding-left: 0.875rem;
+  }
+
+  .documentation li {
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .documentation li:last-child {
+    margin-bottom: 0.75rem;
+  }
+
   .details {
-    font-size: 0.85rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.3;
   }
 
@@ -952,7 +1401,7 @@ h1 {
     display: block;
     text-align: center;
     line-height: 1.3;
-    font-size: 0.8rem;
+    font-size: var(--font-size-paragraph);
     padding: 12px 16px;
     margin-bottom: 0.5rem;
     min-height: 44px;
@@ -1031,10 +1480,13 @@ h1 {
   }
 }
 
-/* Small Landscape Mobile Devices */
+/* ============================================================================
+   RESPONSIVE DESIGN - SMALL LANDSCAPE MOBILE DEVICES
+   ============================================================================ */
+
 @media screen and (max-width: 480px) and (orientation: landscape) {
   :root {
-    --page-margin: 0.5rem;
+    --page-margin: 1rem;
     --mobile-padding: 0.5rem;
   }
 
@@ -1068,17 +1520,73 @@ h1 {
   .documentation {
     /* max-height: 60vh; */
     line-height: 1.4;
-    font-size: 0.8rem;
+    font-size: var(--font-size-paragraph);
     padding: 0.5rem;
     flex: 2;
   }
 
+  .documentation h3 {
+    font-size: var(--font-size-paragraph);
+    margin-top: 0.875rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .documentation p {
+    margin-bottom: 0.625rem;
+    line-height: 1.4;
+  }
+
+  .documentation ul {
+    margin: 0.625rem 0;
+    padding-left: 0;
+  }
+
+  .documentation li {
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+    font-size: var(--font-size-paragraph);
+    padding-left: 0.75rem;
+  }
+
+  .documentation li::before {
+    font-size: var(--font-size-paragraph);
+  }
+
+  .documentation li:last-child {
+    margin-bottom: 0.625rem;
+  }
+
+  .documentation .credits-container {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+  }
+
+  .documentation .credits-container h4 {
+    font-size: var(--font-size-paragraph);
+    margin-bottom: 0.5rem;
+  }
+
+  .documentation .credits-list li {
+    padding: 0.35rem 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .documentation .credits-list .credits-category,
+  .documentation .credits-list .credits-detail {
+    font-size: var(--font-size-paragraph);
+  }
+
   .details {
     line-height: 1.2;
-    font-size: 0.8rem;
+    font-size: var(--font-size-paragraph);
     padding: 0.5rem;
     flex: 1;
     min-width: 150px;
+  }
+
+  /* Maintain h2 font size for h1 in details container on small landscape mobile */
+  .details h1 {
+    font-size: var(--font-size-h2);
   }
 
   .keywords {
@@ -1087,13 +1595,38 @@ h1 {
     margin-bottom: 0.5rem;
   }
 
+  .documentation .inline-img {
+    max-height: 35vh;
+    border-radius: 5px;
+    border-width: 0.5px;
+  }
+
+  .documentation .inline-img-container {
+    margin: 0.75rem 0;
+    padding: 0.25rem;
+  }
+
+  .documentation .inline-img-container.side-by-side {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .documentation .inline-img-container.side-by-side .inline-img {
+    max-width: 100%;
+  }
+
+  .documentation .inline-img-container.right-align .inline-img,
+  .documentation .inline-img-container.left-align .inline-img {
+    max-width: 80%;
+  }
+
   .keywords h2 {
     font-size: clamp(0.7rem, 3vw, 0.9rem);
     margin: 0.15rem;
   }
 
   .project-link {
-    font-size: 0.75rem;
+    font-size: var(--font-size-paragraph);
     padding: 6px 10px;
     margin-bottom: 0.25rem;
   }
@@ -1156,10 +1689,13 @@ h1 {
   }
 }
 
-/* Extra Small Mobile Devices */
+/* ============================================================================
+   RESPONSIVE DESIGN - EXTRA SMALL MOBILE DEVICES
+   ============================================================================ */
+
 @media screen and (max-width: 320px) {
   :root {
-    --page-margin: 0.5rem;
+    --page-margin: 1rem;
     --mobile-padding: 0.5rem;
   }
 
@@ -1197,14 +1733,70 @@ h1 {
     padding: 0.5rem;
   }
 
+  /* Maintain h2 font size for h1 in details container on extra small screens */
+  .details h1 {
+    font-size: var(--font-size-h2);
+  }
+
   .documentation {
     /* max-height: 40vh; */
-    font-size: 0.75rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.4;
   }
 
+  .documentation h3 {
+    font-size: var(--font-size-paragraph);
+    margin-top: 0.875rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .documentation p {
+    margin-bottom: 0.625rem;
+    line-height: 1.4;
+  }
+
+  .documentation ul {
+    margin: 0.625rem 0;
+    padding-left: 0;
+  }
+
+  .documentation li {
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+    font-size: var(--font-size-paragraph);
+    padding-left: 0.625rem;
+  }
+
+  .documentation li::before {
+    font-size: var(--font-size-paragraph);
+  }
+
+  .documentation li:last-child {
+    margin-bottom: 0.625rem;
+  }
+
+  .documentation .credits-container {
+    margin-top: 1rem;
+    padding-top: 0.625rem;
+  }
+
+  .documentation .credits-container h4 {
+    font-size: var(--font-size-paragraph);
+    margin-bottom: 0.5rem;
+  }
+
+  .documentation .credits-list li {
+    padding: 0.3rem 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .documentation .credits-list .credits-category,
+  .documentation .credits-list .credits-detail {
+    font-size: var(--font-size-paragraph);
+  }
+
   .details {
-    font-size: 0.75rem;
+    font-size: var(--font-size-paragraph);
     line-height: 1.2;
   }
 
@@ -1221,11 +1813,36 @@ h1 {
     width: 100%;
   }
 
+  .documentation .inline-img {
+    max-height: 25vh;
+    border-radius: 4px;
+    border-width: 0.5px;
+  }
+
+  .documentation .inline-img-container {
+    margin: 0.5rem 0;
+    padding: 0.15rem;
+  }
+
+  .documentation .inline-img-container.side-by-side {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .documentation .inline-img-container.side-by-side .inline-img {
+    max-width: 100%;
+  }
+
+  .documentation .inline-img-container.right-align .inline-img,
+  .documentation .inline-img-container.left-align .inline-img {
+    max-width: 85%;
+  }
+
   .project-link {
     display: block;
     text-align: center;
     line-height: 1.2;
-    font-size: 0.75rem;
+    font-size: var(--font-size-paragraph);
     padding: 10px 12px;
     margin-bottom: 0.5rem;
     min-height: 44px;
@@ -1304,7 +1921,10 @@ h1 {
   }
 }
 
-/* Touch device optimizations */
+/* ============================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================================================ */
+
 @media (pointer: coarse) {
   .project-link,
   .previous,
@@ -1339,14 +1959,20 @@ h1 {
   }
 }
 
-/* High DPI displays */
+/* ============================================================================
+   HIGH DPI DISPLAY SUPPORT
+   ============================================================================ */
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   #mz-gallery figure div {
     border-width: 0.5px;
   }
 }
 
-/* Reduce motion for users who prefer it */
+/* ============================================================================
+   ACCESSIBILITY - REDUCE MOTION
+   ============================================================================ */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -1359,7 +1985,10 @@ h1 {
   }
 }
 
-/* Dark mode support */
+/* ============================================================================
+   DARK MODE SUPPORT
+   ============================================================================ */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --page-bg-color: #000000;
@@ -1368,7 +1997,10 @@ h1 {
   }
 }
 
-/* Print styles */
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
 @media print {
   body {
     background-color: white;
@@ -1392,18 +2024,23 @@ h1 {
   }
 }
 
+/* ============================================================================
+   LANDSCAPE ORIENTATION OPTIMIZATIONS
+   ============================================================================ */
+
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   .details {
-    /* More aggressive overflow control for landscape */
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 80vh; /* Limit height to prevent vertical overflow */
-
+    max-height: 80vh;
     padding: 0.75rem;
     box-sizing: border-box;
     flex-shrink: 1;
     min-width: 180px;
-    /* max-width: 250px; */
+  }
+
+  .details h1 {
+    font-size: var(--font-size-h2);
   }
 
   .project-container {
@@ -1426,8 +2063,13 @@ h1 {
     max-width: 200px;
   }
 
+  /* Maintain h2 font size for h1 in details container */
+  .details h1 {
+    font-size: var(--font-size-h2);
+  }
+
   .project-link {
-    font-size: 0.7rem;
+    font-size: var(--font-size-paragraph);
     padding: 4px 6px;
     margin-bottom: 0.3rem;
     overflow: hidden;
@@ -1457,11 +2099,15 @@ h1 {
 
   .details {
     max-height: 60vh;
-    order: 1; /* Show details first */
+    order: 1;
+  }
+
+  .details h1 {
+    font-size: var(--font-size-h2);
   }
 
   .documentation {
     max-height: 40vh;
-    order: 2; /* Show documentation second */
+    order: 2;
   }
 }

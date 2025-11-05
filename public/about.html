@@ -2,8 +2,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="./assets/images/about/main5.jpeg" as="image" />
+    <link rel="preload" href="./assets/images/about/34.jpg" as="image" />
+    <link rel="preload" href="../navbar.css" as="style" />
+    <link rel="preload" href="./about.css" as="style" />
     <link rel="stylesheet" href="../navbar.css" />
     <link rel="stylesheet" href="./about.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/logos/favicon.ico"
+    />
     <title>Paridhi's Portfolio</title>
   </head>
   <!-- Google tag (gtag.js) -->
@@ -84,14 +93,26 @@
 
           <!-- IMAGE  -->
           <div class="main-image">
-            <img src="./assets/images/about/main1.jpeg" />
+            <img
+              src="./assets/images/about/main5.jpeg"
+              alt="Paridhi Garg"
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
+            />
           </div>
         </div>
 
         <div class="resume-gallery-section">
           <!-- IMAGE  -->
           <div class="side-image-container">
-            <img src="./assets/images/about/main2.jpg" class="side-image" />
+            <img
+              src="./assets/images/about/34.jpg"
+              alt="Paridhi Garg"
+              class="side-image"
+              loading="eager"
+              fetchpriority="high"
+            />
           </div>
 
           <!-- BUTTONS RESUME AND GALLERY  -->
@@ -195,120 +216,67 @@
               style="display: none"
               class="resume-content"
             >
-              <div class="resume-header">
-                <h1></h1>
-                <button class="download-btn" onclick="downloadPDF()">
-                  Download Resume
-                </button>
-                <a
-                  id="downloadLink"
-                  href="./assets/images/resume.pdf"
-                  download="resume.pdf"
-                  style="display: none"
-                >
-                </a>
-              </div>
-              <div class="resume-sections-container">
-                <div class="resume-section experience">
-                  <!-- RESUME EXPERIENCE  -->
-                  <h2>Experience</h2>
-                  <div class="section-content">
-                    <div class="experience-item">
-                      <p>
-                        <strong>Parsons school of Design x KISD </strong> Oct
-                        2024-Dec 2024
-                      </p>
-                      <p>
-                        Research, Concept, Web Interface Developer, Cross
-                        Platform communication
-                      </p>
-                      <p>
-                        Created and pitched an interactive installation project
-                        for DLR Institute for AI safety and Security as part of
-                        a team.
-                      </p>
-                      <p>Presented at KISD, Cologne</p>
-                    </div>
-                    <div class="experience-item">
-                      <p>
-                        <strong>Google AI Hackathon</strong> Apr 2024-May 2024
-                      </p>
-                      <p>Frontend and Backend developer, Designer</p>
-                      <p>
-                        Developed a web-based cooking AI application that uses
-                        Google's Gemini API. It incorporates features such as
-                        image analysis, text-based chat, and user input
-                        functionality to enhance user interaction.
+              <div class="skills-wrapper">
+                <h1 class="skills-title">SKILLS</h1>
+                <div class="skills-list">
+                  <div class="skill-item">
+                    <span class="skill-number">01.</span>
+                    <div class="skill-content">
+                      <h2 class="skill-category">Frameworks</h2>
+                      <p class="skill-description">
+                        Figma, Adobe Creative Suite (AI, PSD, ID, PR, LR),
+                        Touchdesigner , Blender 3D, Unity, Madmapper, Isadora,
+                        Git/GitHub, Microsoft Suite
                       </p>
                     </div>
-                    <div class="experience-item">
-                      <p>
-                        <strong>The New School X IBM Quantum Design Jam</strong>
-                        Oct 2022-Mar 2023
+                  </div>
+                  <div class="skill-separator"></div>
+                  <div class="skill-item">
+                    <span class="skill-number">02.</span>
+                    <div class="skill-content">
+                      <h2 class="skill-category">Programming Languages</h2>
+                      <p class="skill-description">
+                        Python, HTML/CSS, JavaScript, Node.js, C++(Arduino), C#
+                        (Unity), SQL
                       </p>
-                      <p>Research, Live motion capture, Projection Mapping</p>
-                      <p>
-                        Collaborated in a team to develop a motion capture
-                        project, investigating the intersection of quantum
-                        computing with art and design
+                    </div>
+                  </div>
+                  <div class="skill-separator"></div>
+                  <div class="skill-item">
+                    <span class="skill-number">03.</span>
+                    <div class="skill-content">
+                      <h2 class="skill-category">Digital Fabrication</h2>
+                      <p class="skill-description">
+                        Laser Cutting, 3D Printing
                       </p>
-                      <p>
-                        Exhibited at the Microscope Gallery and Sheila C.
-                        Johnson Design Center in New York.
+                    </div>
+                  </div>
+                  <div class="skill-separator"></div>
+                  <div class="skill-item">
+                    <span class="skill-number">04.</span>
+                    <div class="skill-content">
+                      <h2 class="skill-category">Advanced Computing</h2>
+                      <p class="skill-description">
+                        Training text generation models, prompt engineering for
+                        text generation, StyleGANs for image generation, Image
+                        generation,Stable Diffusion, text-to-speech,
+                        ElevenLabs,Runway ML, OpenAI API, Anthropic API,
+                        ImageFX, MusicFX, Gesture Recognition, Object Detection
                       </p>
                     </div>
                   </div>
                 </div>
-
-                <div class="resume-section education">
-                  <!-- RESUME EDUCATION  -->
-                  <h2>Education</h2>
-                  <div class="section-content">
-                    <div class="education-item">
-                      <p>
-                        <strong
-                          >Parsons School of Design <br />
-                          New York</strong
-                        >
-                      </p>
-                      <p>BFA Design and Technology, Creative Technology</p>
-                    </div>
-                    <div class="education-item">
-                      <p>
-                        <strong>
-                          Sardar Patel Vidyalaya <br />
-                          New Delhi</strong
-                        >
-                      </p>
-                      <p>High School Education</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="resume-section skills">
-                  <!-- RESUME SKILLS  -->
-                  <h2>Skills</h2>
-                  <div class="section-content">
-                    <p>
-                      <strong>Frameworks: </strong>Touchdesigner, Blender 3D,
-                      Unity, Figma, Madmapper, Adobe Illustrator, Adobe
-                      Photoshop, Adobe InDesign, Microsoft suite, Arduino
-                    </p>
-                    <p>
-                      <strong>Programming Languages: </strong>Python, HTML/CSS,
-                      JavaScript, node.js, API calls, C++(Arduino IDE), SQL
-                    </p>
-                    <p>
-                      <strong>Digital Fabrication: </strong>Laser Cutting, 3D
-                      Printing
-                    </p>
-                    <p>
-                      <strong>Advanced Computing: </strong> Training text-based
-                      and image-based machine Learning models, styleGANs, AI
-                      applications using openAI, gemini and stable diffusion,
-                      video generation in runwayML
-                    </p>
-                  </div>
+                <div class="download-btn-container">
+                  <button class="download-btn" onclick="downloadPDF()">
+                    DOWNLOAD MY RESUME
+                  </button>
+                  <a
+                    id="downloadLink"
+                    href="./assets/images/CreativeTechnologist.pdf"
+                    download="Paridhi Resume.pdf"
+                    style="display: none"
+                  >
+                  </a>
                 </div>
               </div>
             </div>
@@ -563,22 +531,15 @@
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/32.jpeg"
-                      alt="Gallery image 34"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div class="grid-item">
-                    <img
-                      src="./assets/images/about/34.jpg"
+                      src="./assets/images/about/35.jpeg"
                       alt="Gallery image 35"
                       loading="lazy"
                     />
                   </div>
                   <div class="grid-item">
                     <img
-                      src="./assets/images/about/35.JPG"
-                      alt="Gallery image 36"
+                      src="./assets/images/about/38.png"
+                      alt="Gallery image 38"
                       loading="lazy"
                     />
                   </div>
@@ -592,4 +553,65 @@
   </body>
   <script src="../script.js"></script>
   <script src="./scroll.js"></script>
+  <script>
+    // Set receipt date when modal opens
+    document.addEventListener("DOMContentLoaded", function () {
+      const dateElement = document.getElementById("receipt-date");
+      if (dateElement) {
+        const now = new Date();
+        const options = {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        };
+        dateElement.textContent = now.toLocaleDateString("en-US", options);
+      }
+
+      // Set transaction ID
+      const transactionElement = document.getElementById(
+        "receipt-transaction-id"
+      );
+      if (transactionElement) {
+        const transactionId = "PS" + Date.now().toString().slice(-8);
+        transactionElement.textContent = transactionId;
+      }
+
+      // Update date and transaction ID when modal is opened
+      const originalOpenModal = window.openModal;
+      if (originalOpenModal) {
+        window.openModal = function (type) {
+          originalOpenModal(type);
+          if (type === "resume") {
+            setTimeout(() => {
+              const dateElement = document.getElementById("receipt-date");
+              if (dateElement) {
+                const now = new Date();
+                const options = {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                };
+                dateElement.textContent = now.toLocaleDateString(
+                  "en-US",
+                  options
+                );
+              }
+
+              const transactionElement = document.getElementById(
+                "receipt-transaction-id"
+              );
+              if (transactionElement) {
+                const transactionId = "PS" + Date.now().toString().slice(-8);
+                transactionElement.textContent = transactionId;
+              }
+            }, 100);
+          }
+        };
+      }
+    });
+  </script>
 </html>

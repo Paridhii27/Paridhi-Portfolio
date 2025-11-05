@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+/* ============================================================================
+   CSS VARIABLES
+   ============================================================================ */
+
 :root {
   /* Color Palette */
   --nav-bg: #000000;
@@ -12,11 +17,12 @@
   --nav-font-primary: "Quicksand", sans-serif;
   --nav-font-weight: 700;
 
-  /* Layout */
+  /* Layout - Consistent across all pages */
   --nav-height: 75px;
   --nav-padding: 20px;
   --logo-size: 50px;
   --menu-font-size: 20px;
+  --menu-link-gap: 4rem; /* Spacing between menu links */
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -24,16 +30,25 @@
   --transition-slow: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
+/* ============================================================================
+   BASE BODY STYLES
+   ============================================================================ */
+
 body {
-  padding-top: calc(var(--nav-height) + 1rem);
+  padding-top: calc(
+    var(--nav-height) + 1rem
+  ); /* Consistent padding for navbar */
 }
 
-.home-page .navigation-container {
+/* .home-page .navigation-container {
   background-color: transparent !important;
   box-shadow: none !important;
-}
+} */
 
-/* Navigation Container */
+/* ============================================================================
+   NAVIGATION CONTAINER
+   ============================================================================ */
+
 .navigation-container {
   position: fixed;
   top: 0;
@@ -43,23 +58,27 @@ body {
   background-color: var(--nav-bg);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  padding-bottom: 1rem;
+  box-sizing: border-box;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--nav-height);
+  height: 100%; /* Full height of navigation container */
   max-width: 90vw;
   margin: 0 auto;
-  padding: var(--nav-padding);
+  padding: 0.95rem var(--nav-padding); /* Added top padding for better spacing */
   font-family: var(--nav-font-primary);
   font-weight: var(--nav-font-weight);
   position: relative;
+  box-sizing: border-box;
 }
 
-/* Logo Styles */
+/* ============================================================================
+   LOGO STYLES
+   ============================================================================ */
+
 .logo {
   position: relative;
   display: flex;
@@ -67,9 +86,10 @@ nav {
   height: 100%;
   max-height: var(--logo-size);
   aspect-ratio: 1 / 1;
-  margin-left: var(--nav-padding);
+  margin: 0; /* Remove left margin for consistent positioning */
   overflow: hidden;
   transition: transform var(--transition-medium);
+  flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
 .logo:hover {
@@ -108,7 +128,10 @@ nav {
   opacity: 1;
 }
 
-/* Menu Styles */
+/* ============================================================================
+   MENU STYLES
+   ============================================================================ */
+
 #menu {
   display: flex;
   justify-content: center;
@@ -116,7 +139,7 @@ nav {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 3rem;
+  gap: var(--menu-link-gap); /* Consistent spacing between menu links */
 }
 
 #menu li {
@@ -125,12 +148,13 @@ nav {
 
 #menu a {
   color: var(--nav-text);
-  font-family: var(--nav-font-secondary);
+  font-family: var(--nav-font-primary);
   font-size: var(--menu-font-size);
-  padding-left: var(--nav-padding);
+  padding: 0.5rem var(--nav-padding); /* Added vertical padding for better spacing */
   text-decoration: none;
   font-weight: 450;
   transition: all var(--transition-fast);
+  letter-spacing: 0.05em; /* Slight letter spacing for better readability */
 }
 
 #menu li:hover a {
@@ -144,11 +168,16 @@ nav {
   color: transparent;
 }
 
+/* ============================================================================
+   MENU TOGGLE (HAMBURGER MENU)
+   ============================================================================ */
+
 #menuToggle {
   display: flex;
   align-items: center;
   height: 100%;
   margin-left: auto;
+  flex-shrink: 0; /* Prevent hamburger from shrinking */
 }
 
 #menuToggle input,
@@ -156,13 +185,26 @@ nav {
   display: none;
 }
 
-/* Mobile Styles */
+/* ============================================================================
+   MOBILE STYLES
+   ============================================================================ */
+
 @media screen and (max-width: 900px) {
   body {
     margin: 5%;
     padding: 0;
     padding-top: calc(var(--nav-height) + 1rem); /* Preserve navbar padding */
     overflow-x: hidden;
+  }
+
+  /* Ensure navbar maintains consistent height on mobile */
+  .navigation-container {
+    height: var(--nav-height);
+  }
+
+  nav {
+    height: 100%;
+    padding: 0 var(--nav-padding);
   }
 
   #menuToggle {
@@ -303,9 +345,13 @@ nav {
 
   .logo {
     height: 40px;
-    margin-left: 15px;
+    margin-left: 0; /* Consistent positioning */
   }
 }
+
+/* ============================================================================
+   ADDITIONAL RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
 
 /* Additional responsive adjustments for very small screens */
 @media screen and (max-width: 480px) {
