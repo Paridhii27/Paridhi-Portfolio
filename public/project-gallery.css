@@ -569,6 +569,9 @@ p {
     width: 32px;
     height: 32px;
     font-size: var(--font-size-paragraph);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Make thumbnail images fully visible on mobile */
@@ -647,6 +650,9 @@ p {
     width: 28px;
     height: 28px;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -657,6 +663,9 @@ p {
     width: 28px;
     height: 28px;
     font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #projects-section {
