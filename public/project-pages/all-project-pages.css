@@ -432,7 +432,7 @@ h1 {
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-color: var(--border-color) transparent;
+  scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.2);
   scrollbar-width: thin;
   animation: background 300s linear infinite;
   padding-bottom: 20px; /* Add padding for captions */
@@ -836,10 +836,36 @@ h1 {
   #mz-gallery {
     height: 60vh;
     margin: 0.75rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) #a81a1a4d;
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
+    -webkit-appearance: none;
+    display: block !important;
+    -ms-overflow-style: scrollbar;
+  }
+
+  #mz-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: block !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+    opacity: 1;
+    display: block !important;
+    min-height: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+    opacity: 1;
   }
 
   #mz-gallery figure {
@@ -1040,10 +1066,37 @@ h1 {
   #mz-gallery {
     height: 45vh;
     margin: 0.5rem 0;
+    /* Force scrollbar to always be visible on mobile */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.3);
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
+    -webkit-appearance: none;
+    display: block !important;
+    -ms-overflow-style: scrollbar;
+  }
+
+  #mz-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: block !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+    opacity: 1;
+    display: block !important;
+    min-height: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+    opacity: 1;
   }
 
   #mz-gallery figure {
@@ -1280,10 +1333,37 @@ h1 {
   #mz-gallery {
     height: 55vh;
     margin: 0.25rem 0;
+    /* Force scrollbar to always be visible on mobile */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.3);
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
+    -webkit-appearance: none;
+    display: block !important;
+    -ms-overflow-style: scrollbar;
+  }
+
+  #mz-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: block !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+    opacity: 1;
+    display: block !important;
+    min-height: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+    opacity: 1;
   }
 
   #mz-gallery figure {
@@ -1530,10 +1610,37 @@ h1 {
   #mz-gallery {
     height: 35vh;
     margin: 0.25rem 0;
+    /* Force scrollbar to always be visible on mobile */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.3);
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
+    -webkit-appearance: none;
+    display: block !important;
+    -ms-overflow-style: scrollbar;
+  }
+
+  #mz-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: block !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+    opacity: 1;
+    display: block !important;
+    min-height: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+    opacity: 1;
   }
 
   #mz-gallery figure {
@@ -2026,10 +2133,37 @@ h1 {
   #mz-gallery {
     height: 30vh;
     margin: 0.15rem 0;
+    /* Force scrollbar to always be visible on mobile */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.3);
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 6px;
+    height: 10px;
+    -webkit-appearance: none;
+    display: block !important;
+    -ms-overflow-style: scrollbar;
+  }
+
+  #mz-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: block !important;
+    -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+    opacity: 1;
+    display: block !important;
+    min-height: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+
+  #mz-gallery::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-color);
+    opacity: 1;
   }
 
   #mz-gallery figure {

@@ -243,8 +243,7 @@ body.home-page {
   display: block;
   width: 100%;
   height: auto;
-  overflow: hidden;
-  border-radius: 8px;
+  overflow: visible;
   transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
 }
@@ -264,6 +263,7 @@ body.home-page {
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 
 .view-all-projects-container {

@@ -120,10 +120,9 @@ p {
   border-color: var(--hover-color);
 }
 
+/* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
 .btn:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 3px;
-  border-radius: var(--border-radius);
+  outline: none;
 }
 
 .btn:focus-visible {
@@ -227,10 +226,9 @@ p {
   transform: scale(0.98);
 }
 
+/* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
 .thumbnail a:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: var(--border-radius);
+  outline: none;
 }
 
 .thumbnail a:focus-visible {
@@ -317,10 +315,9 @@ p {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
 .arrow-link:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 3px;
-  border-radius: 50%;
+  outline: none;
 }
 
 .arrow-link:focus-visible {
@@ -360,10 +357,9 @@ p {
   transform: scale(0.98);
 }
 
+/* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
 #title:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: 4px;
+  outline: none;
 }
 
 #title:focus-visible {
@@ -437,10 +433,9 @@ p {
   background: rgba(255, 255, 255, 0.15);
 }
 
+/* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
 #back-to-top:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 3px;
-  border-radius: 50%;
+  outline: none;
 }
 
 #back-to-top:focus-visible {
@@ -540,7 +535,7 @@ p {
   }
 
   p {
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
   }
 
   #filterBtns {
@@ -575,6 +570,18 @@ p {
     height: 32px;
     font-size: var(--font-size-paragraph);
   }
+
+  /* Make thumbnail images fully visible on mobile */
+  .thumbnail {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .thumbnail img {
+    object-fit: contain;
+    height: auto;
+    max-height: 400px;
+  }
 }
 
 @media screen and (max-width: 756px) {
@@ -590,7 +597,14 @@ p {
   }
 
   .thumbnail {
-    aspect-ratio: 16/10;
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .thumbnail img {
+    object-fit: contain;
+    height: auto;
+    max-height: 400px;
   }
 
   .tool-name span {
@@ -599,7 +613,7 @@ p {
   }
 
   p {
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
   }
 
   .container {
@@ -667,12 +681,24 @@ p {
     min-height: 36px;
   }
 
+  /* Make thumbnail images fully visible on very small screens */
+  .thumbnail {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .thumbnail img {
+    object-fit: contain;
+    height: auto;
+    max-height: 350px;
+  }
+
   .tool-name span {
     font-size: clamp(0.6rem, 2.5vw, 0.75rem);
     padding: 6px 10px;
   }
 
   p {
-    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   }
 }
