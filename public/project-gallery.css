@@ -58,7 +58,7 @@ a {
   color: var(--text-color);
   font-size: var(--font-size-paragraph);
   text-decoration: none;
-  margin: var(--container-spacing);
+  margin: 0;
 }
 
 p {
@@ -66,7 +66,7 @@ p {
   font-weight: 400;
   font-size: clamp(0.95rem, 1.5vw, 1rem);
   line-height: 1.5;
-  margin: var(--container-spacing);
+  margin: 0.75rem 0;
   color: var(--text-color);
 }
 
@@ -77,7 +77,7 @@ p {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  margin-bottom: -50px;
+  margin-bottom: 20px;
   margin-top: 20px;
   gap: 8px;
   flex-wrap: nowrap;
@@ -137,7 +137,9 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--section-spacing);
   margin-top: calc(var(--nav-height) + var(--nav-padding) * 2);
+  margin-bottom: 4rem;
   width: 100%;
+  padding-bottom: 2rem;
 }
 
 /* Animation Styles for Project Containers */
@@ -239,7 +241,7 @@ p {
 
 .thumbnail img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: var(--border-radius);
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -327,7 +329,7 @@ p {
 }
 
 /* Project Title */
-#title {
+.project-title {
   font-family: var(--heading-font);
   font-weight: var(--heading-bold);
   font-size: var(--font-size-h2);
@@ -347,22 +349,22 @@ p {
   font-family: var(--content-font);
 }
 
-#title:hover {
+.project-title:hover {
   color: var(--hover-color);
   text-shadow: 0 0 2px #f1efff;
 }
 
-#title:active {
+.project-title:active {
   opacity: 0.8;
   transform: scale(0.98);
 }
 
 /* Remove focus outline on desktop (mouse hover), keep for keyboard navigation */
-#title:focus {
+.project-title:focus {
   outline: none;
 }
 
-#title:focus-visible {
+.project-title:focus-visible {
   outline: 2px solid var(--hover-color);
   outline-offset: 4px;
   border-radius: 4px;
@@ -372,7 +374,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: var(--container-spacing);
+  margin: 0.75rem 0;
 }
 
 .tool-name span {
@@ -444,8 +446,98 @@ p {
   border-radius: 50%;
 }
 
-/* Responsiveness for smaller screen */
-@media screen and (max-width: 950px) {
+/* Tablet breakpoint */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    padding: 3vw 4%;
+    max-width: 100%;
+  }
+
+  #projects-section {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5vw;
+    margin-top: calc(var(--nav-height) + var(--nav-padding) + 1rem);
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .container {
+    padding: 4%;
+    min-height: auto;
+  }
+
+  .project-title {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .project-year {
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+  }
+
+  p {
+    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    line-height: 1.6;
+    margin: 0.5rem 0;
+  }
+
+  .tool-name {
+    margin: 0.5rem 0;
+    gap: 8px;
+  }
+
+  .tool-name span {
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+    padding: 5px 10px;
+  }
+
+  .thumbnail {
+    margin: 0.75rem 0;
+    aspect-ratio: 16/9;
+  }
+
+  .thumbnail img {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .arrow-link {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  #filterBtns {
+    max-width: 90%;
+    padding: 18px;
+    margin-bottom: 1.5rem;
+    margin-top: 80px;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+    min-height: 44px;
+    white-space: nowrap;
+  }
+
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile and small tablet breakpoint */
+@media screen and (max-width: 767px) {
   /* Enhanced touch interactions for all interactive elements */
   .btn {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
@@ -469,12 +561,12 @@ p {
     transform: scale(0.97);
   }
 
-  #title {
+  .project-title {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
     touch-action: manipulation;
   }
 
-  #title:active {
+  .project-title:active {
     opacity: 0.7;
     transform: scale(0.97);
   }
@@ -541,7 +633,7 @@ p {
   #filterBtns {
     max-width: 95%;
     padding: 15px;
-    margin-bottom: -30px;
+    margin-bottom: 20px;
     margin-top: 100px;
     justify-content: center;
     position: relative;

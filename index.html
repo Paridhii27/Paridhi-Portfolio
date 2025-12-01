@@ -10,6 +10,40 @@
     behaviors, design and technology as it informs digital interactions and
     immersive experiences."
     />
+    <!-- Resource hints for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap"
+    />
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="./public/assets/images/thumbnails/machine-stranger.jpg"
+      as="image"
+    />
+    <link rel="preload" href="./navbar.css" as="style" />
+    <link rel="preload" href="./homepage.css" as="style" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.paridhiworks.com/" />
+    <meta
+      property="og:title"
+      content="Paridhi Garg - Creative Technologist & Experiential Designer"
+    />
+    <meta
+      property="og:description"
+      content="Paridhi Garg is a creative technologist and experiential designer based in New York. Creating interactive projects at the confluence of human behavior, technology, and environment."
+    />
+    <meta
+      property="og:image"
+      content="https://www.paridhiworks.com/public/assets/images/logos/logo.png"
+    />
+    <meta property="og:site_name" content="Paridhi's Portfolio" />
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./navbar.css" />
     <link rel="stylesheet" href="./homepage.css" />
     <link
@@ -42,11 +76,15 @@
               src="./public/assets/images/logos/logo.png"
               alt="Logo"
               class="default-logo"
+              width="150"
+              height="50"
             />
             <img
               src="./public/assets/images/logos/logo hover.png"
               alt="Hover Logo"
               class="hover-logo"
+              width="150"
+              height="50"
             />
           </a>
         </div>
@@ -91,6 +129,8 @@
               id="main-featured-image"
               src="./public/assets/images/thumbnails/machine-stranger.jpg"
               alt="This Machine is a Stranger"
+              loading="eager"
+              fetchpriority="high"
             />
           </a>
           <div class="project-info">
@@ -122,18 +162,21 @@
             <img
               src="./public/assets/images/thumbnails/fleeting-states-two.png"
               alt="Fleeting States + Measured Values"
+              loading="lazy"
             />
           </div>
           <div class="project-thumbnail" data-project-id="move-a-bit">
             <img
               src="./public/assets/images/thumbnails/move-a-bit.jpg"
               alt="Move A Bit"
+              loading="lazy"
             />
           </div>
           <div class="project-thumbnail" data-project-id="sights-and-insights">
             <img
               src="./public/assets/images/thumbnails/sights-and-insights.png"
               alt="Sights and Insights"
+              loading="lazy"
             />
           </div>
         </div>
@@ -152,13 +195,14 @@
           <img
             src="./public/assets/images/about/main3.png"
             alt="Paridhi Garg"
+            loading="lazy"
           />
         </div>
         <div class="about-me-content">
           <h2 class="about-me-title">GET TO KNOW ME</h2>
           <p class="about-me-description">
             I'm Paridhi — a creative technologist and experiential designer
-            based in New York, Creating interactive projects which exist at the
+            based in New York, creating interactive projects which exist at the
             confluence of human behavior, technology, and environment.
           </p>
           <a href="./public/about.html" class="nav-button about-button">

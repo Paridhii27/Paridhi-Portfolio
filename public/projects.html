@@ -2,6 +2,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore a collection of interactive installations, AI applications, and 3D environments by Paridhi Garg. Projects include human-machine interactions, quantum computing visualizations, and immersive digital experiences."
+    />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.paridhiworks.com/public/projects.html"
+    />
+    <meta property="og:title" content="Projects - Paridhi's Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore a collection of interactive installations, AI applications, and 3D environments by Paridhi Garg. Projects include human-machine interactions, quantum computing visualizations, and immersive digital experiences."
+    />
+    <meta
+      property="og:image"
+      content="https://www.paridhiworks.com/public/assets/images/logos/logo.png"
+    />
+    <meta property="og:site_name" content="Paridhi's Portfolio" />
+
     <link rel="stylesheet" href="../navbar.css" />
     <link rel="stylesheet" href="./project-gallery.css" />
     <link
@@ -55,20 +76,47 @@
       </nav>
     </div>
 
-    <div id="filterBtns">
-      <button class="btn active" onclick="filterSelection('all')">
+    <div id="filterBtns" role="group" aria-label="Filter projects by category">
+      <button
+        class="btn active"
+        data-filter="all"
+        aria-pressed="true"
+        aria-label="Show all projects"
+      >
         All Projects
       </button>
-      <button class="btn" onclick="filterSelection('aiweb')">
+      <button
+        class="btn"
+        data-filter="aiweb"
+        aria-pressed="false"
+        aria-label="Filter by AI Application projects"
+      >
         AI Application
       </button>
-      <button class="btn" onclick="filterSelection('interactive')">
+      <button
+        class="btn"
+        data-filter="interactive"
+        aria-pressed="false"
+        aria-label="Filter by Interactive Installation projects"
+      >
         Interactive Installation
       </button>
-      <button class="btn" onclick="filterSelection('narrative')">
+      <button
+        class="btn"
+        data-filter="narrative"
+        aria-pressed="false"
+        aria-label="Filter by 3D Environment projects"
+      >
         3D Environment
       </button>
-      <button class="btn" onclick="filterSelection('others')">Others</button>
+      <button
+        class="btn"
+        data-filter="others"
+        aria-pressed="false"
+        aria-label="Filter by other projects"
+      >
+        Others
+      </button>
     </div>
 
     <!-- Project Gallery -->
@@ -78,15 +126,19 @@
         <a
           href="./project-pages/this-machine-is-a-stranger.html"
           class="arrow-link"
+          aria-label="View This Machine is a Stranger project"
           >↗</a
         >
-        <a href="./project-pages/this-machine-is-a-stranger.html" id="title"
+        <a
+          href="./project-pages/this-machine-is-a-stranger.html"
+          class="project-title"
           >This Machine is a Stranger <span class="project-year">2025</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/this-machine-is-a-stranger.html">
             <img
               src="./assets/images/thumbnails/machine-stranger.jpg"
+              alt="Thumbnail image of This Machine is a Stranger project"
               loading="lazy"
             />
           </a>
@@ -99,15 +151,20 @@
           a machine.
         </p>
         <p class="tool-name">
-          <span>Human machine Interactions</span> <span>AI Ethics</span
+          <span>Human-Machine Interactions</span> <span>AI Ethics</span
           ><span>Interactive Installation</span>
         </p>
       </div>
 
       <!-- Project 2 : Fleeting States + Measured Values -->
       <div class="container interactive">
-        <a href="./project-pages/fleeting-states.html" class="arrow-link">↗</a>
-        <a href="./project-pages/fleeting-states.html" id="title"
+        <a
+          href="./project-pages/fleeting-states.html"
+          class="arrow-link"
+          aria-label="View Fleeting States + Measured Values project"
+          >↗</a
+        >
+        <a href="./project-pages/fleeting-states.html" class="project-title"
           >Fleeting States + Measured Values
           <span class="project-year">2024</span></a
         >
@@ -115,17 +172,18 @@
           <a href="./project-pages/fleeting-states.html">
             <img
               src="./assets/images/thumbnails/fleeting-states.jpg"
+              alt="Thumbnail image of Fleeting States + Measured Values project"
               loading="lazy"
             />
           </a>
         </div>
         <p>
           This project depicts the two sides of quantum computing. The
-          seperation of the worlds is analytical. On the one hand we have the
-          values we can measure, propailistic results in units. It is how we are
-          trained/used to interact with phenomena. Superpositioning and
+          separation of the worlds is analytical. On the one hand, we have the
+          values we can measure, probabilistic results in units. It is how we
+          are trained/used to interact with phenomena. Superpositioning and
           entanglement on the other hand are neither accessible to our senses
-          nor to measurement. They are states in motion that are truely random.
+          nor to measurement. They are states in motion that are truly random.
         </p>
         <p class="tool-name">
           <span>Quantum physics</span> <span>Multimedia</span
@@ -136,15 +194,20 @@
 
       <!-- Project 3 : Move A Bit -->
       <div class="container interactive">
-        <a href="./project-pages/move-a-bit.html" class="arrow-link">↗</a>
-        <a href="./project-pages/move-a-bit.html" id="title"
+        <a
+          href="./project-pages/move-a-bit.html"
+          class="arrow-link"
+          aria-label="View Move a Bit project"
+          >↗</a
+        >
+        <a href="./project-pages/move-a-bit.html" class="project-title"
           >Move a Bit <span class="project-year">2022</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/move-a-bit.html">
             <img
               src="./assets/images/thumbnails/move-a-bit.jpg"
-              alt="Particles in motion"
+              alt="Thumbnail image of Move a Bit project showing particles in motion"
               loading="lazy"
             />
           </a>
@@ -155,23 +218,29 @@
           entanglement.
         </p>
         <p class="tool-name">
-          <span> Quantum computing </span> <span> Motion capture </span>
-          <span> Interactive Installation </span>
+          <span>Quantum computing</span> <span>Motion capture</span>
+          <span>Interactive Installation</span>
         </p>
       </div>
 
       <!-- Project 4 : Computerized Memories -->
       <div class="container narrative">
-        <a href="./project-pages/computerized-memories.html" class="arrow-link"
+        <a
+          href="./project-pages/computerized-memories.html"
+          class="arrow-link"
+          aria-label="View Computerized Memories project"
           >↗</a
         >
-        <a href="./project-pages/computerized-memories.html" id="title"
+        <a
+          href="./project-pages/computerized-memories.html"
+          class="project-title"
           >Computerized Memories <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/computerized-memories.html">
             <img
               src="./assets/images/thumbnails/computerized-memories.jpg"
+              alt="Thumbnail image of Computerized Memories project"
               loading="lazy"
             />
           </a>
@@ -188,79 +257,91 @@
 
       <!-- Project 5 : Two kinds of Love -->
       <div class="container narrative">
-        <a href="./project-pages/two-kinds-of-love.html" class="arrow-link"
+        <a
+          href="./project-pages/two-kinds-of-love.html"
+          class="arrow-link"
+          aria-label="View Two kinds of Love project"
           >↗</a
         >
-        <a href="./project-pages/two-kinds-of-love.html" id="title"
+        <a href="./project-pages/two-kinds-of-love.html" class="project-title"
           >Two kinds of Love <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/two-kinds-of-love.html">
             <img
               src="./assets/images/thumbnails/two-loves.png"
-              alt="Forest Environment created in Unreal"
+              alt="Thumbnail image of Two kinds of Love project showing forest environment"
               loading="lazy"
             />
           </a>
         </div>
         <p>
           It delves into the story of two people living in the future who send
-          each other postcards because they can’t see each other. The inherent
-          systems of the society at the time has created physical barriers
+          each other postcards because they can't see each other. The inherent
+          systems of the society at the time have created physical barriers
           between them.
         </p>
         <p class="tool-name">
-          <span> 3D Environments</span><span> Speculative futures</span>
+          <span>3D Environments</span><span>Speculative futures</span>
           <span>Writing</span>
         </p>
       </div>
 
       <!-- Project 6 : Sights and Insights-->
       <div class="container aiweb">
-        <a href="./project-pages/sights-and-insights.html" class="arrow-link"
+        <a
+          href="./project-pages/sights-and-insights.html"
+          class="arrow-link"
+          aria-label="View Sights and Insights project"
           >↗</a
         >
-        <a href="./project-pages/sights-and-insights.html" id="title"
+        <a href="./project-pages/sights-and-insights.html" class="project-title"
           >Sights and Insights <span class="project-year">2025</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/sights-and-insights.html">
             <img
               src="./assets/images/thumbnails/sights-and-insights.png"
-              alt="Forest Environment created in Unreal"
+              alt="Thumbnail image of Sights and Insights web application"
               loading="lazy"
             />
           </a>
         </div>
         <p>
-          Sights and Insights is a web based application that transforms
+          Sights and Insights is a web-based application that transforms
           ordinary walks into ones filled with curious interventions. It is a
-          voice based AI application encouraging users to engage with the spaces
-          they finds themselves in.
+          voice-based AI application encouraging users to engage with the spaces
+          they find themselves in.
         </p>
         <p class="tool-name">
-          <span> AI web application</span><span> Camera Detection</span>
+          <span>AI Web Application</span><span>Camera Detection</span>
           <span>Image to Speech</span>
         </p>
       </div>
 
       <!-- Project 7 : Granny Bytes -->
       <div class="container aiweb">
-        <a href="./project-pages/granny-bytes.html" class="arrow-link">↗</a>
-        <a href="./project-pages/granny-bytes.html" id="title"
+        <a
+          href="./project-pages/granny-bytes.html"
+          class="arrow-link"
+          aria-label="View Granny Bytes project"
+          >↗</a
+        >
+        <a href="./project-pages/granny-bytes.html" class="project-title"
           >Granny Bytes <span class="project-year">2024</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/granny-bytes.html">
             <img
               src="./assets/images/project-pages/granny-bytes/kitchen.png"
+              alt="Thumbnail image of Granny Bytes project showing kitchen scene"
               loading="lazy"
             />
           </a>
         </div>
         <p>
-          Granny Bytes is a project that explores inter-generational connections
-          and how it can manifest within our interactions with technology.
+          Granny Bytes is a project that explores intergenerational connections
+          and how they can manifest within our interactions with technology.
         </p>
         <p class="tool-name">
           <span>AI application</span> <span>Text Generation</span>
@@ -270,30 +351,40 @@
 
       <!-- Project 8 : Firefly Symphony -->
       <div class="container others">
-        <a href="./project-pages/firefly-symphony.html" class="arrow-link">↗</a>
-        <a href="./project-pages/firefly-symphony.html" id="title"
+        <a
+          href="./project-pages/firefly-symphony.html"
+          class="arrow-link"
+          aria-label="View A Firefly Symphony project"
+          >↗</a
+        >
+        <a href="./project-pages/firefly-symphony.html" class="project-title"
           >A Firefly Symphony <span class="project-year">2025</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/firefly-symphony.html">
             <img
               src="./assets/images/thumbnails/firefly-symphony.png"
-              alt="Light emitted by fireflies"
+              alt="Thumbnail image of A Firefly Symphony project showing light emitted by fireflies"
               loading="lazy"
             />
           </a>
         </div>
         <p>What would a festival for fireflies be?</p>
         <p class="tool-name">
-          <span>3D Modelling</span> <span>Materials and Textures </span>
+          <span>3D Modelling</span> <span>Materials and Textures</span>
           <span>Interactive Environments</span>
         </p>
       </div>
 
       <!-- Project 9 : Warped Memories of Digital Ghosts -->
       <div class="container narrative">
-        <a href="./project-pages/warped-memories.html" class="arrow-link">↗</a>
-        <a href="./project-pages/warped-memories.html" id="title"
+        <a
+          href="./project-pages/warped-memories.html"
+          class="arrow-link"
+          aria-label="View Warped Memories of Digital Ghosts project"
+          >↗</a
+        >
+        <a href="./project-pages/warped-memories.html" class="project-title"
           >Warped Memories of Digital Ghosts
           <span class="project-year">2023</span></a
         >
@@ -301,7 +392,7 @@
           <a href="./project-pages/warped-memories.html">
             <img
               src="./assets/images/thumbnails/warped-memories.png"
-              alt="Scene in unity"
+              alt="Thumbnail image of Warped Memories of Digital Ghosts project"
               loading="lazy"
             />
           </a>
@@ -309,24 +400,30 @@
         <p>
           This project welcomes you to a world in which people go to a data
           store to access their digital memories in the form of differently
-          flavoured cookies.
+          flavored cookies.
         </p>
         <p class="tool-name">
-          <span>3D Modelling</span> <span>Materials and Textures </span>
+          <span>3D Modelling</span> <span>Materials and Textures</span>
           <span>Interactive Environments</span>
         </p>
       </div>
 
       <!-- Project 10 : Hivemind -->
       <div class="container others">
-        <a href="./project-pages/hivemind.html" class="arrow-link">↗</a>
-        <a href="./project-pages/hivemind.html" id="title"
+        <a
+          href="./project-pages/hivemind.html"
+          class="arrow-link"
+          aria-label="View Hivemind project"
+          >↗</a
+        >
+        <a href="./project-pages/hivemind.html" class="project-title"
           >Hivemind <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/hivemind.html">
             <img
               src="./assets/images/thumbnails/hivemind3.png"
+              alt="Thumbnail image of Hivemind multiplayer game project"
               loading="lazy"
             />
           </a>
@@ -342,19 +439,28 @@
 
       <!-- Project 11 : VJ Set -->
       <div class="container interactive">
-        <a href="./project-pages/vj-set.html" class="arrow-link">↗</a>
-        <a href="./project-pages/vj-set.html" id="title"
+        <a
+          href="./project-pages/vj-set.html"
+          class="arrow-link"
+          aria-label="View Audiovisual VJ set project"
+          >↗</a
+        >
+        <a href="./project-pages/vj-set.html" class="project-title"
           >Audiovisual <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/vj-set.html">
-            <img src="./assets/images/thumbnails/vj.jpg" loading="lazy" />
+            <img
+              src="./assets/images/thumbnails/vj.jpg"
+              alt="Thumbnail image of Audiovisual VJ set project"
+              loading="lazy"
+            />
           </a>
         </div>
         <p>
-          This is a VJ set based on the instrumental version of stressed out by
-          twenty one pilots. Audio analysis is performed to create audio
-          reactive visuals.
+          This is a VJ set based on the instrumental version of "Stressed Out"
+          by Twenty One Pilots. Audio analysis is done to create the
+          audio-reactive visuals.
         </p>
         <p class="tool-name">
           <span>Sound reactive</span> <span>Generative visuals</span
@@ -364,15 +470,20 @@
 
       <!-- Project 12 : Echoes -->
       <div class="container interactive">
-        <a href="./project-pages/echoes.html" class="arrow-link">↗</a>
-        <a href="./project-pages/echoes.html" id="title"
+        <a
+          href="./project-pages/echoes.html"
+          class="arrow-link"
+          aria-label="View Echoes project"
+          >↗</a
+        >
+        <a href="./project-pages/echoes.html" class="project-title"
           >Echoes <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/echoes.html">
             <img
               src="./assets/images/thumbnails/echoes.jpg"
-              alt="Glitch effect"
+              alt="Thumbnail image of Echoes project showing glitch effect visuals"
               loading="lazy"
             />
           </a>
@@ -380,31 +491,35 @@
 
         <p>
           Echoes from another place and time is a visual narrative created in
-          touchdesigner exploring the idea of alternative parallel realities
+          TouchDesigner exploring the idea of alternative parallel realities.
         </p>
         <p class="tool-name">
-          <span>Visual Effects </span><span>Typography </span>
+          <span>Visual Effects</span><span>Typography</span>
         </p>
       </div>
 
       <!-- Project 13 : Light and Darkness -->
       <div class="container aiweb">
-        <a href="./project-pages/light-and-darkness.html" class="arrow-link"
+        <a
+          href="./project-pages/light-and-darkness.html"
+          class="arrow-link"
+          aria-label="View Light and Darkness project"
           >↗</a
         >
-        <a href="./project-pages/light-and-darkness.html" id="title"
+        <a href="./project-pages/light-and-darkness.html" class="project-title"
           >Light and Darkness <span class="project-year">2023</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/light-and-darkness.html">
             <img
               src="./assets/images/thumbnails/light-and-darkness.png"
+              alt="Thumbnail image of Light and Darkness project"
               loading="lazy"
             />
           </a>
         </div>
         <p>
-          A project that explores concepts of Light and darkness and the
+          A project that explores concepts of Light and Darkness and the
           intermittent phases between them through the technique of image
           generation.
         </p>
@@ -419,32 +534,41 @@
         <a
           href="./project-pages/temperature-of-emotions.html"
           class="arrow-link"
+          aria-label="View Temperature of Emotions project"
           >↗</a
         >
-        <a href="./project-pages/temperature-of-emotions.html" id="title"
+        <a
+          href="./project-pages/temperature-of-emotions.html"
+          class="project-title"
           >Temperature of emotions <span class="project-year">2022</span></a
         >
         <div class="thumbnail">
           <a href="./project-pages/temperature-of-emotions.html">
             <img
               src="./assets/images/thumbnails/temperaure-of-emotions.png"
+              alt="Thumbnail image of Temperature of Emotions project"
               loading="lazy"
             />
           </a>
         </div>
         <p>
-          According to research, there is a direct corelation between
+          According to research, there is a direct correlation between
           temperature and emotions. This device measures the external
-          temperature and gives corresponding response in the form of different
-          colour mappings representing varied emotions.
+          temperature and gives a corresponding response in the form of
+          different colour mappings representing varied emotions.
         </p>
         <p class="tool-name">
           <span>Physical computing</span> <span>LED Mapping</span
           ><span>Sensors based data</span>
         </p>
       </div>
-      <button id="back-to-top" title="Back to Top">↑</button>
-      <br /><br /><br />
+      <button
+        id="back-to-top"
+        title="Back to Top"
+        aria-label="Back to top of page"
+      >
+        ↑
+      </button>
     </div>
 
     <script src="../script.js"></script>
