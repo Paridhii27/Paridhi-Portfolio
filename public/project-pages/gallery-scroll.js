@@ -37,33 +37,59 @@ document.addEventListener("DOMContentLoaded", function () {
       video.setAttribute("playsinline", "");
       video.setAttribute("preload", "auto");
 
-      // Try to play the video
-      const playPromise = video.play();
+      // Handle video loading errors
+      video.addEventListener("error", (e) => {
+        console.warn(
+          "Video loading error:",
+          video.querySelector("source")?.src || video.src
+        );
+        // Try to reload the video
+        const currentSrc = video.querySelector("source")?.src || video.src;
+        if (currentSrc) {
+          video.load();
+        }
+      });
 
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Video is playing
-            console.log("Video autoplay started:", video.src);
-          })
-          .catch((error) => {
-            // Autoplay was prevented - try again on user interaction
-            console.log(
-              "Video autoplay prevented, will retry on interaction:",
-              error
-            );
+      // Handle when video can play
+      const handleCanPlay = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // Video is playing
+              console.log(
+                "Video autoplay started:",
+                video.querySelector("source")?.src || video.src
+              );
+            })
+            .catch((error) => {
+              // Autoplay was prevented - try again on user interaction
+              console.log(
+                "Video autoplay prevented, will retry on interaction:",
+                error
+              );
 
-            // Retry on first user interaction
-            const tryPlay = () => {
-              video.play().catch(() => {
-                // Still can't play, that's okay
-              });
-            };
+              // Retry on first user interaction
+              const tryPlay = () => {
+                video.play().catch(() => {
+                  // Still can't play, that's okay
+                });
+              };
 
-            document.addEventListener("click", tryPlay, { once: true });
-            document.addEventListener("touchstart", tryPlay, { once: true });
-            document.addEventListener("scroll", tryPlay, { once: true });
-          });
+              document.addEventListener("click", tryPlay, { once: true });
+              document.addEventListener("touchstart", tryPlay, { once: true });
+              document.addEventListener("scroll", tryPlay, { once: true });
+            });
+        }
+      };
+
+      // Try to play when video can play
+      video.addEventListener("canplay", handleCanPlay, { once: true });
+      video.addEventListener("loadeddata", handleCanPlay, { once: true });
+
+      // Also try immediately if video is already loaded
+      if (video.readyState >= 2) {
+        handleCanPlay();
       }
 
       // Ensure video loops
@@ -90,6 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       observer.observe(video);
+
+      // Force load the video
+      video.load();
     });
   }
 
@@ -120,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // For videos, also listen to loadeddata
+      // For videos, also listen to loadeddata and error events
       if (img.tagName === "VIDEO") {
         img.addEventListener("loadeddata", () => {
           const playPromise = img.play();
@@ -129,6 +158,23 @@ document.addEventListener("DOMContentLoaded", function () {
               // Ignore errors
             });
           }
+        });
+
+        img.addEventListener("error", () => {
+          console.warn(
+            "Video failed to load:",
+            img.querySelector("source")?.src || img.src
+          );
+          // Try to reload after a delay
+          setTimeout(() => {
+            img.load();
+          }, 1000);
+        });
+
+        // Also listen for stalled/abort events
+        img.addEventListener("stalled", () => {
+          console.warn("Video stalled, attempting reload");
+          img.load();
         });
       }
     }
