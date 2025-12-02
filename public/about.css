@@ -416,7 +416,7 @@ body {
   font-family: var(--content-font);
   font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 400;
-  color: #999999;
+  color: #ddd8d8;
   line-height: 1.6;
   margin: 0;
   padding: 0;
