@@ -880,7 +880,53 @@ h1 {
     opacity: 1;
   }
 
+  /* Fullscreen overlay for mobile */
+  .gallery-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-fullscreen.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .gallery-fullscreen-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-fullscreen-content img,
+  .gallery-fullscreen-content video {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .gallery-fullscreen-content video {
+    width: 100%;
+    height: auto;
+  }
+
   #mz-gallery figure {
+    cursor: pointer;
     height: calc(100% - 50px);
     margin: 0 30px;
     padding: 15px;

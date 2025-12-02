@@ -309,4 +309,142 @@ document.addEventListener("DOMContentLoaded", function () {
       setupVideoAutoplay();
     }, 100);
   }
+
+  // Mobile fullscreen functionality
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  let fullscreenSetup = false;
+
+  function setupFullscreen() {
+    if (!isMobile() || fullscreenSetup) return;
+    fullscreenSetup = true;
+
+    // Check if overlay already exists
+    let overlay = document.querySelector(".gallery-fullscreen");
+    if (!overlay) {
+      // Create fullscreen overlay
+      overlay = document.createElement("div");
+      overlay.className = "gallery-fullscreen";
+      overlay.innerHTML = '<div class="gallery-fullscreen-content"></div>';
+      document.body.appendChild(overlay);
+    }
+
+    const content = overlay.querySelector(".gallery-fullscreen-content");
+    const figures = gallery.querySelectorAll("figure");
+    let currentIndex = 0;
+
+    function showFullscreen(index) {
+      const figure = figures[index];
+      if (!figure) return;
+
+      const media = figure.querySelector("img, video");
+      if (!media) return;
+
+      currentIndex = index;
+
+      // Clone the media element
+      const clone = media.cloneNode(true);
+      if (media.tagName === "VIDEO") {
+        clone.setAttribute("autoplay", "");
+        clone.setAttribute("loop", "");
+        clone.setAttribute("controls", "");
+      }
+
+      content.innerHTML = "";
+      content.appendChild(clone);
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFullscreen() {
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+      content.innerHTML = "";
+    }
+
+    // Click on figure to open fullscreen
+    figures.forEach((figure, index) => {
+      figure.addEventListener("click", (e) => {
+        // Don't open if clicking on video controls
+        if (e.target.tagName === "VIDEO" && e.target.controls) {
+          const rect = e.target.getBoundingClientRect();
+          const clickY = e.clientY - rect.top;
+          // If clicking in bottom 20% (where controls usually are), don't open fullscreen
+          if (clickY > rect.height * 0.8) {
+            return;
+          }
+        }
+        showFullscreen(index);
+      });
+    });
+
+    // Click outside to close
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        closeFullscreen();
+      }
+    });
+
+    // Swipe/scroll through images in fullscreen
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    overlay.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    overlay.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next image
+          if (currentIndex < figures.length - 1) {
+            showFullscreen(currentIndex + 1);
+          }
+        } else {
+          // Swipe right - previous image
+          if (currentIndex > 0) {
+            showFullscreen(currentIndex - 1);
+          }
+        }
+      }
+    }
+
+    // Close on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("active")) {
+        closeFullscreen();
+      }
+    });
+  }
+
+  // Setup fullscreen on mobile
+  setupFullscreen();
+
+  // Re-setup on resize if switching between mobile/desktop
+  let isMobileState = isMobile();
+  window.addEventListener("resize", () => {
+    const nowMobile = isMobile();
+    if (nowMobile !== isMobileState) {
+      isMobileState = nowMobile;
+      // Remove existing overlay if switching to desktop
+      const existing = document.querySelector(".gallery-fullscreen");
+      if (existing && !nowMobile) {
+        existing.remove();
+        fullscreenSetup = false;
+      } else if (!existing && nowMobile) {
+        fullscreenSetup = false;
+        setupFullscreen();
+      }
+    }
+  });
 });
