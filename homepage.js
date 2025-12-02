@@ -9,6 +9,7 @@ const projects = {
   },
   "fleeting-states": {
     image: "./public/assets/images/thumbnails/fleeting-states-two.png",
+    video: "./public/assets/video/fleetingstates.mp4",
     title: "Fleeting States + Measured Values",
     description:
       "This project depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
@@ -16,6 +17,7 @@ const projects = {
   },
   "move-a-bit": {
     image: "./public/assets/images/thumbnails/move-a-bit.jpg",
+    video: "./public/assets/video/moveabit.mp4",
     title: "Move A Bit",
     description:
       "Move a Bit is a live motion capture project bringing quantum computing to life through an interactive display that visually showcases entanglement.",
@@ -50,17 +52,59 @@ function updateFeaturedProject(projectId) {
   currentFeaturedProject = projectId;
 
   // Get DOM elements
-  const mainImage = document.getElementById("main-featured-image");
   const mainLink = document.getElementById("main-featured-link");
   const mainTitleLink = document.getElementById("main-featured-title-link");
   const mainTitle = document.getElementById("main-featured-title");
   const mainDescription = document.getElementById("main-featured-description");
 
-  // Update main featured project content
-  if (mainImage) {
-    mainImage.src = project.image;
-    mainImage.alt = project.title;
+  // Get or create media container
+  const mainImage = document.getElementById("main-featured-image");
+  const mainVideo = document.getElementById("main-featured-video");
+  const linkElement = mainLink || document.getElementById("main-featured-link");
+
+  // Handle video vs image display
+  if (project.video) {
+    // If project has video, show video instead of image
+    if (mainImage) {
+      mainImage.style.display = "none";
+    }
+
+    // Create video element if it doesn't exist
+    let videoElement = mainVideo;
+    if (!videoElement) {
+      videoElement = document.createElement("video");
+      videoElement.id = "main-featured-video";
+      videoElement.setAttribute("autoplay", "");
+      videoElement.setAttribute("loop", "");
+      videoElement.setAttribute("muted", "");
+      videoElement.setAttribute("playsinline", "");
+      videoElement.style.width = "100%";
+      videoElement.style.height = "100%";
+      videoElement.style.objectFit = "cover";
+
+      // Insert video after the link or replace image
+      if (mainImage && mainImage.parentNode) {
+        mainImage.parentNode.insertBefore(videoElement, mainImage);
+      } else if (linkElement) {
+        linkElement.appendChild(videoElement);
+      }
+    }
+
+    videoElement.src = project.video;
+    videoElement.style.display = "block";
+  } else {
+    // If project doesn't have video, show image
+    if (mainVideo) {
+      mainVideo.style.display = "none";
+    }
+
+    if (mainImage) {
+      mainImage.src = project.image;
+      mainImage.alt = project.title;
+      mainImage.style.display = "block";
+    }
   }
+
   if (mainLink && project.url) {
     mainLink.href = project.url;
   }
