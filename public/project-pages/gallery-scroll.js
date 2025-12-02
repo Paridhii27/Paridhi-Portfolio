@@ -36,16 +36,46 @@ document.addEventListener("DOMContentLoaded", function () {
       video.setAttribute("loop", "");
       video.setAttribute("playsinline", "");
       video.setAttribute("preload", "auto");
+      if (!video.hasAttribute("crossorigin")) {
+        video.setAttribute("crossorigin", "anonymous");
+      }
 
       // Handle video loading errors
       video.addEventListener("error", (e) => {
-        console.warn(
-          "Video loading error:",
-          video.querySelector("source")?.src || video.src
-        );
-        // Try to reload the video
-        const currentSrc = video.querySelector("source")?.src || video.src;
-        if (currentSrc) {
+        const source = video.querySelector("source");
+        const videoSrc = source?.src || video.src;
+        console.warn("Video loading error:", videoSrc, video.error);
+
+        // If there's a network error, try reloading
+        if (
+          video.error &&
+          video.error.code === video.error.MEDIA_ERR_SRC_NOT_SUPPORTED
+        ) {
+          console.warn(
+            "Video format not supported, trying to reload:",
+            videoSrc
+          );
+          // Try reloading the video
+          if (source) {
+            const originalSrc = source.src;
+            source.src = "";
+            setTimeout(() => {
+              source.src = originalSrc;
+              video.load();
+            }, 100);
+          } else {
+            video.load();
+          }
+        } else if (
+          video.error &&
+          video.error.code === video.error.MEDIA_ERR_NETWORK
+        ) {
+          console.warn("Network error, retrying:", videoSrc);
+          setTimeout(() => {
+            video.load();
+          }, 1000);
+        } else {
+          // Try reloading once
           video.load();
         }
       });
@@ -84,12 +114,24 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       // Try to play when video can play
-      video.addEventListener("canplay", handleCanPlay, { once: true });
+      const canPlayHandler = () => {
+        handleCanPlay();
+      };
+      video.addEventListener("canplay", canPlayHandler, { once: true });
+      video.addEventListener("canplaythrough", canPlayHandler, { once: true });
       video.addEventListener("loadeddata", handleCanPlay, { once: true });
+      video.addEventListener(
+        "loadedmetadata",
+        () => {
+          // Video metadata loaded, try to play
+          setTimeout(handleCanPlay, 100);
+        },
+        { once: true }
+      );
 
       // Also try immediately if video is already loaded
       if (video.readyState >= 2) {
-        handleCanPlay();
+        setTimeout(handleCanPlay, 100);
       }
 
       // Ensure video loops
@@ -117,8 +159,68 @@ document.addEventListener("DOMContentLoaded", function () {
 
       observer.observe(video);
 
-      // Force load the video
-      video.load();
+      // Force load the video and ensure source is set
+      const source = video.querySelector("source");
+      if (source && source.src) {
+        // Log the source for debugging
+        console.log("Loading video:", source.src);
+
+        // Ensure the source src is absolute or correct relative path
+        if (!source.src.startsWith("http") && !source.src.startsWith("/")) {
+          // It's a relative path, which should be fine
+          // Make sure it's properly formatted
+          if (source.src.startsWith("../")) {
+            // Relative path is correct
+          }
+        }
+
+        // Load the video
+        video.load();
+
+        // If video doesn't load after 2 seconds, try reloading
+        const loadTimeout = setTimeout(() => {
+          if (
+            video.readyState === 0 ||
+            video.networkState === video.NETWORK_NO_SOURCE ||
+            video.networkState === video.NETWORK_EMPTY
+          ) {
+            console.warn("Video not loading, attempting reload:", source.src);
+            const currentSrc = source.src;
+            source.src = "";
+            setTimeout(() => {
+              source.src = currentSrc;
+              video.load();
+
+              // Try one more time after another delay if still not loading
+              setTimeout(() => {
+                if (
+                  video.readyState === 0 ||
+                  video.networkState === video.NETWORK_NO_SOURCE
+                ) {
+                  console.warn(
+                    "Video still not loading, trying direct src:",
+                    currentSrc
+                  );
+                  // Try setting src directly on video element as fallback
+                  video.src = currentSrc;
+                  video.load();
+                }
+              }, 1000);
+            }, 100);
+          }
+        }, 2000);
+
+        // Clear timeout if video loads successfully
+        video.addEventListener(
+          "loadedmetadata",
+          () => {
+            clearTimeout(loadTimeout);
+          },
+          { once: true }
+        );
+      } else {
+        console.warn("Video has no source element or src attribute");
+      }
     });
   }
 
@@ -151,8 +253,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // For videos, also listen to loadeddata and error events
       if (img.tagName === "VIDEO") {
-        img.addEventListener("loadeddata", () => {
-          const playPromise = img.play();
+        const video = img;
+
+        // Ensure video has required attributes
+        video.setAttribute("muted", "");
+        video.setAttribute("playsinline", "");
+        if (!video.hasAttribute("crossorigin")) {
+          video.setAttribute("crossorigin", "anonymous");
+        }
+
+        video.addEventListener("loadeddata", () => {
+          const playPromise = video.play();
           if (playPromise !== undefined) {
             playPromise.catch(() => {
               // Ignore errors
@@ -160,22 +271,34 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        img.addEventListener("error", () => {
-          console.warn(
-            "Video failed to load:",
-            img.querySelector("source")?.src || img.src
-          );
-          // Try to reload after a delay
+        video.addEventListener("error", (e) => {
+          const source = video.querySelector("source");
+          const videoSrc = source?.src || video.src;
+          console.warn("Video failed to load:", videoSrc, video.error);
+
+          // Try to reload after a delay with source reset
           setTimeout(() => {
-            img.load();
+            if (source && source.src) {
+              const currentSrc = source.src;
+              source.src = "";
+              setTimeout(() => {
+                source.src = currentSrc;
+                video.load();
+              }, 200);
+            } else {
+              video.load();
+            }
           }, 1000);
         });
 
         // Also listen for stalled/abort events
-        img.addEventListener("stalled", () => {
+        video.addEventListener("stalled", () => {
           console.warn("Video stalled, attempting reload");
-          img.load();
+          video.load();
         });
+
+        // Force load the video
+        video.load();
       }
     }
   });
