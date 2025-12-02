@@ -76,6 +76,24 @@ function updateFeaturedProject(projectId) {
       mainLink.style.display = "none";
     }
 
+    // Ensure media container is directly in main-featured-project (not inside link)
+    if (mediaContainer && mainLink && mediaContainer.parentNode === mainLink) {
+      const mainFeaturedProject = document.querySelector(
+        ".main-featured-project"
+      );
+      if (mainFeaturedProject) {
+        // Remove from link
+        mainLink.removeChild(mediaContainer);
+        // Insert before project-info
+        const projectInfo = mainFeaturedProject.querySelector(".project-info");
+        if (projectInfo) {
+          mainFeaturedProject.insertBefore(mediaContainer, projectInfo);
+        } else {
+          mainFeaturedProject.appendChild(mediaContainer);
+        }
+      }
+    }
+
     // Create video element if it doesn't exist
     let videoElement = mainVideo;
     if (!videoElement) {
@@ -86,9 +104,8 @@ function updateFeaturedProject(projectId) {
       videoElement.setAttribute("muted", "");
       videoElement.setAttribute("playsinline", "");
       videoElement.setAttribute("poster", project.image);
-      videoElement.style.width = "100%";
-      videoElement.style.height = "100%";
-      videoElement.style.objectFit = "cover";
+      videoElement.setAttribute("preload", "auto");
+      videoElement.className = ""; // Clear any classes
 
       // Insert video into media container
       if (mediaContainer) {
@@ -98,7 +115,9 @@ function updateFeaturedProject(projectId) {
       }
     }
 
+    // Update video source and attributes
     videoElement.src = project.video;
+    videoElement.poster = project.image;
     videoElement.style.display = "block";
     // Ensure video plays automatically
     videoElement.play().catch((error) => {
@@ -111,21 +130,40 @@ function updateFeaturedProject(projectId) {
       mainVideo.style.display = "none";
     }
 
-    // Show the link and wrap the media container for navigation
+    // Show the link and ensure it wraps the media container for navigation
     if (mainLink && mediaContainer) {
+      // Get the current parent of media container
+      const containerParent = mediaContainer.parentNode;
+      const mainFeaturedProject = document.querySelector(
+        ".main-featured-project"
+      );
+
+      // If media container is not already inside the link, move it
+      if (containerParent !== mainLink && mainFeaturedProject) {
+        // Remove media container from current parent
+        if (containerParent) {
+          containerParent.removeChild(mediaContainer);
+        }
+
+        // Clear link and add media container to it
+        mainLink.innerHTML = "";
+        mainLink.appendChild(mediaContainer);
+
+        // Insert link before project-info in main-featured-project
+        const projectInfo = mainFeaturedProject.querySelector(".project-info");
+        if (projectInfo) {
+          mainFeaturedProject.insertBefore(mainLink, projectInfo);
+        } else {
+          mainFeaturedProject.appendChild(mainLink);
+        }
+      }
+
+      // Show and style the link
       mainLink.style.display = "block";
       mainLink.style.position = "relative";
       mainLink.style.width = "90%";
       mainLink.style.alignSelf = "flex-start";
-      // Move media container inside link if not already there
-      if (mediaContainer.parentNode !== mainLink) {
-        const currentParent = mediaContainer.parentNode;
-        mainLink.innerHTML = "";
-        mainLink.appendChild(mediaContainer);
-        if (currentParent && currentParent !== mainLink) {
-          currentParent.insertBefore(mainLink, mediaContainer.nextSibling);
-        }
-      }
+      mainLink.style.textDecoration = "none";
     }
 
     if (mainImage) {
@@ -183,8 +221,6 @@ function updateThumbnails(featuredId) {
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize thumbnails with default state (all projects except move-a-bit)
-  // The HTML already has the default images loaded, so we just need to ensure
-  // the data attributes and click handlers are set up correctly
   updateThumbnails("move-a-bit");
 
   // Initialize the main featured project to show video if it's move-a-bit
@@ -226,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const thumbnails = document.querySelectorAll(".project-thumbnail");
   thumbnails.forEach((thumbnail) => {
     thumbnail.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevent default link behavior
+      e.preventDefault();
       const projectId = this.dataset.projectId;
       if (projectId && projectId !== currentFeaturedProject) {
         updateFeaturedProject(projectId);
