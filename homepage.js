@@ -33,7 +33,7 @@ const projects = {
 };
 
 // Track currently featured project
-let currentFeaturedProject = "machine-stranger";
+let currentFeaturedProject = "move-a-bit";
 
 // Get all project IDs
 const allProjectIds = Object.keys(projects);
@@ -60,13 +60,20 @@ function updateFeaturedProject(projectId) {
   // Get or create media container
   const mainImage = document.getElementById("main-featured-image");
   const mainVideo = document.getElementById("main-featured-video");
-  const linkElement = mainLink || document.getElementById("main-featured-link");
+  const mediaContainer = document.getElementById(
+    "main-featured-media-container"
+  );
 
   // Handle video vs image display
   if (project.video) {
     // If project has video, show video instead of image
     if (mainImage) {
       mainImage.style.display = "none";
+    }
+
+    // Hide the link so video can be clicked to play/pause
+    if (mainLink) {
+      mainLink.style.display = "none";
     }
 
     // Create video element if it doesn't exist
@@ -78,24 +85,47 @@ function updateFeaturedProject(projectId) {
       videoElement.setAttribute("loop", "");
       videoElement.setAttribute("muted", "");
       videoElement.setAttribute("playsinline", "");
+      videoElement.setAttribute("poster", project.image);
       videoElement.style.width = "100%";
       videoElement.style.height = "100%";
       videoElement.style.objectFit = "cover";
 
-      // Insert video after the link or replace image
-      if (mainImage && mainImage.parentNode) {
+      // Insert video into media container
+      if (mediaContainer) {
+        mediaContainer.appendChild(videoElement);
+      } else if (mainImage && mainImage.parentNode) {
         mainImage.parentNode.insertBefore(videoElement, mainImage);
-      } else if (linkElement) {
-        linkElement.appendChild(videoElement);
       }
     }
 
     videoElement.src = project.video;
     videoElement.style.display = "block";
+    // Ensure video plays automatically
+    videoElement.play().catch((error) => {
+      // Autoplay was prevented, but video will play when user interacts
+      console.log("Video autoplay prevented:", error);
+    });
   } else {
-    // If project doesn't have video, show image
+    // If project doesn't have video, show image and make it clickable
     if (mainVideo) {
       mainVideo.style.display = "none";
+    }
+
+    // Show the link and wrap the media container for navigation
+    if (mainLink && mediaContainer) {
+      mainLink.style.display = "block";
+      mainLink.style.position = "relative";
+      mainLink.style.width = "90%";
+      mainLink.style.alignSelf = "flex-start";
+      // Move media container inside link if not already there
+      if (mediaContainer.parentNode !== mainLink) {
+        const currentParent = mediaContainer.parentNode;
+        mainLink.innerHTML = "";
+        mainLink.appendChild(mediaContainer);
+        if (currentParent && currentParent !== mainLink) {
+          currentParent.insertBefore(mainLink, mediaContainer.nextSibling);
+        }
+      }
     }
 
     if (mainImage) {
@@ -152,10 +182,45 @@ function updateThumbnails(featuredId) {
 
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
-  // Initialize thumbnails with default state (all projects except machine-stranger)
+  // Initialize thumbnails with default state (all projects except move-a-bit)
   // The HTML already has the default images loaded, so we just need to ensure
   // the data attributes and click handlers are set up correctly
-  updateThumbnails("machine-stranger");
+  updateThumbnails("move-a-bit");
+
+  // Initialize the main featured project to show video if it's move-a-bit
+  updateFeaturedProject("move-a-bit");
+
+  // Force video autoplay for Safari compatibility
+  const mainVideo = document.getElementById("main-featured-video");
+  if (mainVideo) {
+    // Try to play the video
+    const playPromise = mainVideo.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Video is playing
+          console.log("Video autoplay started");
+        })
+        .catch((error) => {
+          // Autoplay was prevented - show poster/thumbnail instead
+          console.log("Video autoplay prevented, showing poster:", error);
+          // The poster attribute will show the thumbnail
+        });
+    }
+
+    // Also try playing on user interaction (click anywhere on page)
+    const tryPlayVideo = () => {
+      if (mainVideo.paused) {
+        mainVideo.play().catch(() => {
+          // Still can't play, that's okay
+        });
+      }
+    };
+
+    // Try to play on first user interaction
+    document.addEventListener("click", tryPlayVideo, { once: true });
+    document.addEventListener("touchstart", tryPlayVideo, { once: true });
+  }
 
   // Add click event listeners to thumbnails
   const thumbnails = document.querySelectorAll(".project-thumbnail");

@@ -20,11 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap"
     />
     <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      href="./public/assets/images/thumbnails/machine-stranger.jpg"
-      as="image"
-    />
+    <link rel="preload" href="./public/assets/video/moveabit.mp4" as="video" />
     <link rel="preload" href="./navbar.css" as="style" />
     <link rel="preload" href="./homepage.css" as="style" />
     <!-- Open Graph / Facebook -->
@@ -121,27 +117,39 @@
     <section class="featured-projects-section">
       <div class="featured-projects-container">
         <div class="main-featured-project">
-          <a
-            href="./public/project-pages/this-machine-is-a-stranger.html"
-            id="main-featured-link"
-          >
+          <div id="main-featured-media-container">
+            <video
+              id="main-featured-video"
+              src="./public/assets/video/moveabit.mp4"
+              poster="./public/assets/images/thumbnails/move-a-bit.jpg"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              style="width: 100%; height: auto; object-fit: cover"
+            ></video>
             <img
               id="main-featured-image"
-              src="./public/assets/images/thumbnails/machine-stranger.jpg"
-              alt="This Machine is a Stranger"
-              loading="eager"
-              fetchpriority="high"
+              src="./public/assets/images/thumbnails/move-a-bit.jpg"
+              alt="Move A Bit"
+              style="display: none"
             />
-          </a>
+          </div>
+          <a
+            href="./public/project-pages/move-a-bit.html"
+            id="main-featured-link"
+            style="display: none"
+          ></a>
           <div class="project-info">
             <div class="title-container">
               <a
-                href="./public/project-pages/this-machine-is-a-stranger.html"
+                href="./public/project-pages/move-a-bit.html"
                 id="main-featured-title-link"
                 class="featured-project-title-link"
               >
                 <h2 id="main-featured-title" class="featured-project-title">
-                  This Machine is a Stranger
+                  Move A Bit
                 </h2>
               </a>
             </div>
@@ -149,26 +157,24 @@
               id="main-featured-description"
               class="featured-project-description"
             >
-              "This Machine is a Stranger" is a project that emerged from a
-              curiosity to explore how one can navigate life at the intersection
-              of human intuition and the quiet, calculated logic of autonomous
-              machines, questioning how much a person implicitly trusts or
-              mistrusts a machine.
+              Move a Bit is a live motion capture project bringing quantum
+              computing to life through an interactive display that visually
+              showcases entanglement.
             </p>
           </div>
         </div>
         <div class="featured-projects-thumbnails">
+          <div class="project-thumbnail" data-project-id="machine-stranger">
+            <img
+              src="./public/assets/images/thumbnails/machine-stranger.jpg"
+              alt="This Machine is a Stranger"
+              loading="lazy"
+            />
+          </div>
           <div class="project-thumbnail" data-project-id="fleeting-states">
             <img
               src="./public/assets/images/thumbnails/fleeting-states-two.png"
               alt="Fleeting States + Measured Values"
-              loading="lazy"
-            />
-          </div>
-          <div class="project-thumbnail" data-project-id="move-a-bit">
-            <img
-              src="./public/assets/images/thumbnails/move-a-bit.jpg"
-              alt="Move A Bit"
               loading="lazy"
             />
           </div>
