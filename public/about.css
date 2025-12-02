@@ -9,12 +9,8 @@
 
   /* Section colors */
   --skills-color: #3d479c;
-  --skills-secondary-color: #a49ce0;
-  --education-color: #3d479c;
-  --experience-color: #5a7c8a;
 
   --heading-font: "Inter", sans-serif;
-  --subheading-font: "Quicksand", sans-serif;
   --content-font: "Open Sans", sans-serif;
 
   /* Font Sizes - Consistent across all pages */
@@ -22,13 +18,10 @@
   --font-size-h1: clamp(2rem, 4.5vw, 3.5rem); /* Large page titles */
   --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem); /* Section titles */
   --font-size-h3: clamp(1.25rem, 3vw, 1.75rem); /* Subsection titles */
-  --font-size-button: 1rem; /* 16px - Base buttons */
   --font-size-button-large: 1.1rem; /* 17.6px - CTA buttons */
 
   --border-radius: 10px;
   --pg-margin: 5%;
-  --section-spacing: 5vw;
-  --container-spacing: 5%;
 }
 
 /* ===== BASE STYLES ===== */
@@ -59,17 +52,6 @@ body {
 
 .introduction-section > * {
   flex-shrink: 0;
-}
-
-.pg-title {
-  border: 1px dashed var(--border-color);
-  border-radius: var(--border-radius);
-}
-
-.pg-title h1 {
-  font-family: var(--heading-font);
-  font-size: var(--font-size-h1);
-  font-weight: 700;
 }
 
 .introduction-text {
@@ -194,7 +176,7 @@ body {
   background: transparent;
   color: var(--text-color);
   font-family: var(--heading-font);
-  font-size: var(--font-size-button-large);
+  font-size: clamp(1.2rem, 1.4vw, 1.2rem);
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -321,8 +303,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Receipt styles removed - no longer used in HTML */
-
 .resume-content {
   padding: 0;
   color: var(--text-color);
@@ -430,10 +410,6 @@ body {
   margin: 0;
 }
 
-.resume-header {
-  display: none;
-}
-
 .download-btn-container {
   padding-top: 2rem;
   margin-top: 1rem;
@@ -481,141 +457,6 @@ body {
   line-height: 1.8;
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
-}
-
-.resume-section p {
-  margin-bottom: 1.25rem;
-  line-height: 1.8;
-  font-size: var(--font-size-paragraph);
-  color: var(--text-color);
-  padding: 0;
-}
-
-.resume-section p:last-child {
-  margin-bottom: 0;
-}
-
-.resume-section p strong {
-  color: var(--text-color);
-  font-weight: 600;
-  font-size: var(--font-size-paragraph);
-  font-style: normal;
-  display: block;
-  margin-bottom: 0.5rem;
-  font-family: var(--heading-font);
-}
-
-/* ===== SKILLS STYLING ===== */
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 0;
-}
-
-.skill-tag {
-  font-size: var(--font-size-paragraph);
-  border: 1px solid var(--text-color);
-  border-radius: var(--border-radius);
-  padding: 8px 12px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  font-family: var(--content-font);
-  font-weight: 400;
-  color: var(--text-color);
-}
-
-.skill-tag:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(167, 219, 235, 0.3) 0%,
-    rgba(167, 219, 235, 0.15) 100%
-  );
-  color: var(--text-color);
-  border-color: var(--hover-color);
-}
-
-/* ===== ITEM STYLING ===== */
-
-.experience-item,
-.education-item {
-  padding: 0;
-  border: none;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px dashed var(--border-color);
-  transition: all 0.3s ease;
-}
-
-.experience-item:last-child,
-.education-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.experience-item p,
-.education-item p {
-  margin-bottom: 0.75rem;
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-.experience-item p:first-child {
-  margin-bottom: 0.75rem;
-}
-
-.experience-item p:first-child strong {
-  color: var(--text-color);
-  font-size: var(--font-size-paragraph);
-  font-weight: var(--heading-bold);
-  display: inline;
-  font-family: var(--heading-font);
-}
-
-.experience-item p:first-child {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: var(--font-size-paragraph);
-  font-weight: 400;
-}
-
-.education-item p:first-child strong {
-  color: var(--text-color);
-  font-size: var(--font-size-paragraph);
-  font-weight: var(--heading-bold);
-  display: block;
-  margin-bottom: 0.5rem;
-  font-family: var(--heading-font);
-}
-
-.experience-item p:not(:first-child),
-.education-item p:not(:first-child) {
-  color: var(--text-color);
-}
-
-/* ===== SECTION-SPECIFIC STYLING ===== */
-
-/* All sections have consistent styling */
-.resume-section.experience,
-.resume-section.skills,
-.resume-section.education {
-  background: transparent;
-}
-
-.resume-section.experience h2,
-.resume-section.skills h2,
-.resume-section.education h2 {
-  color: var(--text-color);
-  border-bottom-color: var(--border-color);
-}
-
-/* Section content styling */
-.resume-section.experience .section-content,
-.resume-section.education .section-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
 }
 
 /* ===== GALLERY STYLING ===== */
@@ -785,11 +626,6 @@ body {
     font-size: clamp(0.95rem, 1.2vw, 1rem);
   }
 
-  .resume-section p {
-    font-size: clamp(0.95rem, 1.2vw, 1rem);
-    line-height: 1.7;
-  }
-
   .side-image-container {
     height: clamp(400px, 50vh, 500px);
     margin-bottom: 1rem;
@@ -806,7 +642,11 @@ body {
   .button {
     flex: 1;
     padding: 0.9rem;
-    font-size: var(--font-size-h3);
+    font-size: clamp(1.1rem, 1.3vw, 1.1rem);
+  }
+
+  .skill-category {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   }
 
   .contact-links {
@@ -837,20 +677,6 @@ body {
     height: clamp(32px, 3.5vw, 35px);
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     color: var(--text-color);
-  }
-
-  .resume-sections-container {
-    gap: 20px;
-    padding: 20px;
-    margin-bottom: 0;
-  }
-  .resume-header {
-    padding: 20px;
-  }
-
-  .resume-header h1 {
-    font-size: var(--font-size-h1);
-    font-family: var(--heading-font);
   }
 }
 
@@ -942,62 +768,16 @@ body {
     font-size: clamp(1.1rem, 2vw, 1.25rem);
   }
 
-  /* Receipt styles removed - no longer used */
-
   .resume-content {
     height: auto;
     padding: 10px;
     overflow-x: none;
   }
 
-  .resume-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: normal;
-    padding-bottom: 2rem;
-    flex-shrink: 0;
-    gap: 15px;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .resume-section h2 {
-    text-align: center;
-    font-size: var(--font-size-h2);
-    padding: 1rem;
-  }
-
-  .resume-sections-container {
-    flex-direction: column;
-    height: auto;
-    overflow-x: none;
-    display: flex;
-    gap: 20px;
-    position: relative;
-    width: 95%;
-    margin-bottom: 1.2rem;
-  }
-
   /* Mobile content improvements */
   .introduction-text {
     font-size: clamp(1rem, 1.8vw, 1.1rem);
     line-height: 1.6;
-  }
-
-  .resume-section p {
-    font-size: clamp(1rem, 1.8vw, 1.1rem);
-    line-height: 1.6;
-    margin-bottom: 0.8rem;
-  }
-
-  .resume-section p strong {
-    font-size: var(--font-size-paragraph);
-  }
-
-  .experience-item,
-  .education-item {
-    margin-bottom: 1rem;
   }
 
   .introduction-section {
@@ -1030,7 +810,11 @@ body {
   .button {
     flex: 1;
     padding: 0.8rem;
-    font-size: var(--font-size-h3);
+    font-size: clamp(1.05rem, 2vw, 1.05rem);
+  }
+
+  .skill-category {
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
   }
 
   .contact-links {
@@ -1074,19 +858,10 @@ body {
     position: relative;
   }
 
-  .pg-title h1 {
-    font-size: var(--font-size-h1);
-  }
-
   .introduction-text {
     margin-bottom: 1.5rem;
     line-height: 1.5;
     font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-  }
-
-  .resume-section p {
-    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-    line-height: 1.5;
   }
 
   .resume-content {
@@ -1191,7 +966,11 @@ body {
   .button {
     flex: 1;
     padding: 0.8rem;
-    font-size: var(--font-size-h3);
+    font-size: clamp(1rem, 2vw, 1rem);
+  }
+
+  .skill-category {
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
   }
 
   .contact-links {
@@ -1227,25 +1006,5 @@ body {
 
   .grid-column {
     gap: 8px;
-  }
-
-  .resume-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: normal;
-    padding-bottom: 2rem;
-    flex-shrink: 0;
-  }
-
-  .resume-section h2 {
-    text-align: center;
-  }
-
-  .resume-sections-container {
-    display: flex;
-    gap: 20px;
-    position: relative;
-    margin-bottom: 1.2rem;
   }
 }

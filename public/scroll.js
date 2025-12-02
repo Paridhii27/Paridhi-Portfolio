@@ -127,26 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Scroll progress functionality
-  function updateScrollProgress() {
-    const scrolled = window.pageYOffset;
-    const maxHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrolled / maxHeight) * 100;
-  }
-
-  let ticking = false;
-  function requestTick() {
-    if (!ticking) {
-      requestAnimationFrame(updateScrollProgress);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener("scroll", () => {
-    ticking = false;
-    requestTick();
-  });
-
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {

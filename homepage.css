@@ -143,18 +143,6 @@ body.home-page {
   transform: scale(0.98);
 }
 
-.main-featured-project a:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: 8px;
-}
-
-.main-featured-project a:focus-visible {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: 8px;
-}
-
 .main-featured-project a {
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
@@ -221,18 +209,6 @@ body.home-page {
 .featured-project-title-link:active {
   opacity: 0.7;
   transform: translateY(0);
-}
-
-.featured-project-title-link:focus {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-.featured-project-title-link:focus-visible {
-  outline: 2px solid var(--hover-color);
-  outline-offset: 4px;
-  border-radius: 4px;
 }
 
 .featured-project-title {
@@ -741,7 +717,7 @@ body.home-page {
 
   .featured-project-description {
     font-size: clamp(1rem, 1.8vw, 1.1rem);
-    line-height: 1.5;
+    line-height: 1.6;
     max-width: 100%;
   }
 
@@ -1045,7 +1021,7 @@ body.home-page {
 
   .featured-project-description {
     font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   .view-all-projects-container {
@@ -1102,7 +1078,7 @@ body.home-page {
 
   .about-me-description {
     font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-    line-height: 1.55;
+    line-height: 1.5;
     text-align: center;
     width: 100%;
     max-width: 100%;

@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
-
+/* ============================================================================
+   CSS VARIABLES
+   ============================================================================ */
 :root {
   /* Color Palette - Easy to customize */
   --bg-color: #000000;
@@ -15,18 +16,11 @@
 
   /* Font Weights */
   --heading-bold: 700;
-  --project-keywords: 500;
-  --project-container-titles: 300;
-  --content: 300;
 
   /* Spacing */
   --section-spacing: 5vw;
   --container-spacing: 5%;
   --border-radius: 10px;
-
-  /* Breakpoints */
-  --mobile-width: 750px;
-  --tablet-width: 950px;
 
   /* Font Sizes - Consistent across all pages */
   --font-size-paragraph: 1rem; /* 16px - Base paragraph text */
@@ -43,13 +37,15 @@
   --stagger-delay: 0.08s;
 }
 
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
 body {
   max-width: 90vw;
   margin: 0 auto;
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--content-font);
-  cursor: url("./assets/images/logos/logo.png"), auto;
   box-sizing: border-box;
   padding: var(--section-spacing);
 }
@@ -196,7 +192,6 @@ p {
 
 /* Hover effect enhancement - only lift, no scale */
 .container.animate:hover {
-  /* transform: translateY(-8px); */
   border-color: var(--hover-color);
   box-shadow: 0 10px 30px rgba(167, 219, 235, 0.2);
 }
@@ -677,30 +672,6 @@ p {
     height: auto;
     max-height: 400px;
   }
-}
-
-@media screen and (max-width: 756px) {
-  body {
-    width: 100%;
-    padding: calc(var(--section-spacing) / 3) 5%;
-  }
-
-  #projects-section {
-    margin-top: 10%;
-    grid-template-columns: 1fr;
-    gap: calc(var(--section-spacing) / 2);
-  }
-
-  .thumbnail {
-    aspect-ratio: auto;
-    height: auto;
-  }
-
-  .thumbnail img {
-    object-fit: contain;
-    height: auto;
-    max-height: 400px;
-  }
 
   .tool-name span {
     font-size: clamp(0.85rem, 1.8vw, 0.95rem);
@@ -715,36 +686,41 @@ p {
     transition-duration: 0.4s;
   }
 
-  #filterBtns {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    max-width: 100%;
-    padding: 10px;
-    margin-top: 120px;
-    position: relative;
-    z-index: 10;
-    align-items: stretch;
-  }
+  /* Smaller screens within mobile range */
+  @media screen and (max-width: 756px) {
+    body {
+      padding: calc(var(--section-spacing) / 3) 5%;
+    }
 
-  .btn {
-    flex: 1;
-    min-width: calc(50% - 4px);
-    max-width: calc(50% - 4px);
-    padding: clamp(10px, 2.5vw, 12px) clamp(8px, 2vw, 12px);
-    font-size: clamp(0.65rem, 2vw, 0.85rem);
-    min-height: 38px;
-  }
+    #projects-section {
+      margin-top: 10%;
+    }
 
-  #back-to-top {
-    bottom: 10px;
-    right: 10px;
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    #filterBtns {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 100%;
+      padding: 10px;
+      margin-top: 120px;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: calc(50% - 4px);
+      max-width: calc(50% - 4px);
+      padding: clamp(10px, 2.5vw, 12px) clamp(8px, 2vw, 12px);
+      font-size: clamp(0.65rem, 2vw, 0.85rem);
+      min-height: 38px;
+    }
+
+    #back-to-top {
+      bottom: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      font-size: 0.9rem;
+    }
   }
 }
 
