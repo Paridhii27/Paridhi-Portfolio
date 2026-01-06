@@ -59,6 +59,12 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   box-sizing: border-box;
+  /* Safe area insets for notched devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-top: env(safe-area-inset-top);
+  /* Prevent pull-to-refresh interference */
+  overscroll-behavior-y: contain;
 }
 
 nav {
@@ -193,8 +199,16 @@ nav {
   body {
     margin: 5%;
     padding: 0;
-    padding-top: calc(var(--nav-height) + 1rem); /* Preserve navbar padding */
+    padding-top: calc(
+      var(--nav-height) + env(safe-area-inset-top) + 1rem
+    ); /* Preserve navbar padding with safe area */
     overflow-x: hidden;
+    /* Prevent pull-to-refresh */
+    overscroll-behavior-y: contain;
+    /* Safe area insets */
+    padding-left: max(5%, env(safe-area-inset-left));
+    padding-right: max(5%, env(safe-area-inset-right));
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   /* Ensure navbar maintains consistent height on mobile */
@@ -219,13 +233,16 @@ nav {
   #menuToggle input {
     display: block;
     width: 50px;
-    height: 32px;
+    height: 44px; /* Increased for better touch target */
     position: absolute;
     top: -7px;
     left: -5px;
     cursor: pointer;
     opacity: 0;
     z-index: 1002; /* Highest z-index */
+    /* Enhanced touch interactions */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   /* Hamburger Icon - FIXED ANIMATION */
@@ -282,9 +299,15 @@ nav {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
     margin: 0;
     padding: 0;
     background: var(--nav-bg);
+    /* Safe area insets */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
     /* Flexbox centering */
     display: flex;
@@ -297,6 +320,10 @@ nav {
     transform: translateX(100%);
     transition: transform var(--transition-slow);
     z-index: 999;
+    /* Prevent scrolling when menu is open */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   #menu li {
@@ -319,7 +346,19 @@ nav {
     outline: none;
     box-sizing: border-box;
 
-    -webkit-tap-highlight-color: transparent;
+    /* Enhanced touch interactions */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    touch-action: manipulation;
+    min-height: 44px; /* Minimum touch target */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  #menu a:active {
+    transform: scale(0.95);
+    opacity: 0.8;
   }
 
   #menu a:focus {

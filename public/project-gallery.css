@@ -17,9 +17,26 @@
   /* Font Weights */
   --heading-bold: 700;
 
-  /* Spacing */
-  --section-spacing: 5vw;
-  --container-spacing: 5%;
+  /* Spacing - Consistent System */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 2.5rem; /* 40px */
+  --spacing-3xl: 3rem; /* 48px */
+
+  /* Container Spacing */
+  --container-spacing: clamp(1rem, 5vw, 5%);
+  --section-spacing: clamp(1.5rem, 5vw, 3rem);
+  --section-gap: clamp(1.25rem, 4vw, 2rem);
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.7;
+
   --border-radius: 10px;
 
   /* Font Sizes - Consistent across all pages */
@@ -61,8 +78,8 @@ p {
   font-family: var(--content-font);
   font-weight: 400;
   font-size: clamp(0.95rem, 1.5vw, 1rem);
-  line-height: 1.5;
-  margin: 0.75rem 0;
+  line-height: var(--line-height-normal);
+  margin: var(--spacing-sm) 0;
   color: var(--text-color);
 }
 
@@ -70,12 +87,12 @@ p {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  padding: 20px;
+  padding: var(--spacing-xl);
   max-width: 800px;
   margin: 0 auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  gap: 8px;
+  margin-bottom: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+  gap: var(--spacing-xs);
   flex-wrap: nowrap;
 }
 
@@ -83,7 +100,7 @@ p {
   border: 0.5px dashed var(--text-color);
   border-radius: var(--border-radius);
   outline: none;
-  padding: 12px clamp(12px, 1.8vw, 20px);
+  padding: var(--spacing-sm) clamp(var(--spacing-sm), 1.8vw, var(--spacing-xl));
   background-color: transparent;
   font-family: var(--heading-font);
   color: var(--text-color);
@@ -95,7 +112,7 @@ p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
   white-space: nowrap;
   word-wrap: normal;
   box-sizing: border-box;
@@ -133,9 +150,9 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--section-spacing);
   margin-top: calc(var(--nav-height) + var(--nav-padding) * 2);
-  margin-bottom: 4rem;
+  margin-bottom: var(--spacing-3xl);
   width: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: var(--spacing-xl);
 }
 
 /* Animation Styles for Project Containers */

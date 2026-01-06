@@ -80,36 +80,78 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // Handle when video can play
+      // Handle when video can play with improved mobile support
       const handleCanPlay = () => {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              // Video is playing
-              console.log(
-                "Video autoplay started:",
-                video.querySelector("source")?.src || video.src
-              );
-            })
-            .catch((error) => {
-              // Autoplay was prevented - try again on user interaction
-              console.log(
-                "Video autoplay prevented, will retry on interaction:",
-                error
-              );
+        // On mobile, only autoplay if video is in viewport and user has interacted
+        const isInViewport = () => {
+          const rect = video.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <=
+              (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <=
+              (window.innerWidth || document.documentElement.clientWidth)
+          );
+        };
 
-              // Retry on first user interaction
-              const tryPlay = () => {
-                video.play().catch(() => {
-                  // Still can't play, that's okay
+        const playVideo = () => {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                // Video is playing
+                console.log(
+                  "Video autoplay started:",
+                  video.querySelector("source")?.src || video.src
+                );
+              })
+              .catch((error) => {
+                // Autoplay was prevented - try again on user interaction
+                console.log(
+                  "Video autoplay prevented, will retry on interaction:",
+                  error
+                );
+
+                // Retry on first user interaction
+                const tryPlay = () => {
+                  if (isInViewport()) {
+                    video.play().catch(() => {
+                      // Still can't play, that's okay
+                    });
+                  }
+                };
+
+                document.addEventListener("click", tryPlay, { once: true });
+                document.addEventListener("touchstart", tryPlay, {
+                  once: true,
+                  passive: true,
                 });
-              };
+                document.addEventListener("scroll", tryPlay, {
+                  once: true,
+                  passive: true,
+                });
+              });
+          }
+        };
 
-              document.addEventListener("click", tryPlay, { once: true });
-              document.addEventListener("touchstart", tryPlay, { once: true });
-              document.addEventListener("scroll", tryPlay, { once: true });
-            });
+        // On mobile, wait for user interaction or viewport visibility
+        if (isMobile()) {
+          // Use Intersection Observer for better mobile performance
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                  // Video is visible, try to play
+                  playVideo();
+                }
+              });
+            },
+            { threshold: 0.5 }
+          );
+          observer.observe(video);
+        } else {
+          playVideo();
         }
       };
 
@@ -142,22 +184,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
 
-      // Handle visibility change - resume playing when visible
-      const observer = new IntersectionObserver(
+      // Handle visibility change - resume playing when visible (improved for mobile)
+      const visibilityObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
               // Video is visible, try to play
-              video.play().catch(() => {
-                // Ignore errors
-              });
+              if (!video.paused || video.readyState >= 2) {
+                video.play().catch(() => {
+                  // Ignore errors - autoplay may be blocked
+                });
+              }
+            } else if (!entry.isIntersecting && !video.paused) {
+              // Video is not visible, pause to save resources on mobile
+              if (isMobile()) {
+                video.pause();
+              }
             }
           });
         },
         { threshold: 0.5 }
       );
 
-      observer.observe(video);
+      visibilityObserver.observe(video);
 
       // Force load the video and ensure source is set
       const source = video.querySelector("source");
@@ -224,11 +273,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Update on scroll
-  gallery.addEventListener("scroll", updateScrollIndicators);
+  // Update on scroll with throttling for performance
+  let scrollTimeout;
+  gallery.addEventListener(
+    "scroll",
+    () => {
+      if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+      }
+      scrollTimeout = requestAnimationFrame(updateScrollIndicators);
+    },
+    { passive: true }
+  );
 
-  // Update on resize
-  window.addEventListener("resize", updateScrollIndicators);
+  // Update on resize with debouncing
+  let resizeTimeout;
+  window.addEventListener(
+    "resize",
+    () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        updateScrollIndicators();
+      }, 150);
+    },
+    { passive: true }
+  );
 
   // Initial update
   updateScrollIndicators();
@@ -312,8 +381,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mobile fullscreen functionality
   function isMobile() {
-    return window.innerWidth <= 768;
+    return (
+      window.innerWidth <= 768 ||
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    );
   }
+
+  // Add swipe navigation for gallery on mobile
+  function setupGallerySwipeNavigation() {
+    if (!isMobile()) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isScrolling = false;
+    let scrollStartX = 0;
+
+    gallery.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        scrollStartX = gallery.scrollLeft;
+        isScrolling = false;
+      },
+      { passive: true }
+    );
+
+    gallery.addEventListener(
+      "touchmove",
+      (e) => {
+        const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+
+        // Determine if user is scrolling horizontally or vertically
+        if (deltaX > deltaY && deltaX > 10) {
+          isScrolling = true;
+        }
+      },
+      { passive: true }
+    );
+
+    gallery.addEventListener(
+      "touchend",
+      (e) => {
+        if (!isScrolling) return;
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const deltaX = touchStartX - touchEndX;
+        const deltaY = Math.abs(touchStartY - touchEndY);
+        const swipeThreshold = 50;
+
+        // Only process horizontal swipes
+        if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > deltaY) {
+          const figures = gallery.querySelectorAll("figure");
+          const currentScroll = gallery.scrollLeft;
+          const figureWidth = figures[0]?.offsetWidth || 0;
+          const scrollMargin = 30; // Match CSS margin
+
+          // Find current figure index
+          let currentIndex = Math.round(
+            (currentScroll + scrollMargin) / (figureWidth + scrollMargin * 2)
+          );
+          currentIndex = Math.max(
+            0,
+            Math.min(currentIndex, figures.length - 1)
+          );
+
+          if (deltaX > 0 && currentIndex < figures.length - 1) {
+            // Swipe left - next
+            const nextIndex = currentIndex + 1;
+            const nextFigure = figures[nextIndex];
+            if (nextFigure) {
+              nextFigure.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+              });
+            }
+          } else if (deltaX < 0 && currentIndex > 0) {
+            // Swipe right - previous
+            const prevIndex = currentIndex - 1;
+            const prevFigure = figures[prevIndex];
+            if (prevFigure) {
+              prevFigure.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+                inline: "center",
+              });
+            }
+          }
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  // Setup gallery swipe navigation
+  setupGallerySwipeNavigation();
 
   let fullscreenSetup = false;
 
@@ -364,19 +531,53 @@ document.addEventListener("DOMContentLoaded", function () {
       content.innerHTML = "";
     }
 
-    // Click on figure to open fullscreen
+    // Enhanced click/touch on figure to open fullscreen
     figures.forEach((figure, index) => {
-      figure.addEventListener("click", (e) => {
+      let touchStartTime = 0;
+      let touchStartPos = { x: 0, y: 0 };
+
+      // Handle both click and touch events
+      const handleInteraction = (e) => {
         // Don't open if clicking on video controls
         if (e.target.tagName === "VIDEO" && e.target.controls) {
           const rect = e.target.getBoundingClientRect();
-          const clickY = e.clientY - rect.top;
+          const clickY = (e.clientY || e.touches?.[0]?.clientY || 0) - rect.top;
           // If clicking in bottom 20% (where controls usually are), don't open fullscreen
           if (clickY > rect.height * 0.8) {
             return;
           }
         }
         showFullscreen(index);
+      };
+
+      figure.addEventListener("click", handleInteraction);
+
+      // Enhanced touch handling to prevent accidental opens during scrolling
+      figure.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartTime = Date.now();
+          touchStartPos.x = e.touches[0].clientX;
+          touchStartPos.y = e.touches[0].clientY;
+        },
+        { passive: true }
+      );
+
+      figure.addEventListener("touchend", (e) => {
+        const touchEndTime = Date.now();
+        const touchDuration = touchEndTime - touchStartTime;
+        const touchEndPos = {
+          x: e.changedTouches[0].clientX,
+          y: e.changedTouches[0].clientY,
+        };
+        const deltaX = Math.abs(touchEndPos.x - touchStartPos.x);
+        const deltaY = Math.abs(touchEndPos.y - touchStartPos.y);
+
+        // Only open if it's a tap (short duration, small movement) and not a scroll
+        if (touchDuration < 300 && deltaX < 10 && deltaY < 10) {
+          e.preventDefault();
+          handleInteraction(e);
+        }
       });
     });
 
@@ -387,25 +588,59 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Swipe/scroll through images in fullscreen
+    // Enhanced swipe/scroll through images in fullscreen
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let touchEndY = 0;
+    let isSwiping = false;
 
-    overlay.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+    overlay.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+        isSwiping = false;
+      },
+      { passive: true }
+    );
 
-    overlay.addEventListener("touchend", (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
+    overlay.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isSwiping) {
+          const deltaX = Math.abs(e.changedTouches[0].screenX - touchStartX);
+          const deltaY = Math.abs(e.changedTouches[0].screenY - touchStartY);
+          // Only consider it a swipe if horizontal movement is greater than vertical
+          if (deltaX > deltaY && deltaX > 10) {
+            isSwiping = true;
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    overlay.addEventListener(
+      "touchend",
+      (e) => {
+        if (isSwiping) {
+          touchEndX = e.changedTouches[0].screenX;
+          touchEndY = e.changedTouches[0].screenY;
+          handleSwipe();
+        }
+        isSwiping = false;
+      },
+      { passive: true }
+    );
 
     function handleSwipe() {
       const swipeThreshold = 50;
-      const diff = touchStartX - touchEndX;
+      const diffX = touchStartX - touchEndX;
+      const diffY = Math.abs(touchStartY - touchEndY);
 
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
+      // Only process if horizontal swipe is dominant
+      if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
+        if (diffX > 0) {
           // Swipe left - next image
           if (currentIndex < figures.length - 1) {
             showFullscreen(currentIndex + 1);

@@ -122,4 +122,61 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // --------------------------------------------------------------------------
+  // Mobile Menu Body Scroll Lock
+  // --------------------------------------------------------------------------
+
+  const menuToggle = document.getElementById("menuToggle");
+  const menuCheckbox = menuToggle?.querySelector("input[type='checkbox']");
+  const menu = document.getElementById("menu");
+
+  if (menuToggle && menuCheckbox && menu) {
+    // Prevent body scroll when menu is open
+    function handleMenuToggle() {
+      if (menuCheckbox.checked) {
+        // Menu is opening - lock body scroll
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed";
+        document.body.style.width = "100%";
+        document.body.style.top = `-${window.scrollY}px`;
+      } else {
+        // Menu is closing - unlock body scroll
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
+      }
+    }
+
+    // Listen for checkbox changes
+    menuCheckbox.addEventListener("change", handleMenuToggle);
+
+    // Close menu when clicking on a menu link (mobile)
+    const menuLinks = menu.querySelectorAll("a");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 900) {
+          menuCheckbox.checked = false;
+          handleMenuToggle();
+        }
+      });
+    });
+
+    // Close menu on window resize if switching to desktop
+    let wasMobile = window.innerWidth <= 900;
+    window.addEventListener("resize", () => {
+      const isMobile = window.innerWidth <= 900;
+      if (wasMobile && !isMobile && menuCheckbox.checked) {
+        // Switched from mobile to desktop - close menu
+        menuCheckbox.checked = false;
+        handleMenuToggle();
+      }
+      wasMobile = isMobile;
+    });
+  }
 });

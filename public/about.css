@@ -21,7 +21,26 @@
   --font-size-button-large: 1.1rem; /* 17.6px - CTA buttons */
 
   --border-radius: 10px;
-  --pg-margin: 5%;
+
+  /* Spacing - Consistent System */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 2.5rem; /* 40px */
+  --spacing-3xl: 3rem; /* 48px */
+
+  /* Container Spacing */
+  --pg-margin: clamp(1rem, 5vw, 5%);
+  --section-spacing: clamp(1.5rem, 5vw, 3rem);
+  --section-gap: clamp(1.25rem, 4vw, 2rem);
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.7;
 }
 
 /* ===== BASE STYLES ===== */
@@ -79,7 +98,7 @@ body {
 .main-image img {
   width: 100%;
   border-radius: var(--border-radius);
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-md);
 }
 
 .contact-links {
@@ -150,7 +169,7 @@ body {
 .side-image-container {
   height: 55%;
   position: relative;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 .side-image {
@@ -164,7 +183,7 @@ body {
 .buttons-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-md);
   height: 5%;
 }
 
@@ -321,7 +340,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--spacing-xl);
   max-height: calc(85vh - 200px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -378,7 +397,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
 }
 
 .skill-category {
@@ -397,7 +416,7 @@ body {
   font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 400;
   color: #ddd8d8;
-  line-height: 1.6;
+  line-height: var(--line-height-relaxed);
   margin: 0;
   padding: 0;
 }
@@ -411,8 +430,8 @@ body {
 }
 
 .download-btn-container {
-  padding-top: 2rem;
-  margin-top: 1rem;
+  padding-top: var(--spacing-xl);
+  margin-top: var(--spacing-md);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -454,7 +473,7 @@ body {
   box-sizing: border-box;
   position: relative;
   font-family: var(--content-font);
-  line-height: 1.8;
+  line-height: var(--line-height-loose);
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;
 }

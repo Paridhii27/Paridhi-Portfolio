@@ -265,8 +265,52 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const projectId = this.dataset.projectId;
       if (projectId && projectId !== currentFeaturedProject) {
-        updateFeaturedProject(projectId);
+        // Add transition effect
+        thumbnail.style.transform = "scale(0.95)";
+        setTimeout(() => {
+          thumbnail.style.transform = "";
+          updateFeaturedProject(projectId);
+        }, 150);
       }
     });
   });
+
+  // Wrap updateFeaturedProject to add smooth transitions
+  const originalUpdateFeaturedProject = updateFeaturedProject;
+
+  // Override with enhanced version
+  window.updateFeaturedProject = function (projectId) {
+    const mediaContainer = document.getElementById(
+      "main-featured-media-container"
+    );
+    const projectInfo = document.querySelector(".project-info");
+
+    if (mediaContainer) {
+      mediaContainer.style.opacity = "0";
+      mediaContainer.style.transform = "scale(0.98)";
+    }
+    if (projectInfo) {
+      projectInfo.style.opacity = "0";
+      projectInfo.style.transform = "translateY(10px)";
+    }
+
+    setTimeout(() => {
+      originalUpdateFeaturedProject(projectId);
+
+      setTimeout(() => {
+        if (mediaContainer) {
+          mediaContainer.style.transition =
+            "opacity 0.5s ease, transform 0.5s ease";
+          mediaContainer.style.opacity = "1";
+          mediaContainer.style.transform = "scale(1)";
+        }
+        if (projectInfo) {
+          projectInfo.style.transition =
+            "opacity 0.5s ease, transform 0.5s ease";
+          projectInfo.style.opacity = "1";
+          projectInfo.style.transform = "translateY(0)";
+        }
+      }, 50);
+    }, 200);
+  };
 });
