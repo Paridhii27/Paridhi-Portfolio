@@ -131,6 +131,17 @@ html {
   position: relative;
 }
 
+/* Hide decorative line on mobile from the start */
+@media screen and (max-width: 768px) {
+  .decorative-line {
+    display: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
 .decorative-line::after {
   content: "";
   position: absolute;
@@ -772,10 +783,31 @@ html {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  body.home-page {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Ensure all containers respect viewport width */
+  .welcome-section,
+  .featured-projects-section,
+  .about-me-section,
+  .collaborate-footer {
+    width: 100%;
+    max-width: 100vw;
+  }
+
   /* Touch-based interactions for mobile */
   .nav-button {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
     touch-action: manipulation;
+    min-height: 44px; /* Minimum touch target size */
   }
 
   .nav-button:active {
@@ -883,7 +915,10 @@ html {
   }
 
   .decorative-line {
-    width: 50px;
+    display: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
   }
 
   .featured-projects-section {
@@ -923,18 +958,28 @@ html {
     align-items: center;
   }
 
-  #main-featured-media-container video {
-    width: auto;
+  #main-featured-media-container {
+    width: 100%;
     max-width: 100%;
+    overflow: hidden;
+  }
+
+  #main-featured-media-container video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     max-height: 400px;
     object-fit: contain;
+    display: block;
   }
 
   .main-featured-project img {
-    width: auto;
+    width: 100%;
     max-width: 100%;
+    height: auto;
     max-height: 400px;
     object-fit: contain;
+    display: block;
   }
 
   .project-thumbnail {
@@ -976,8 +1021,13 @@ html {
   }
 
   .nav-button {
-    padding: 0.7rem 1.75rem;
+    padding: 0.75rem 1.75rem;
     font-size: clamp(1rem, 1.5vw, 1.1rem);
+    min-height: 44px; /* Minimum touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .about-me-section {
@@ -1047,6 +1097,17 @@ html {
     font-size: clamp(1.5rem, 3vw, 2rem);
     letter-spacing: 2px;
   }
+
+  /* Ensure marquee doesn't cause overflow */
+  .marquee-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .marquee-content {
+    width: max-content;
+  }
 }
 
 /* Small Mobile */
@@ -1055,15 +1116,31 @@ html {
     --container-padding: 1rem;
   }
 
+  /* Ensure no horizontal overflow */
+  body.home-page {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
   .welcome-section,
   .featured-projects-section,
   .about-me-section,
   .collaborate-footer {
     padding: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+    max-width: 100vw;
   }
 
   .decorative-line {
-    display: none;
+    display: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
   }
 
   /* Touch-based interactions for mobile */
@@ -1188,7 +1265,10 @@ html {
   }
 
   .decorative-line {
-    width: 30px;
+    display: none !important;
+    animation: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
   }
 
   .featured-projects-section {
@@ -1218,13 +1298,21 @@ html {
     align-items: center;
   }
 
-  #main-featured-media-container video {
-    width: auto;
+  #main-featured-media-container {
+    width: 100%;
     max-width: 100%;
+    overflow: hidden;
+  }
+
+  #main-featured-media-container video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     max-height: 300px;
     object-fit: contain;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    display: block;
   }
 
   .featured-project-title-link {
@@ -1233,10 +1321,12 @@ html {
   }
 
   .main-featured-project img {
-    width: auto;
+    width: 100%;
     max-width: 100%;
+    height: auto;
     max-height: 300px;
     object-fit: contain;
+    display: block;
   }
 
   .project-info {
@@ -1250,18 +1340,26 @@ html {
 
   .project-thumbnail {
     min-width: calc(50% - 0.3rem);
+    max-width: calc(50% - 0.3rem);
     display: flex;
     align-items: stretch;
+    flex: 1 1 calc(50% - 0.3rem);
   }
 
   .project-thumbnail:nth-child(3) {
     width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    flex: 1 1 100%;
   }
 
   .project-thumbnail img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 150px;
+    max-height: 200px;
     object-fit: cover;
+    display: block;
   }
 
   .featured-project-title {
@@ -1279,8 +1377,15 @@ html {
   }
 
   .nav-button {
-    padding: 0.65rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    min-height: 44px; /* Minimum touch target size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+    max-width: 100%;
   }
 
   .about-me-section {
@@ -1306,6 +1411,8 @@ html {
     max-width: 280px;
     width: 100%;
     height: auto;
+    object-fit: contain;
+    display: block;
   }
 
   .about-me-content {
@@ -1350,5 +1457,83 @@ html {
   .collaborate-title {
     font-size: clamp(1.25rem, 3.5vw, 1.5rem);
     letter-spacing: 1px;
+  }
+
+  /* Ensure marquee doesn't cause overflow */
+  .marquee-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .marquee-content {
+    width: max-content;
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media screen and (max-width: 320px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+
+  .welcome-section,
+  .featured-projects-section,
+  .about-me-section,
+  .collaborate-footer {
+    padding: var(--spacing-md) 0.75rem;
+  }
+
+  .welcome-title {
+    font-size: clamp(1.4rem, 9vw, 2rem);
+    gap: 0.25rem;
+  }
+
+  .title-text {
+    font-size: clamp(1.4rem, 9vw, 2rem);
+    gap: 0.2rem;
+  }
+
+  .featured-project-title {
+    font-size: clamp(0.95rem, 4vw, 1.15rem);
+  }
+
+  .featured-project-description {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .about-me-title {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+  }
+
+  .about-me-description {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .nav-button {
+    padding: 0.7rem 1.25rem;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .about-me-image img {
+    max-width: 250px;
+  }
+
+  .project-thumbnail {
+    min-width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .project-thumbnail:nth-child(1),
+  .project-thumbnail:nth-child(2) {
+    min-width: calc(50% - 0.25rem);
+    max-width: calc(50% - 0.25rem);
+    flex: 1 1 calc(50% - 0.25rem);
+  }
+
+  #main-featured-media-container video,
+  .main-featured-project img {
+    max-height: 250px;
   }
 }

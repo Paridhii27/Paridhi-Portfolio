@@ -1,4 +1,8 @@
-filterSelection("all");
+/**
+ * Filter functionality for projects
+ * Works with dynamically generated content
+ */
+
 function filterSelection(c) {
   var x, i;
   x = document.getElementsByClassName("container");
@@ -35,26 +39,42 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 
-// Add event listeners to filter buttons
-var btnContainer = document.getElementById("filterBtns");
-var btns = btnContainer.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function () {
-    // Get the filter category from data-filter attribute
-    var filterCategory = this.getAttribute("data-filter");
+// Initialize filter functionality when DOM is ready
+function initializeFilters() {
+  var btnContainer = document.getElementById("filterBtns");
+  if (!btnContainer) return;
 
-    // Calling filterSelection with the category
-    filterSelection(filterCategory);
+  btnContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn")) {
+      // Get the filter category from data-filter attribute
+      var filterCategory = e.target.getAttribute("data-filter");
 
-    // Update active class and aria-pressed states
-    var current = document.getElementsByClassName("active");
-    // Update aria-pressed for previous active button
-    if (current[0]) {
-      current[0].className = current[0].className.replace(" active", "");
-      current[0].setAttribute("aria-pressed", "false");
+      // Calling filterSelection with the category
+      filterSelection(filterCategory);
+
+      // Update active class and aria-pressed states
+      var current = document.getElementsByClassName("active");
+      // Update aria-pressed for previous active button
+      if (current[0]) {
+        current[0].className = current[0].className.replace(" active", "");
+        current[0].setAttribute("aria-pressed", "false");
+      }
+      // Update aria-pressed for new active button
+      e.target.className += " active";
+      e.target.setAttribute("aria-pressed", "true");
     }
-    // Update aria-pressed for new active button
-    this.className += " active";
-    this.setAttribute("aria-pressed", "true");
   });
+
+  // Initialize with "all" filter
+  filterSelection("all");
+}
+
+// Wait for DOM to be ready and projects to be rendered
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Wait a bit for projects to be rendered
+    setTimeout(initializeFilters, 100);
+  });
+} else {
+  setTimeout(initializeFilters, 100);
 }

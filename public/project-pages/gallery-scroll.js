@@ -389,22 +389,26 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Add swipe navigation for gallery on mobile
+  // Improved swipe navigation that doesn't interfere with normal scrolling
   function setupGallerySwipeNavigation() {
     if (!isMobile()) return;
 
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchStartTime = 0;
     let isScrolling = false;
     let scrollStartX = 0;
+    let hasMoved = false;
 
     gallery.addEventListener(
       "touchstart",
       (e) => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
         scrollStartX = gallery.scrollLeft;
         isScrolling = false;
+        hasMoved = false;
       },
       { passive: true }
     );
@@ -415,9 +419,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
         const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
 
-        // Determine if user is scrolling horizontally or vertically
-        if (deltaX > deltaY && deltaX > 10) {
+        // Only mark as scrolling if there's significant horizontal movement
+        if (deltaX > 5 || deltaY > 5) {
+          hasMoved = true;
+        }
+
+        // Determine if user is scrolling horizontally (not vertically)
+        if (deltaX > deltaY && deltaX > 15) {
           isScrolling = true;
+        } else if (deltaY > deltaX && deltaY > 15) {
+          // Vertical scrolling detected - don't interfere
+          isScrolling = false;
         }
       },
       { passive: true }
@@ -426,34 +438,53 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.addEventListener(
       "touchend",
       (e) => {
-        if (!isScrolling) return;
+        // Only handle swipe if user actually moved and it was a quick gesture
+        if (!hasMoved) return;
 
+        const touchEndTime = Date.now();
+        const touchDuration = touchEndTime - touchStartTime;
         const touchEndX = e.changedTouches[0].clientX;
         const touchEndY = e.changedTouches[0].clientY;
         const deltaX = touchStartX - touchEndX;
         const deltaY = Math.abs(touchStartY - touchEndY);
-        const swipeThreshold = 50;
+        const swipeThreshold = 80; // Increased threshold to avoid accidental swipes
+        const maxDuration = 300; // Maximum duration for a swipe gesture
 
-        // Only process horizontal swipes
-        if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > deltaY) {
+        // Only process quick horizontal swipes (not slow scrolling)
+        if (
+          Math.abs(deltaX) > swipeThreshold &&
+          Math.abs(deltaX) > deltaY * 1.5 &&
+          touchDuration < maxDuration &&
+          isScrolling
+        ) {
+          // Prevent default to avoid double scrolling
+          e.preventDefault();
+
           const figures = gallery.querySelectorAll("figure");
-          const currentScroll = gallery.scrollLeft;
-          const figureWidth = figures[0]?.offsetWidth || 0;
-          const scrollMargin = 30; // Match CSS margin
+          if (figures.length === 0) return;
 
-          // Find current figure index
-          let currentIndex = Math.round(
-            (currentScroll + scrollMargin) / (figureWidth + scrollMargin * 2)
-          );
-          currentIndex = Math.max(
-            0,
-            Math.min(currentIndex, figures.length - 1)
-          );
+          // Find the figure closest to center
+          const containerRect = gallery.getBoundingClientRect();
+          const containerCenter = containerRect.left + containerRect.width / 2;
+          
+          let closestIndex = 0;
+          let closestDistance = Infinity;
 
-          if (deltaX > 0 && currentIndex < figures.length - 1) {
+          figures.forEach((figure, index) => {
+            const figureRect = figure.getBoundingClientRect();
+            const figureCenter = figureRect.left + figureRect.width / 2;
+            const distance = Math.abs(figureCenter - containerCenter);
+            
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestIndex = index;
+            }
+          });
+
+          // Navigate to next or previous based on swipe direction
+          if (deltaX > 0 && closestIndex < figures.length - 1) {
             // Swipe left - next
-            const nextIndex = currentIndex + 1;
-            const nextFigure = figures[nextIndex];
+            const nextFigure = figures[closestIndex + 1];
             if (nextFigure) {
               nextFigure.scrollIntoView({
                 behavior: "smooth",
@@ -461,10 +492,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 inline: "center",
               });
             }
-          } else if (deltaX < 0 && currentIndex > 0) {
+          } else if (deltaX < 0 && closestIndex > 0) {
             // Swipe right - previous
-            const prevIndex = currentIndex - 1;
-            const prevFigure = figures[prevIndex];
+            const prevFigure = figures[closestIndex - 1];
             if (prevFigure) {
               prevFigure.scrollIntoView({
                 behavior: "smooth",
@@ -475,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       },
-      { passive: true }
+      { passive: false } // Changed to false to allow preventDefault for intentional swipes
     );
   }
 

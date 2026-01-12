@@ -403,7 +403,7 @@ h1 {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   border: 1px solid var(--border-color);
-  opacity: 0.9;
+  opacity: 1;
   display: block;
   margin: 0 auto;
   max-height: 50vh;
@@ -490,9 +490,9 @@ h1 {
   width: 100%;
   height: 70vh;
   margin: 1rem 0;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scroll-behavior: smooth;
   scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.2);
   scrollbar-width: thin;
@@ -501,9 +501,13 @@ h1 {
   /* Enhanced mobile scrolling */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
   /* Momentum scrolling on iOS */
-  scroll-padding: 0 20px;
+  scroll-padding: 0 30px;
   /* Prevent scroll chaining */
+  /* Better touch scrolling */
+  touch-action: pan-x pinch-zoom;
+  will-change: scroll-position;
   overscroll-behavior: contain;
   &::-webkit-scrollbar {
     height: 6px;
@@ -561,6 +565,7 @@ h1 {
   margin: 0 30px;
   padding: 20px;
   scroll-snap-align: center;
+  scroll-snap-stop: normal;
   transition: all 0.3s ease-in-out;
   display: flex;
   align-items: center;
@@ -568,8 +573,10 @@ h1 {
   /* Enhanced touch interactions */
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
-  touch-action: manipulation;
+  touch-action: pan-x pinch-zoom;
   user-select: none;
+  /* Better scroll positioning */
+  min-width: fit-content;
 }
 
 #mz-gallery figure div {
@@ -627,37 +634,53 @@ h1 {
   height: 90%;
   width: auto;
   margin-right: 60px;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  opacity: 0.9;
-  outline-offset: -40px;
+  opacity: 1;
+  outline: none;
   transition: all 0.3s ease-in-out;
+  /* Better touch handling */
+  touch-action: pan-x pinch-zoom;
+  pointer-events: auto;
+  min-width: fit-content;
 }
 
 #mz-gallery figure img,
 #mz-gallery figure video {
-  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
   width: auto;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  border-radius: 5px;
-  opacity: 0.9;
-  filter: brightness(1);
-  outline: 1px solid transparent;
-  outline-offset: -40px;
+  height: auto;
+  object-fit: contain;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px,
+    rgba(0, 0, 0, 0.2) 0px 4px 8px;
+  border-radius: 8px;
+  opacity: 1;
+  filter: brightness(1) contrast(1.02);
+  outline: none;
   transition: all 0.3s ease-in-out;
+  /* Better image quality */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Ensure images are fully visible */
+  display: block;
+  margin: 0 auto;
 }
 
 #mz-gallery figure:hover {
-  padding: 0px 10px;
+  padding: 20px;
 }
 
 #mz-gallery figure:hover img,
 #mz-gallery figure:hover video {
-  height: calc(100% - 30px);
+  max-height: 100%;
+  max-width: 100%;
   border-radius: 10px;
-  outline-offset: 5px;
+  filter: brightness(1.05) contrast(1.05);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 12px 24px,
+    rgba(0, 0, 0, 0.3) 0px 6px 12px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -925,10 +948,17 @@ h1 {
 
   #mz-gallery {
     height: 60vh;
+    min-height: 400px;
     margin: 0.75rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scroll-padding: 0 20px;
+    /* Improved mobile scrolling */
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
   }
 
   #mz-gallery::-webkit-scrollbar {
@@ -998,20 +1028,36 @@ h1 {
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    border-radius: 8px;
+    /* Better image quality */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   .gallery-fullscreen-content video {
     width: 100%;
     height: auto;
+    opacity: 1;
+    border-radius: 8px;
   }
 
   #mz-gallery figure {
     cursor: pointer;
     height: calc(100% - 50px);
-    margin: 0 30px;
+    margin: 0 20px;
     padding: 15px;
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+    /* Better touch interaction */
+    touch-action: pan-x;
+    min-width: fit-content;
+    /* Ensure images are visible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    overflow: visible;
   }
 
   #mz-gallery figure:nth-child(1) {
@@ -1024,12 +1070,13 @@ h1 {
   }
 
   #mz-gallery figure:hover {
-    padding: 0px 8px;
+    padding: 15px;
   }
 
   #mz-gallery figure:hover img,
   #mz-gallery figure:hover video {
-    height: calc(100% - 16px);
+    max-height: 100%;
+    max-width: 100%;
   }
 }
 
@@ -1066,6 +1113,10 @@ h1 {
   #main-img {
     max-height: 50vh;
     width: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    display: block;
+    margin: 0 auto;
     margin-bottom: 1rem;
   }
 
@@ -1223,6 +1274,7 @@ h1 {
 
   #mz-gallery {
     height: 45vh;
+    min-height: 350px;
     margin: 0.5rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
@@ -1270,7 +1322,7 @@ h1 {
     padding: 10px;
     max-width: calc(85vw - 24px);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
     /* Enhanced touch feedback */
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0.15);
     touch-action: pan-x;
@@ -1297,15 +1349,22 @@ h1 {
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    /* Ensure images are fully visible */
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
   #mz-gallery figure:hover {
-    padding: 5px;
+    padding: 15px;
   }
 
   #mz-gallery figure:hover img,
   #mz-gallery figure:hover video {
-    height: calc(100% - 10px);
+    max-height: 100%;
+    max-width: 100%;
+    filter: brightness(1.05) contrast(1.05);
   }
 
   #mz-gallery figure:hover div {
@@ -1520,6 +1579,7 @@ h1 {
 
   #mz-gallery {
     height: 55vh;
+    min-height: 350px;
     margin: 0.25rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
@@ -1561,7 +1621,14 @@ h1 {
     padding: 8px;
     max-width: calc(80vw - 24px);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+    /* Ensure images are properly displayed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    overflow: visible;
   }
 
   #mz-gallery figure:nth-child(1) {
@@ -1580,15 +1647,21 @@ h1 {
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
   #mz-gallery figure:hover {
-    padding: 3px;
+    padding: 8px;
   }
 
   #mz-gallery figure:hover img,
   #mz-gallery figure:hover video {
-    height: calc(100% - 6px);
+    max-height: 100%;
+    max-width: 100%;
+    filter: brightness(1.05) contrast(1.05);
   }
 
   /* Caption styling for landscape mobile */
@@ -1802,6 +1875,7 @@ h1 {
 
   #mz-gallery {
     height: 35vh;
+    min-height: 300px;
     margin: 0.25rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
@@ -1843,7 +1917,24 @@ h1 {
     padding: 8px;
     max-width: calc(80vw - 20px);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+    /* Ensure images are properly displayed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    overflow: visible;
+  }
+
+  #mz-gallery figure {
+    /* Ensure images are properly displayed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    overflow: visible;
   }
 
   #mz-gallery figure:first-child {
@@ -1855,20 +1946,28 @@ h1 {
     padding-right: 20px;
   }
 
-  #mz-gallery figure img {
+  #mz-gallery figure img,
+  #mz-gallery figure video {
     max-height: 100%;
     max-width: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
   #mz-gallery figure:hover {
-    padding: 4px;
+    padding: 8px;
   }
 
-  #mz-gallery figure:hover img {
-    height: calc(100% - 8px);
+  #mz-gallery figure:hover img,
+  #mz-gallery figure:hover video {
+    max-height: 100%;
+    max-width: 100%;
+    filter: brightness(1.05) contrast(1.05);
   }
 
   #mz-gallery figure:hover div {
@@ -2080,6 +2179,7 @@ h1 {
 
   #mz-gallery {
     height: 45vh;
+    min-height: 300px;
     margin: 0.15rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
@@ -2111,7 +2211,17 @@ h1 {
     padding: 6px;
     max-width: calc(75vw - 16px);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+  }
+
+  #mz-gallery figure {
+    /* Ensure images are properly displayed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    overflow: visible;
   }
 
   #mz-gallery figure:first-child {
@@ -2123,20 +2233,28 @@ h1 {
     padding-right: 20px;
   }
 
-  #mz-gallery figure img {
+  #mz-gallery figure img,
+  #mz-gallery figure video {
     max-height: 100%;
     max-width: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
   #mz-gallery figure:hover {
-    padding: 2px;
+    padding: 6px;
   }
 
-  #mz-gallery figure:hover img {
-    height: calc(100% - 4px);
+  #mz-gallery figure:hover img,
+  #mz-gallery figure:hover video {
+    max-height: 100%;
+    max-width: 100%;
+    filter: brightness(1.05) contrast(1.05);
   }
 
   .nextPrev {
@@ -2351,6 +2469,7 @@ h1 {
 
   #mz-gallery {
     height: 30vh;
+    min-height: 250px;
     margin: 0.15rem 0;
     scrollbar-width: auto;
     scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
@@ -2392,7 +2511,14 @@ h1 {
     padding: 6px;
     max-width: calc(75vw - 16px);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
+    /* Ensure images are properly displayed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    overflow: visible;
   }
 
   #mz-gallery figure:first-child {
@@ -2404,20 +2530,28 @@ h1 {
     padding-right: 20px;
   }
 
-  #mz-gallery figure img {
+  #mz-gallery figure img,
+  #mz-gallery figure video {
     max-height: 100%;
     max-width: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
+    opacity: 1;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
   }
 
   #mz-gallery figure:hover {
-    padding: 3px;
+    padding: 6px;
   }
 
-  #mz-gallery figure:hover img {
-    height: calc(100% - 6px);
+  #mz-gallery figure:hover img,
+  #mz-gallery figure:hover video {
+    max-height: 100%;
+    max-width: 100%;
+    filter: brightness(1.05) contrast(1.05);
   }
 
   #mz-gallery figure:hover div {
@@ -2537,7 +2671,7 @@ h1 {
 
   #mz-gallery figure {
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
   }
 
   /* Increase touch targets on mobile */
