@@ -112,7 +112,7 @@ const ProjectsData = {
       description: 'This is a VJ set based on the instrumental version of "Stressed Out" by Twenty One Pilots. Audio analysis is done to create the audio-reactive visuals.',
       thumbnail: './assets/images/thumbnails/vj.jpg',
       url: './project-pages/vj-set.html',
-      categories: ['interactive'],
+      categories: ['others'],
       tools: ['Sound reactive', 'Generative visuals', 'Particle systems']
     },
     {
@@ -122,7 +122,7 @@ const ProjectsData = {
       description: 'Echoes from another place and time is a visual narrative created in TouchDesigner exploring the idea of alternative parallel realities.',
       thumbnail: './assets/images/thumbnails/echoes.jpg',
       url: './project-pages/echoes.html',
-      categories: ['interactive'],
+      categories: ['others'],
       tools: ['Visual Effects', 'Typography']
     },
     {
@@ -164,9 +164,9 @@ const ProjectsData = {
   getFilterButtons() {
     return [
       { filter: 'all', label: 'All Projects' },
-      { filter: 'aiweb', label: 'AI Application' },
-      { filter: 'interactive', label: 'Interactive Installation' },
-      { filter: 'narrative', label: '3D Environment' },
+      { filter: 'interactive', label: 'Installations' },
+      { filter: 'aiweb', label: 'AI Applications' },
+      { filter: 'narrative', label: '3D Environments' },
       { filter: 'others', label: 'Others' }
     ];
   },
