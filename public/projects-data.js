@@ -137,7 +137,7 @@ const ProjectsData = {
     },
     {
       id: 'temperature-of-emotions',
-      title: 'Temperature of emotions',
+      title: 'Temperature of Emotions',
       year: '2022',
       description: 'According to research, there is a direct correlation between temperature and emotions. This device measures the external temperature and gives a corresponding response in the form of different colour mappings representing varied emotions.',
       thumbnail: './assets/images/thumbnails/temperaure-of-emotions.png',

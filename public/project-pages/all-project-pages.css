@@ -1086,15 +1086,15 @@ h1 {
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
   :root {
-    --mobile-padding: 1rem;
+    --mobile-padding: 0.75rem;
     --container-width: calc(100% - (2 * var(--mobile-padding)));
-    --page-margin: 1.5rem;
+    --page-margin: 1rem;
   }
 
   body {
     margin: var(--page-margin);
     line-height: 1.5;
-    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
+    padding-top: calc(60px + 0.75rem); /* Add top padding for navbar */
     /* Safe area insets for notched devices */
     padding-left: max(var(--page-margin), env(safe-area-inset-left));
     padding-right: max(var(--page-margin), env(safe-area-inset-right));
@@ -1103,11 +1103,11 @@ h1 {
 
   h1 {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .project-visual {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   #main-img {
@@ -1444,14 +1444,14 @@ h1 {
 
 @media screen and (max-width: 768px) and (orientation: landscape) {
   :root {
-    --mobile-padding: 0.75rem;
-    --page-margin: 1rem;
+    --mobile-padding: 0.6rem;
+    --page-margin: 0.75rem;
   }
 
   body {
     margin: var(--page-margin);
     line-height: 1.4;
-    padding-top: calc(60px + 1rem); /* Add top padding for navbar */
+    padding-top: calc(60px + 0.75rem); /* Add top padding for navbar */
   }
 
   h1 {
@@ -1721,13 +1721,13 @@ h1 {
 
 @media screen and (max-width: 480px) and (orientation: portrait) {
   :root {
-    --page-margin: 1.5rem;
-    --mobile-padding: 0.75rem;
+    --page-margin: 1rem;
+    --mobile-padding: 0.6rem;
   }
 
   body {
     margin: var(--page-margin);
-    padding-top: calc(60px + 1rem);
+    padding-top: calc(60px + 0.75rem);
   }
 
   h1 {
@@ -2024,13 +2024,13 @@ h1 {
 
 @media screen and (max-width: 480px) and (orientation: landscape) {
   :root {
-    --page-margin: 1rem;
-    --mobile-padding: 0.5rem;
+    --page-margin: 0.75rem;
+    --mobile-padding: 0.4rem;
   }
 
   body {
     margin: var(--page-margin);
-    padding-top: calc(60px + 1rem);
+    padding-top: calc(60px + 0.75rem);
   }
 
   h1 {

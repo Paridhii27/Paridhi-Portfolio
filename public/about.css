@@ -52,11 +52,24 @@ body {
   font-family: var(--content-font);
 }
 
+@media screen and (max-width: 768px) {
+  body {
+    padding: calc(var(--pg-margin) * 0.7);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: calc(var(--pg-margin) * 0.6);
+  }
+}
+
 .about-container {
   display: flex;
   width: 100%;
   min-height: calc(100vh - 80px);
   gap: var(--pg-margin);
+  margin-top: var(--spacing-xl);
 }
 
 /* ===== LAYOUT SECTIONS ===== */
@@ -704,6 +717,7 @@ body {
     flex-direction: column;
     min-height: auto;
     gap: 2rem;
+    margin-top: var(--spacing-lg);
   }
 
   .introduction-section,
@@ -713,7 +727,7 @@ body {
   }
 
   .introduction-section {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     order: 1;
   }
   .resume-gallery-section {
@@ -865,7 +879,8 @@ body {
 
 @media screen and (max-width: 480px) {
   .about-container {
-    gap: 1.5rem;
+    gap: 1.25rem;
+    margin-top: var(--spacing-lg);
   }
   .introduction-section,
   .resume-gallery-section {
@@ -873,7 +888,7 @@ body {
   }
   .introduction-section {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     position: relative;
   }
 

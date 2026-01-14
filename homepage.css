@@ -783,7 +783,6 @@ html {
 
 /* Mobile */
 @media screen and (max-width: 768px) {
-  /* Prevent horizontal overflow */
   body.home-page {
     overflow-x: hidden;
     width: 100%;
@@ -794,7 +793,6 @@ html {
     box-sizing: border-box;
   }
 
-  /* Ensure all containers respect viewport width */
   .welcome-section,
   .featured-projects-section,
   .about-me-section,
@@ -939,6 +937,13 @@ html {
     gap: var(--spacing-sm);
     align-items: stretch;
   }
+  
+  .project-thumbnail:nth-child(1),
+  .project-thumbnail:nth-child(2) {
+    flex: 0 1 calc(50% - 0.375rem);
+    min-width: calc(50% - 0.375rem);
+    max-width: calc(50% - 0.375rem);
+  }
 
   .main-featured-project {
     width: 100%;
@@ -983,14 +988,22 @@ html {
   }
 
   .project-thumbnail {
-    flex: 1;
-    min-width: calc(50% - 0.375rem);
     display: flex;
     align-items: stretch;
+  }
+  
+  .project-thumbnail:nth-child(1),
+  .project-thumbnail:nth-child(2) {
+    flex: 0 1 calc(50% - 0.375rem);
+    min-width: calc(50% - 0.375rem);
+    max-width: calc(50% - 0.375rem);
   }
 
   .project-thumbnail:nth-child(3) {
     width: 100%;
+    flex: 1 1 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 
   .project-thumbnail img {
@@ -1339,11 +1352,15 @@ html {
   }
 
   .project-thumbnail {
-    min-width: calc(50% - 0.3rem);
-    max-width: calc(50% - 0.3rem);
     display: flex;
     align-items: stretch;
-    flex: 1 1 calc(50% - 0.3rem);
+  }
+
+  .project-thumbnail:nth-child(1),
+  .project-thumbnail:nth-child(2) {
+    flex: 0 1 calc(50% - 0.375rem);
+    min-width: calc(50% - 0.375rem);
+    max-width: calc(50% - 0.375rem);
   }
 
   .project-thumbnail:nth-child(3) {
@@ -1471,6 +1488,16 @@ html {
   }
 }
 
+/* Exceptionally Small Mobile (360px and below) */
+@media screen and (max-width: 360px) {
+  .project-thumbnail:nth-child(1),
+  .project-thumbnail:nth-child(2) {
+    flex: 1 1 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* Extra Small Mobile (320px and below) */
 @media screen and (max-width: 320px) {
   :root {
@@ -1526,10 +1553,11 @@ html {
   }
 
   .project-thumbnail:nth-child(1),
-  .project-thumbnail:nth-child(2) {
-    min-width: calc(50% - 0.25rem);
-    max-width: calc(50% - 0.25rem);
-    flex: 1 1 calc(50% - 0.25rem);
+  .project-thumbnail:nth-child(2),
+  .project-thumbnail:nth-child(3) {
+    min-width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
   }
 
   #main-featured-media-container video,

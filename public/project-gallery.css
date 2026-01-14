@@ -604,13 +604,13 @@ p {
   }
   body {
     width: 100%;
-    padding: calc(var(--section-spacing) / 2) 5%;
+    padding: calc(var(--section-spacing) / 3) 4%;
   }
 
   #projects-section {
-    margin-top: 5%;
+    margin-top: 3%;
     grid-template-columns: 1fr;
-    gap: calc(var(--section-spacing) / 2);
+    gap: calc(var(--section-spacing) / 3);
     margin-top: calc(var(--nav-height) + var(--nav-padding));
   }
 
@@ -644,9 +644,9 @@ p {
 
   #filterBtns {
     max-width: 95%;
-    padding: 15px;
-    margin-bottom: 20px;
-    margin-top: 100px;
+    padding: 12px;
+    margin-bottom: 15px;
+    margin-top: 80px;
     justify-content: center;
     position: relative;
     z-index: 10;
@@ -706,11 +706,11 @@ p {
   /* Smaller screens within mobile range */
   @media screen and (max-width: 756px) {
     body {
-      padding: calc(var(--section-spacing) / 3) 5%;
+      padding: calc(var(--section-spacing) / 4) 4%;
     }
 
     #projects-section {
-      margin-top: 10%;
+      margin-top: 5%;
     }
 
     #filterBtns {
@@ -718,8 +718,8 @@ p {
       justify-content: center;
       gap: 8px;
       max-width: 100%;
-      padding: 10px;
-      margin-top: 120px;
+      padding: 8px;
+      margin-top: 90px;
     }
 
     .btn {
