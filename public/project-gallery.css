@@ -426,6 +426,8 @@ p {
   border: none;
   opacity: 0;
   transform: translateY(20px);
+  line-height: 1;
+  text-align: center;
 }
 
 #back-to-top.visible {
@@ -545,6 +547,8 @@ p {
     width: 36px;
     height: 36px;
     font-size: 1rem;
+    line-height: 1;
+    text-align: center;
   }
 }
 
@@ -676,6 +680,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
+    text-align: center;
   }
 
   /* Make thumbnail images fully visible on mobile */
@@ -737,6 +743,8 @@ p {
       width: 28px;
       height: 28px;
       font-size: 0.9rem;
+      line-height: 1;
+      text-align: center;
     }
   }
 }
@@ -751,6 +759,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
+    text-align: center;
   }
 
   #projects-section {
