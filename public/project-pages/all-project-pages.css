@@ -435,10 +435,98 @@ h1 {
   margin-top: 2rem;
 }
 
+/* Gallery Tracker/Navigation */
+.gallery-tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.gallery-dot:hover {
+  background-color: var(--border-color);
+  transform: scale(1.2);
+}
+
+.gallery-dot.active {
+  background-color: var(--border-color);
+  width: 12px;
+  height: 12px;
+}
+
+.gallery-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.gallery-nav-btn {
+  background-color: transparent;
+  border: 1px dashed var(--border-color);
+  color: var(--project-desc-text-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.gallery-nav-btn:hover:not(:disabled) {
+  background-color: var(--border-color);
+  color: var(--page-bg-color);
+  transform: scale(1.1);
+}
+
+.gallery-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.gallery-counter {
+  font-family: var(--heading-font);
+  font-size: 0.9rem;
+  color: var(--project-desc-text-color);
+  min-width: 60px;
+  text-align: center;
+}
+
+.gallery-counter .current-index {
+  font-weight: 700;
+}
+
 #mz-gallery-container {
   position: relative;
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.5rem 0 0rem 0;
   overflow: hidden;
 }
 
@@ -481,6 +569,42 @@ h1 {
   #mz-gallery-container.at-end::after {
     opacity: 0;
   }
+
+  /* Gallery tracker responsive styles */
+  .gallery-tracker {
+    margin-top: 1rem;
+    padding: 0.75rem 0;
+    gap: 0.75rem;
+  }
+
+  .gallery-dots {
+    gap: 0.4rem;
+  }
+
+  .gallery-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .gallery-dot.active {
+    width: 10px;
+    height: 10px;
+  }
+
+  .gallery-nav {
+    gap: 1rem;
+  }
+
+  .gallery-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+
+  .gallery-counter {
+    font-size: 0.85rem;
+    min-width: 50px;
+  }
 }
 
 #mz-gallery {
@@ -494,10 +618,10 @@ h1 {
   overflow-y: hidden;
   scroll-snap-type: x proximity;
   scroll-behavior: smooth;
-  scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.2);
-  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: none;
   animation: background 300s linear infinite;
-  padding-bottom: 20px; /* Add padding for captions */
+  padding-bottom: 0.5rem; /* Minimal padding for captions */
   /* Enhanced mobile scrolling */
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
@@ -510,42 +634,34 @@ h1 {
   will-change: scroll-position;
   overscroll-behavior: contain;
   &::-webkit-scrollbar {
-    height: 6px;
-    -webkit-appearance: none;
+    display: none;
+    width: 0;
+    height: 0;
+    background: transparent;
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    display: none;
+    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 3px;
-    opacity: 0.8;
+    display: none;
+    background: transparent;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none;
+    background: transparent;
   }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 #mz-gallery::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  background: rgba(102, 102, 102, 0.3);
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 10;
-}
-
-#mz-gallery:hover::after {
-  opacity: 0;
+  display: none;
 }
 
 @keyframes background {
@@ -561,15 +677,17 @@ h1 {
   position: relative;
   margin: unset;
   flex: 0 0 auto;
-  height: calc(100% - 60px); /* Increased to account for captions */
+  height: auto;
+  max-height: calc(100% - 60px);
   margin: 0 30px;
-  padding: 20px;
+  padding: 20px 20px 0.5rem 20px;
   scroll-snap-align: center;
   scroll-snap-stop: normal;
   transition: all 0.3s ease-in-out;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   /* Enhanced touch interactions */
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
@@ -649,18 +767,18 @@ h1 {
 
 #mz-gallery figure img,
 #mz-gallery figure video {
-  max-height: 100%;
+  max-height: calc(70vh - 100px);
   max-width: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px,
-    rgba(0, 0, 0, 0.2) 0px 4px 8px;
+  box-shadow: none;
   border-radius: 8px;
   opacity: 1;
   filter: brightness(1) contrast(1.02);
   outline: none;
   transition: all 0.3s ease-in-out;
+  flex-shrink: 0;
   /* Better image quality */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
@@ -679,8 +797,7 @@ h1 {
   max-width: 100%;
   border-radius: 10px;
   filter: brightness(1.05) contrast(1.05);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 12px 24px,
-    rgba(0, 0, 0, 0.3) 0px 6px 12px;
+  box-shadow: none;
   transition: all 0.3s ease-in-out;
 }
 
@@ -693,10 +810,10 @@ h1 {
 
 /* Caption styling */
 #mz-gallery figure figcaption {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  bottom: auto;
+  left: auto;
+  transform: none;
   font-family: var(--content-font);
   font-size: clamp(0.75rem, 1.5vw, 1rem);
   color: var(--project-desc-text-color);
@@ -707,6 +824,9 @@ h1 {
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: 5;
+  margin-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  width: 100%;
 }
 
 #mz-gallery figure:hover figcaption {
@@ -950,8 +1070,8 @@ h1 {
     height: 60vh;
     min-height: 400px;
     margin: 0.75rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x proximity;
     scroll-padding: 0 20px;
@@ -962,32 +1082,28 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
     -ms-overflow-style: scrollbar;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    display: block !important;
-    -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4);
+    display: none !important;
+    background: transparent;
     margin: 0 20px;
   }
 
   #mz-gallery::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 6px;
-    opacity: 1;
-    display: block !important;
+    display: none !important;
+    background: transparent;
     min-height: 12px;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   }
 
   #mz-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none !important;
+    background: transparent;
   }
 
   /* Fullscreen overlay for mobile */
@@ -1276,8 +1392,8 @@ h1 {
     height: 45vh;
     min-height: 350px;
     margin: 0.5rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
     /* Enhanced momentum scrolling */
     scroll-snap-type: x mandatory;
@@ -1288,32 +1404,28 @@ h1 {
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
     -ms-overflow-style: scrollbar;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    display: block !important;
-    -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4);
+    display: none !important;
+    background: transparent;
     margin: 0 10px;
   }
 
   #mz-gallery::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 6px;
-    opacity: 1;
-    display: block !important;
+    display: none !important;
+    background: transparent;
     min-height: 12px;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   }
 
   #mz-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none !important;
+    background: transparent;
   }
 
   #mz-gallery figure {
@@ -1380,7 +1492,10 @@ h1 {
 
   /* Caption styling for portrait mobile */
   #mz-gallery figure figcaption {
-    bottom: -25px;
+    position: relative;
+    bottom: auto;
+    margin-top: 0.5rem;
+    padding-bottom: 0.25rem;
     font-size: clamp(0.75rem, 2.5vw, 0.9rem);
     max-width: 150px;
   }
@@ -1432,9 +1547,12 @@ h1 {
 
   /* Caption styling for portrait mobile */
   #mz-gallery figure figcaption {
+    position: relative;
+    bottom: auto;
+    margin-top: 0.5rem;
+    padding-bottom: 0.25rem;
     font-size: clamp(0.7rem, 2.5vw, 0.85rem);
     max-width: 150px;
-    bottom: -25px;
   }
 }
 
@@ -1581,38 +1699,34 @@ h1 {
     height: 55vh;
     min-height: 350px;
     margin: 0.25rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
     -ms-overflow-style: scrollbar;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    display: block !important;
-    -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4);
+    display: none !important;
+    background: transparent;
     margin: 0 10px;
   }
 
   #mz-gallery::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 6px;
-    opacity: 1;
-    display: block !important;
+    display: none !important;
+    background: transparent;
     min-height: 12px;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   }
 
   #mz-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none !important;
+    background: transparent;
   }
 
   #mz-gallery figure {
@@ -1666,7 +1780,10 @@ h1 {
 
   /* Caption styling for landscape mobile */
   #mz-gallery figure figcaption {
-    bottom: -20px;
+    position: relative;
+    bottom: auto;
+    margin-top: 0.4rem;
+    padding-bottom: 0.2rem;
     font-size: 0.65rem;
     max-width: 120px;
   }
@@ -1709,7 +1826,10 @@ h1 {
 
   /* Caption styling for landscape mobile */
   #mz-gallery figure figcaption {
-    bottom: -20px;
+    position: relative;
+    bottom: auto;
+    margin-top: 0.4rem;
+    padding-bottom: 0.2rem;
     font-size: clamp(0.6rem, 2vw, 0.75rem);
     max-width: 120px;
   }
@@ -1723,6 +1843,42 @@ h1 {
   :root {
     --page-margin: 1rem;
     --mobile-padding: 0.6rem;
+  }
+
+  /* Gallery tracker for small screens */
+  .gallery-tracker {
+    margin-top: 0.75rem;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .gallery-dots {
+    gap: 0.3rem;
+  }
+
+  .gallery-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .gallery-dot.active {
+    width: 9px;
+    height: 9px;
+  }
+
+  .gallery-nav {
+    gap: 0.75rem;
+  }
+
+  .gallery-nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+
+  .gallery-counter {
+    font-size: 0.8rem;
+    min-width: 45px;
   }
 
   body {
@@ -1864,9 +2020,12 @@ h1 {
   }
 
   #mz-gallery figure figcaption {
+    position: relative;
+    bottom: auto;
+    margin-top: 0.5rem;
+    padding-bottom: 0.25rem;
     font-size: clamp(0.65rem, 2.5vw, 0.8rem);
     max-width: 140px;
-    bottom: -25px;
   }
 
   #mz-gallery-container {
@@ -1877,38 +2036,34 @@ h1 {
     height: 35vh;
     min-height: 300px;
     margin: 0.25rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
     -ms-overflow-style: scrollbar;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    display: block !important;
-    -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4);
+    display: none !important;
+    background: transparent;
     margin: 0 8px;
   }
 
   #mz-gallery::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 6px;
-    opacity: 1;
-    display: block !important;
+    display: none !important;
+    background: transparent;
     min-height: 12px;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   }
 
   #mz-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none !important;
+    background: transparent;
   }
 
   #mz-gallery figure {
@@ -2181,15 +2336,16 @@ h1 {
     height: 45vh;
     min-height: 300px;
     margin: 0.15rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
@@ -2294,9 +2450,12 @@ h1 {
   }
 
   #mz-gallery figure figcaption {
+    position: relative;
+    bottom: auto;
+    margin-top: 0.4rem;
+    padding-bottom: 0.2rem;
     font-size: clamp(0.55rem, 2.5vw, 0.7rem);
     max-width: 110px;
-    bottom: -25px;
   }
 }
 
@@ -2471,38 +2630,34 @@ h1 {
     height: 30vh;
     min-height: 250px;
     margin: 0.15rem 0;
-    scrollbar-width: auto;
-    scrollbar-color: var(--border-color) rgba(255, 255, 255, 0.5);
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
     -webkit-overflow-scrolling: touch;
   }
 
   #mz-gallery::-webkit-scrollbar {
-    height: 12px;
-    -webkit-appearance: none;
-    display: block !important;
+    display: none !important;
+    width: 0;
+    height: 0;
+    background: transparent;
     -ms-overflow-style: scrollbar;
   }
 
   #mz-gallery::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    display: block !important;
-    -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4);
+    display: none !important;
+    background: transparent;
     margin: 0 6px;
   }
 
   #mz-gallery::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 6px;
-    opacity: 1;
-    display: block !important;
+    display: none !important;
+    background: transparent;
     min-height: 12px;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   }
 
   #mz-gallery::-webkit-scrollbar-thumb:hover {
-    background: var(--hover-color);
-    opacity: 1;
+    display: none !important;
+    background: transparent;
   }
 
   #mz-gallery figure {
@@ -2567,9 +2722,12 @@ h1 {
 
   /* Caption styling for small landscape mobile */
   #mz-gallery figure figcaption {
+    position: relative;
+    bottom: auto;
+    margin-top: 0.4rem;
+    padding-bottom: 0.2rem;
     font-size: clamp(0.6rem, 2vw, 0.75rem);
     max-width: 120px;
-    bottom: -20px;
   }
 
   .nextPrev {
@@ -2645,9 +2803,12 @@ h1 {
   }
 
   #mz-gallery figure figcaption {
+    position: relative;
+    bottom: auto;
+    margin-top: 0.4rem;
+    padding-bottom: 0.2rem;
     font-size: clamp(0.55rem, 2.5vw, 0.7rem);
     max-width: 110px;
-    bottom: -25px;
   }
 }
 

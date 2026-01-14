@@ -5,6 +5,142 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!gallery || !container) return;
 
+  // Create gallery tracker/navigation
+  function createGalleryTracker() {
+    const figures = gallery.querySelectorAll("figure");
+    if (figures.length === 0) return null;
+
+    // Create tracker container
+    const trackerContainer = document.createElement("div");
+    trackerContainer.className = "gallery-tracker";
+    
+    // Create dots container
+    const dotsContainer = document.createElement("div");
+    dotsContainer.className = "gallery-dots";
+    
+    // Create navigation buttons
+    const navContainer = document.createElement("div");
+    navContainer.className = "gallery-nav";
+    
+    const prevButton = document.createElement("button");
+    prevButton.className = "gallery-nav-btn gallery-prev";
+    prevButton.setAttribute("aria-label", "Previous image");
+    prevButton.innerHTML = "‹";
+    
+    const nextButton = document.createElement("button");
+    nextButton.className = "gallery-nav-btn gallery-next";
+    nextButton.setAttribute("aria-label", "Next image");
+    nextButton.innerHTML = "›";
+    
+    // Create counter
+    const counter = document.createElement("div");
+    counter.className = "gallery-counter";
+    counter.innerHTML = `<span class="current-index">1</span> / <span class="total-count">${figures.length}</span>`;
+    
+    // Create dots for each image
+    figures.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "gallery-dot";
+      dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+      dot.setAttribute("data-index", index);
+      if (index === 0) {
+        dot.classList.add("active");
+      }
+      dotsContainer.appendChild(dot);
+    });
+    
+    navContainer.appendChild(prevButton);
+    navContainer.appendChild(counter);
+    navContainer.appendChild(nextButton);
+    
+    trackerContainer.appendChild(dotsContainer);
+    trackerContainer.appendChild(navContainer);
+    
+    // Insert tracker after gallery container
+    const projectGallery = container.closest(".project-gallery");
+    if (projectGallery) {
+      projectGallery.appendChild(trackerContainer);
+    }
+    
+    return {
+      container: trackerContainer,
+      dots: dotsContainer.querySelectorAll(".gallery-dot"),
+      prevButton,
+      nextButton,
+      counter: counter.querySelector(".current-index"),
+      totalCount: counter.querySelector(".total-count")
+    };
+  }
+
+  const tracker = createGalleryTracker();
+  if (!tracker) return;
+
+  // Get current active figure index
+  function getCurrentFigureIndex() {
+    const figures = gallery.querySelectorAll("figure");
+    if (figures.length === 0) return 0;
+
+    const containerRect = gallery.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
+    
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    figures.forEach((figure, index) => {
+      const figureRect = figure.getBoundingClientRect();
+      const figureCenter = figureRect.left + figureRect.width / 2;
+      const distance = Math.abs(figureCenter - containerCenter);
+      
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    return closestIndex;
+  }
+
+  // Update tracker UI
+  function updateTracker() {
+    const currentIndex = getCurrentFigureIndex();
+    const figures = gallery.querySelectorAll("figure");
+    
+    // Update dots
+    tracker.dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add("active");
+      } else {
+        dot.classList.remove("active");
+      }
+    });
+    
+    // Update counter
+    tracker.counter.textContent = currentIndex + 1;
+    tracker.totalCount.textContent = figures.length;
+    
+    // Update navigation buttons
+    tracker.prevButton.disabled = currentIndex === 0;
+    tracker.nextButton.disabled = currentIndex === figures.length - 1;
+  }
+
+  // Navigate to specific figure
+  function goToFigure(index) {
+    const figures = gallery.querySelectorAll("figure");
+    if (index < 0 || index >= figures.length) return;
+    
+    const figure = figures[index];
+    figure.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+    
+    // Update tracker after scroll animation completes
+    setTimeout(() => {
+      updateTracker();
+    }, 400);
+  }
+
   function updateScrollIndicators() {
     const scrollLeft = gallery.scrollLeft;
     const scrollWidth = gallery.scrollWidth;
@@ -281,10 +417,36 @@ document.addEventListener("DOMContentLoaded", function () {
       if (scrollTimeout) {
         cancelAnimationFrame(scrollTimeout);
       }
-      scrollTimeout = requestAnimationFrame(updateScrollIndicators);
+      scrollTimeout = requestAnimationFrame(() => {
+        updateScrollIndicators();
+        if (tracker) updateTracker();
+      });
     },
     { passive: true }
   );
+
+  // Add click handlers to dots
+  tracker.dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      goToFigure(index);
+    });
+  });
+
+  // Add click handlers to navigation buttons
+  tracker.prevButton.addEventListener("click", () => {
+    const currentIndex = getCurrentFigureIndex();
+    if (currentIndex > 0) {
+      goToFigure(currentIndex - 1);
+    }
+  });
+
+  tracker.nextButton.addEventListener("click", () => {
+    const currentIndex = getCurrentFigureIndex();
+    const figures = gallery.querySelectorAll("figure");
+    if (currentIndex < figures.length - 1) {
+      goToFigure(currentIndex + 1);
+    }
+  });
 
   // Update on resize with debouncing
   let resizeTimeout;
@@ -294,6 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         updateScrollIndicators();
+        if (tracker) updateTracker();
       }, 150);
     },
     { passive: true }
@@ -301,6 +464,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial update
   updateScrollIndicators();
+  if (tracker) updateTracker();
 
   // Setup video autoplay
   setupVideoAutoplay();
@@ -375,6 +539,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (loadedCount === images.length) {
     setTimeout(() => {
       updateScrollIndicators();
+      if (tracker) updateTracker();
       setupVideoAutoplay();
     }, 100);
   }
@@ -491,6 +656,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 block: "nearest",
                 inline: "center",
               });
+              // Update tracker after scroll
+              setTimeout(() => {
+                if (tracker) updateTracker();
+              }, 300);
             }
           } else if (deltaX < 0 && closestIndex > 0) {
             // Swipe right - previous
@@ -501,6 +670,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 block: "nearest",
                 inline: "center",
               });
+              // Update tracker after scroll
+              setTimeout(() => {
+                if (tracker) updateTracker();
+              }, 300);
             }
           }
         }
@@ -710,6 +883,28 @@ document.addEventListener("DOMContentLoaded", function () {
         fullscreenSetup = false;
         setupFullscreen();
       }
+    }
+  });
+
+  // Keyboard navigation for gallery
+  document.addEventListener("keydown", (e) => {
+    // Only handle if gallery is in viewport
+    const galleryRect = gallery.getBoundingClientRect();
+    const isInViewport = galleryRect.top < window.innerHeight && galleryRect.bottom > 0;
+    
+    if (!isInViewport) return;
+    
+    const figures = gallery.querySelectorAll("figure");
+    if (figures.length === 0) return;
+    
+    const currentIndex = getCurrentFigureIndex();
+    
+    if (e.key === "ArrowLeft" && currentIndex > 0) {
+      e.preventDefault();
+      goToFigure(currentIndex - 1);
+    } else if (e.key === "ArrowRight" && currentIndex < figures.length - 1) {
+      e.preventDefault();
+      goToFigure(currentIndex + 1);
     }
   });
 });
