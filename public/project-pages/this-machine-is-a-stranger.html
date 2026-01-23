@@ -54,9 +54,11 @@
         <p>“This Machine is a Stranger” is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines. </p>
         <p> The goal of the project is to question how much a person implicitly trusts or mistrusts a machine. As machines backed by artificial intelligence get more and more intertwined into our everyday lives, to what extent can we trust these machines to make decisions and choices on our behalf? The project delves into the unspoken relationship between humans and the machines they’ve created, questioning the delicate balance between trust and doubt, control and surrender. Throughout the project there are different designed scenarios presented to assess the user's trust in the machine.</p>
         <p> The experience is also designed to guide the user using multimedia inputs like visuals, sounds and text prompts. </p>
-         <h3>Concept</h3>
+        
+        <h3>Concept</h3>
         <p>Interacting with emerging technologies for the first time often feels the same as interacting with a stranger for the first time. You don't know each other yet and are only starting to learn about each other. Starting from your name and where you are from to deeper questions about each other. These questions often inform one another.</p>
         <p>Some questions that I kept coming back to when assessing if I trusted a stranger were “Would you take advice from a stranger you’ve never met?”, “ Would you trust a stranger with a secret?”, “Would you take something from a stranger?” and “ Would you trust them if your life depended on it?” I guess the answer would differ based on how sceptical or trusting you are in life.</p>
+        
         <h3>Design and Development</h3>
         <p>The project is built to have three core components:</p>
         <ul>
@@ -71,6 +73,7 @@
         <p>The web interface features a frontend built with HTML/CSS and backend built with Node.js, Express.js, and several other dependencies. User interactions on the frontend trigger requests to the backend server, which then calls the Anthropic AI API to generate machine responses. These text responses are subsequently processed through the ElevenLabs API to convert them into speech before it's heard by the user.</p>
         <p>The generated machine responses are projected on the wall, accompanied by visual effects and textual indicators that evolve as users navigate through their journey on the web interface. TouchDesigner– a node-based visual programming language used for interactive multimedia– handles the visual rendering and projects the final scene on the wall. </p>
         <p>Since these core components are built on different platforms, they require cross-platform communication for them to be connected which is done through the use of WebSockets– a communication protocol that enables real-time, two-way communication between different platforms– in this case, the web interface and TouchDesigner. The WebSockets connection transmits machine-generated responses to the user to TouchDesigner where they appear as subtitles for the user to read as they hear the machine voice.</p>
+        
         <h3>Machine Persona</h3>
         <p>The way the machine speaks reveals a lot about its personality and the kind of interactions the machine provides. The machine is prompted to have a complex personality balancing two core traits: </p>
         <ul>
@@ -87,11 +90,17 @@
               <source src="../assets/images/project-pages/this-machine-is-a-stranger/FirstScreen.mp4" type="video/mp4">
               Your browser does not support the video tag.
           </video>
-          <div class="inline-video-caption">First screen: Setting the scene for the user's first interaction with Gizmo-1305</div>
+          <div class="inline-video-caption">Introduction screen: Setting the scene for the user's first interaction with Gizmo-1305</div>
         </div>
-        <div class="inline-img-container">
-          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/5.jpg">
+        <div class="inline-video-container">
+          <video class="inline-video" controls playsinline preload="auto" width="100%">
+              <source src="../assets/images/project-pages/this-machine-is-a-stranger/SecondScreen.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          <div class="inline-video-caption">Machine manual: How to interact with Gizmo-1305</div>
         </div>
+
+        <!-- User Experience -->
         <h3>User Experience</h3>
         <p>There are three scenarios that the user comes across in their journey: share, seek and take. These scenarios are reflective of the different modes of showing and questioning trust. Each path tackling a different contradiction and providing the user with a choice they have to make, to trust or not to trust the machine.</p>
           <div class="inline-img-container">
@@ -109,7 +118,7 @@
         <p>At the end of their journey, the user gets a sentiment analysis from Gizmo-1305 on how much information they were willing to share with it and how much they trusted it. This sentiment analysis reveals if the user felt aligned or if they were at odds with the machine, leading them to ponder– "how did this experience increase or decrease my trust in the machine?"</p>
 
         <div class="credits-container">
-          <h4>Credits & References</h4>
+          <h3>Credits & References</h3>
           <ul class="credits-list">
             <li>
               <div class="credits-category">Special Thanks</div>

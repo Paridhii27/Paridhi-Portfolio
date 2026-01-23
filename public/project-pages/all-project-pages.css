@@ -318,17 +318,6 @@ h1 {
 .documentation .credits-container {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
-  border-top: 2px solid var(--border-color);
-}
-
-.documentation .credits-container h4 {
-  font-family: var(--heading-font);
-  font-size: var(--font-size-h3);
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--project-desc-text-color);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .documentation .credits-list {
@@ -1159,11 +1148,6 @@ h1 {
     padding-top: 1.25rem;
   }
 
-  .documentation .credits-container h4 {
-    font-size: var(--font-size-button-large);
-    margin-bottom: 0.875rem;
-  }
-
   .documentation .credits-list li {
     padding: 0.625rem 0;
   }
@@ -1866,11 +1850,6 @@ h1 {
     padding-top: 0.875rem;
   }
 
-  .documentation .credits-container h4 {
-    font-size: var(--font-size-paragraph);
-    margin-bottom: 0.625rem;
-  }
-
   .documentation .credits-list li {
     padding: 0.4rem 0;
     margin-bottom: 0.3rem;
@@ -2478,11 +2457,6 @@ h1 {
     padding-top: 0.75rem;
   }
 
-  .documentation .credits-container h4 {
-    font-size: var(--font-size-paragraph);
-    margin-bottom: 0.5rem;
-  }
-
   .documentation .credits-list li {
     padding: 0.35rem 0;
     margin-bottom: 0.25rem;
@@ -2814,11 +2788,6 @@ h1 {
   .documentation .credits-container {
     margin-top: 1rem;
     padding-top: 0.625rem;
-  }
-
-  .documentation .credits-container h4 {
-    font-size: var(--font-size-paragraph);
-    margin-bottom: 0.5rem;
   }
 
   .documentation .credits-list li {
