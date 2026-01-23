@@ -11,7 +11,7 @@ const Navigation = {
     const currentPath = window.location.pathname;
     if (currentPath.includes('/project-pages/')) {
       return '../';
-    } else if (currentPath.includes('/public/')) {
+    } else if (currentPath.includes('/public/') && !currentPath.includes('/project-pages/')) {
       return './';
     }
     return './public/';
@@ -22,10 +22,10 @@ const Navigation = {
    */
   getHomePath() {
     const currentPath = window.location.pathname;
-    if (currentPath.includes('/public/')) {
-      return '../index.html';
-    } else if (currentPath.includes('/project-pages/')) {
+    if (currentPath.includes('/project-pages/')) {
       return '../../index.html';
+    } else if (currentPath.includes('/public/')) {
+      return '../index.html';
     }
     return './index.html';
   },
@@ -37,7 +37,7 @@ const Navigation = {
     const currentPath = window.location.pathname;
     if (currentPath.includes('/project-pages/')) {
       return '../projects.html';
-    } else if (currentPath.includes('/public/')) {
+    } else if (currentPath.includes('/public/') && !currentPath.includes('/project-pages/')) {
       return './projects.html';
     }
     return './public/projects.html';
@@ -50,7 +50,7 @@ const Navigation = {
     const currentPath = window.location.pathname;
     if (currentPath.includes('/project-pages/')) {
       return '../about.html';
-    } else if (currentPath.includes('/public/')) {
+    } else if (currentPath.includes('/public/') && !currentPath.includes('/project-pages/')) {
       return './about.html';
     }
     return './public/about.html';
