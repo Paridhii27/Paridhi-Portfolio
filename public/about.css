@@ -70,6 +70,7 @@ body {
   min-height: calc(100vh - 80px);
   gap: var(--pg-margin);
   margin-top: var(--spacing-xl);
+  content-visibility: auto;
 }
 
 /* ===== LAYOUT SECTIONS ===== */
@@ -531,10 +532,11 @@ body {
   align-items: center;
   justify-content: center;
 
-  /* Gallery animation initial state - hidden and positioned */
   opacity: 0;
   transform: translateY(50px) scale(0.9);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+  content-visibility: auto;
 }
 
 /* Gallery animated state */

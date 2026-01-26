@@ -101,13 +101,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // Back to top button functionality
   const backToTopButton = document.getElementById("back-to-top");
   if (backToTopButton) {
+    let ticking = false;
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add("visible");
-      } else {
-        backToTopButton.classList.remove("visible");
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add("visible");
+          } else {
+            backToTopButton.classList.remove("visible");
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
 
     backToTopButton.addEventListener("click", () => {
       window.scrollTo({

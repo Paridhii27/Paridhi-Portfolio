@@ -1,4 +1,3 @@
-// Gallery scroll indicator for mobile and video autoplay handler
 document.addEventListener("DOMContentLoaded", function () {
   const gallery = document.getElementById("mz-gallery");
   const container = document.getElementById("mz-gallery-container");
@@ -180,17 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
       video.addEventListener("error", (e) => {
         const source = video.querySelector("source");
         const videoSrc = source?.src || video.src;
-        console.warn("Video loading error:", videoSrc, video.error);
 
         // If there's a network error, try reloading
         if (
           video.error &&
           video.error.code === video.error.MEDIA_ERR_SRC_NOT_SUPPORTED
         ) {
-          console.warn(
-            "Video format not supported, trying to reload:",
-            videoSrc
-          );
           // Try reloading the video
           if (source) {
             const originalSrc = source.src;
@@ -206,7 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
           video.error &&
           video.error.code === video.error.MEDIA_ERR_NETWORK
         ) {
-          console.warn("Network error, retrying:", videoSrc);
           setTimeout(() => {
             video.load();
           }, 1000);
@@ -237,17 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
             playPromise
               .then(() => {
                 // Video is playing
-                console.log(
-                  "Video autoplay started:",
-                  video.querySelector("source")?.src || video.src
-                );
               })
               .catch((error) => {
                 // Autoplay was prevented - try again on user interaction
-                console.log(
-                  "Video autoplay prevented, will retry on interaction:",
-                  error
-                );
 
                 // Retry on first user interaction
                 const tryPlay = () => {
@@ -347,18 +332,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Force load the video and ensure source is set
       const source = video.querySelector("source");
       if (source && source.src) {
-        // Log the source for debugging
-        console.log("Loading video:", source.src);
-
-        // Ensure the source src is absolute or correct relative path
-        if (!source.src.startsWith("http") && !source.src.startsWith("/")) {
-          // It's a relative path, which should be fine
-          // Make sure it's properly formatted
-          if (source.src.startsWith("../")) {
-            // Relative path is correct
-          }
-        }
-
         // Load the video
         video.load();
 
@@ -369,7 +342,6 @@ document.addEventListener("DOMContentLoaded", function () {
             video.networkState === video.NETWORK_NO_SOURCE ||
             video.networkState === video.NETWORK_EMPTY
           ) {
-            console.warn("Video not loading, attempting reload:", source.src);
             const currentSrc = source.src;
             source.src = "";
             setTimeout(() => {
@@ -382,10 +354,6 @@ document.addEventListener("DOMContentLoaded", function () {
                   video.readyState === 0 ||
                   video.networkState === video.NETWORK_NO_SOURCE
                 ) {
-                  console.warn(
-                    "Video still not loading, trying direct src:",
-                    currentSrc
-                  );
                   // Try setting src directly on video element as fallback
                   video.src = currentSrc;
                   video.load();
@@ -403,8 +371,6 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           { once: true }
         );
-      } else {
-        console.warn("Video has no source element or src attribute");
       }
     });
   }
@@ -506,8 +472,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         video.addEventListener("error", (e) => {
           const source = video.querySelector("source");
-          const videoSrc = source?.src || video.src;
-          console.warn("Video failed to load:", videoSrc, video.error);
 
           // Try to reload after a delay with source reset
           setTimeout(() => {
@@ -526,7 +490,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Also listen for stalled/abort events
         video.addEventListener("stalled", () => {
-          console.warn("Video stalled, attempting reload");
           video.load();
         });
 

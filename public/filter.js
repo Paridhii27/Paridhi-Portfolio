@@ -5,8 +5,20 @@
 
 function filterSelection(c) {
   var x, i;
+  var projectsSection = document.getElementById("projects-section");
   x = document.getElementsByClassName("container");
-  if (c == "all") c = "";
+  if (c == "all") {
+    c = "";
+    // Add class to indicate "all" filter is active
+    if (projectsSection) {
+      projectsSection.classList.add("filter-all");
+    }
+  } else {
+    // Remove class when specific filter is active
+    if (projectsSection) {
+      projectsSection.classList.remove("filter-all");
+    }
+  }
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
   for (i = 0; i < x.length; i++) {
     w3RemoveClass(x[i], "show");

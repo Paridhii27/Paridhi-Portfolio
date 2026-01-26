@@ -147,6 +147,7 @@ p {
 /* Project Section */
 #projects-section {
   display: grid;
+  content-visibility: auto;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--section-spacing);
   margin-top: calc(var(--nav-height) + var(--nav-padding) * 2);
@@ -163,12 +164,11 @@ p {
   border: 0.1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-sizing: border-box;
-
-  /* Initial hidden state for animation */
   opacity: 0;
   transform: translateY(30px) scale(0.98);
-  transition: opacity var(--animation-duration) var(--animation-easing),
-    transform var(--animation-duration) var(--animation-easing);
+  transition: opacity var(--animation-duration) var(--animation-easing), transform var(--animation-duration) var(--animation-easing);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
 }
 
 .show {
@@ -179,6 +179,7 @@ p {
 .container.animate {
   opacity: 1;
   transform: translateY(0) scale(1);
+  will-change: auto;
 }
 
 /* Staggered animation delays for grid layout */
@@ -213,6 +214,16 @@ p {
   box-shadow: 0 10px 30px rgba(167, 219, 235, 0.2);
 }
 
+/* Research projects span 2 columns only when "all" filter is active */
+#projects-section.filter-all .container.research {
+  grid-column: span 2;
+}
+
+/* Research projects span 1 column when other filters are active */
+.container.research {
+  grid-column: span 1;
+}
+
 /* Thumbnail Images */
 .thumbnail {
   aspect-ratio: 16/9;
@@ -232,7 +243,9 @@ p {
   cursor: pointer;
   position: relative;
   z-index: 1;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .thumbnail a:active {
@@ -259,6 +272,7 @@ p {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform-origin: center;
   will-change: transform;
+  background: linear-gradient(135deg, rgba(164, 156, 224, 0.05) 0%, rgba(61, 71, 156, 0.05) 100%);
 }
 
 .thumbnail:hover img {
@@ -347,7 +361,10 @@ p {
   font-size: var(--font-size-h2);
   white-space: normal;
   word-wrap: break-word;
-  transition: color 0.3s ease, opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.3s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
@@ -474,6 +491,14 @@ p {
     margin-bottom: 3rem;
     padding-bottom: 1.5rem;
     width: 100%;
+  }
+
+  #projects-section.filter-all .container.research {
+    grid-column: span 2;
+  }
+
+  .container.research {
+    grid-column: span 1;
   }
 
   .container {
@@ -616,6 +641,14 @@ p {
     grid-template-columns: 1fr;
     gap: calc(var(--section-spacing) / 3);
     margin-top: calc(var(--nav-height) + var(--nav-padding));
+  }
+
+  #projects-section.filter-all .container.research {
+    grid-column: span 1;
+  }
+
+  .container.research {
+    grid-column: span 1;
   }
 
   /* Single column animation adjustments */

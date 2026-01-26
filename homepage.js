@@ -2,6 +2,7 @@
 const projects = {
   "machine-stranger": {
     image: "./public/assets/images/thumbnails/machine-stranger.jpg",
+    video: "./public/assets/video/thismachine.mp4",
     title: "This Machine is a Stranger",
     description:
       '"This Machine is a Stranger" is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
@@ -61,7 +62,7 @@ function updateFeaturedProject(projectId) {
   const mainImage = document.getElementById("main-featured-image");
   const mainVideo = document.getElementById("main-featured-video");
   const mediaContainer = document.getElementById(
-    "main-featured-media-container"
+    "main-featured-media-container",
   );
 
   // Handle video vs image display
@@ -79,7 +80,7 @@ function updateFeaturedProject(projectId) {
     // Ensure media container is directly in main-featured-project (not inside link)
     if (mediaContainer && mainLink && mediaContainer.parentNode === mainLink) {
       const mainFeaturedProject = document.querySelector(
-        ".main-featured-project"
+        ".main-featured-project",
       );
       if (mainFeaturedProject) {
         // Remove from link
@@ -135,7 +136,7 @@ function updateFeaturedProject(projectId) {
       // Get the current parent of media container
       const containerParent = mediaContainer.parentNode;
       const mainFeaturedProject = document.querySelector(
-        ".main-featured-project"
+        ".main-featured-project",
       );
 
       // If media container is not already inside the link, move it
@@ -281,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Override with enhanced version
   window.updateFeaturedProject = function (projectId) {
     const mediaContainer = document.getElementById(
-      "main-featured-media-container"
+      "main-featured-media-container",
     );
     const projectInfo = document.querySelector(".project-info");
 

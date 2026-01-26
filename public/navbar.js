@@ -92,7 +92,7 @@ const Navigation = {
             <span></span>
             <span></span>
             <ul id="menu">
-              <li><a href="${projectsPath}">PROJECTS</a></li>
+              <li><a href="${projectsPath}">WORK</a></li>
               <li><a href="${aboutPath}">ABOUT</a></li>
             </ul>
           </div>

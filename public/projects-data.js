@@ -8,6 +8,7 @@ const ProjectsData = {
     {
       id: "machine-stranger",
       title: "This Machine is a Stranger",
+      class: "research",
       year: "2025",
       description:
         '"This Machine is a Stranger" is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
@@ -55,6 +56,7 @@ const ProjectsData = {
     {
       id: "computerized-memories",
       title: "Computerized Memories",
+      class: "research",
       year: "2023",
       description:
         '"Computerized memories" is a project that explores the biological structure and psychological character of memory.',
@@ -64,13 +66,13 @@ const ProjectsData = {
       tools: ["3D modelling and rendering", "Procedural Shaders", "Memories"],
     },
     {
-      id: "two-kinds-of-love",
-      title: "Two kinds of Love",
+      id: "postcards-between-worlds",
+      title: "Postcards Between Worlds",
       year: "2023",
       description:
         "It delves into the story of two people living in the future who send each other postcards because they can't see each other. The inherent systems of the society at the time have created physical barriers between them.",
       thumbnail: "./assets/images/thumbnails/two-loves.png",
-      url: "./project-pages/two-kinds-of-love.html",
+      url: "./project-pages/postcards-between-worlds.html",
       categories: ["narrative"],
       tools: ["3D Environments", "Speculative futures", "Writing"],
     },
@@ -84,17 +86,6 @@ const ProjectsData = {
       url: "./project-pages/sights-and-insights.html",
       categories: ["aiweb"],
       tools: ["AI Web Application", "Camera Detection", "Image to Speech"],
-    },
-    {
-      id: "granny-bytes",
-      title: "Granny Bytes",
-      year: "2024",
-      description:
-        "Granny Bytes is a project that explores intergenerational connections and how they can manifest within our interactions with technology.",
-      thumbnail: "./assets/images/project-pages/granny-bytes/kitchen.png",
-      url: "./project-pages/granny-bytes.html",
-      categories: ["aiweb"],
-      tools: ["AI application", "Text Generation", "Image Analysis"],
     },
     {
       id: "firefly-symphony",
@@ -124,6 +115,18 @@ const ProjectsData = {
         "Materials and Textures",
         "Interactive Environments",
       ],
+    },
+    {
+      id: "granny-bytes",
+      title: "Granny Bytes",
+      class: "research",
+      year: "2024",
+      description:
+        "Granny Bytes is a project that explores intergenerational connections and how they can manifest within our interactions with technology.",
+      thumbnail: "./assets/images/project-pages/granny-bytes/kitchen.png",
+      url: "./project-pages/granny-bytes.html",
+      categories: ["aiweb"],
+      tools: ["AI application", "Text Generation", "Image Analysis"],
     },
     {
       id: "hivemind",
@@ -184,6 +187,17 @@ const ProjectsData = {
       categories: ["others"],
       tools: ["Physical computing", "LED Mapping", "Sensors based data"],
     },
+    // {
+    //   id: "Moving Light",
+    //   title: "Moving Light",
+    //   year: "2024",
+    //   description:
+    //     "Following movement of light and how it interacts within a built environment.",
+    //   thumbnail: "./assets/images/thumbnails/moving-light.png",
+    //   url: "./project-pages/moving-light.html",
+    //   categories: ["others"],
+    //   tools: ["Projection Mapping", "Glitch", "Sensor based Projection"],
+    // },
   ],
 
   /**
@@ -215,12 +229,13 @@ const ProjectsData = {
    */
   renderProject(project) {
     const categoriesClass = project.categories.join(" ");
+    const projectClass = project.class ? project.class : "";
     const toolsHTML = project.tools
       .map((tool) => `<span>${tool}</span>`)
       .join(" ");
 
     return `
-      <div class="container ${categoriesClass}">
+      <div class="container ${categoriesClass} ${projectClass}">
         <a
           href="${project.url}"
           class="arrow-link"
@@ -236,6 +251,8 @@ const ProjectsData = {
               src="${project.thumbnail}"
               alt="Thumbnail image of ${project.title} project"
               loading="lazy"
+              decoding="async"
+              fetchpriority="${project.id === 'machine-stranger' || project.id === 'fleeting-states' ? 'high' : 'auto'}"
             />
           </a>
         </div>
@@ -258,9 +275,7 @@ const ProjectsData = {
     projectsSection.innerHTML = projectsHTML;
   },
 
-  /**
-   * Render filter buttons
-   */
+  /* Render filter buttons*/
   renderFilterButtons() {
     const filterBtnsContainer = document.getElementById("filterBtns");
     if (!filterBtnsContainer) return;

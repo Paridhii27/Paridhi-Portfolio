@@ -147,6 +147,7 @@ const AboutData = {
               src="${img.src}"
               alt="${img.alt}"
               loading="lazy"
+              decoding="async"
               ${widthAttr}
               ${heightAttr}
             />

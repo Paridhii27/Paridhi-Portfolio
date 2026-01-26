@@ -59,7 +59,7 @@
         <p>Interacting with emerging technologies for the first time often feels the same as interacting with a stranger for the first time. You don't know each other yet and are only starting to learn about each other. Starting from your name and where you are from to deeper questions about each other. These questions often inform one another.</p>
         <p>Some questions that I kept coming back to when assessing if I trusted a stranger were “Would you take advice from a stranger you’ve never met?”, “ Would you trust a stranger with a secret?”, “Would you take something from a stranger?” and “ Would you trust them if your life depended on it?” I guess the answer would differ based on how sceptical or trusting you are in life.</p>
         
-        <h3>Design and Development</h3>
+        <h3>Core Components</h3>
         <p>The project is built to have three core components:</p>
         <ul>
           <li>Web interface which acts as a means to navigate through the experience and input responses</li>
@@ -70,21 +70,16 @@
           <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/installation.png">
           <div class="inline-img-caption">Installation setup showing web interface, wall projection, and sound components</div>
         </div>
-        <p>The web interface features a frontend built with HTML/CSS and backend built with Node.js, Express.js, and several other dependencies. User interactions on the frontend trigger requests to the backend server, which then calls the Anthropic AI API to generate machine responses. These text responses are subsequently processed through the ElevenLabs API to convert them into speech before it's heard by the user.</p>
-        <p>The generated machine responses are projected on the wall, accompanied by visual effects and textual indicators that evolve as users navigate through their journey on the web interface. TouchDesigner– a node-based visual programming language used for interactive multimedia– handles the visual rendering and projects the final scene on the wall. </p>
-        <p>Since these core components are built on different platforms, they require cross-platform communication for them to be connected which is done through the use of WebSockets– a communication protocol that enables real-time, two-way communication between different platforms– in this case, the web interface and TouchDesigner. The WebSockets connection transmits machine-generated responses to the user to TouchDesigner where they appear as subtitles for the user to read as they hear the machine voice.</p>
-        
+        <h3>Design and Development</h3>
+        <img src="../assets/images/project-pages/this-machine-is-a-stranger/technicalDiagram.png" class="inline-img">
         <h3>Machine Persona</h3>
-        <p>The way the machine speaks reveals a lot about its personality and the kind of interactions the machine provides. The machine is prompted to have a complex personality balancing two core traits: </p>
+        <p>'Gizmo-1305' is a strange machine found in the northeastern sector of the Whispering Woods. The way the machine speaks reveals a lot about its personality and the kind of interactions the machine provides. The machine is prompted to have a complex personality balancing two core traits: </p>
         <ul>
           <li>Insatiable curiosity which relents itself to an obsessive drive to gather information and understand human behavior, often pushing boundaries to satisfy intellectual hunger</li>
           <li>Rigid boundaries where it maintains strict personal and ethical boundaries, sometimes to the point of being overly cautious or withholding privileged information</li>
         </ul>
-        <div class="inline-img-container right-align">
-          <img class="inline-img" src="../assets/images/project-pages/this-machine-is-a-stranger/3.jpg">
-          <div class="inline-img-caption">Gizmo-1305: The machine persona with curious yet boundary-conscious personality</div>
-        </div>
-        <p>"Gizmo-1305" is a strange machine found in the northeastern sector of the Whispering Woods. The user finds that the machine is capable of providing navigational assistance but along with that it provides unsolicited advice which the user can choose to accept or decline. The machine craves to know more about the human experience and keeps prodding the user asking them questions about them without even telling them where they should head. It's trying to balance its curious personality along with parts of its identity which value efficiency and boundaries. </p>
+        <p>The user finds that the machine is capable of providing navigational assistance but along with that it provides unsolicited advice which the user can choose to accept or decline. The machine craves to know more about the human experience and keeps prodding the user asking them questions about them without even telling them where they should head. It's trying to balance its curious personality along with parts of its identity which value efficiency and boundaries. </p>
+        
         <div class="inline-video-container">
           <video class="inline-video" controls playsinline preload="auto" width="100%">
               <source src="../assets/images/project-pages/this-machine-is-a-stranger/FirstScreen.mp4" type="video/mp4">
@@ -323,6 +318,7 @@
     </div>
     <hr />
     <script src="./gallery-scroll.js"></script>
+    <script src="./image-fullscreen.js"></script>
     <script src="../navbar.js"></script>
   </body>
   <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
