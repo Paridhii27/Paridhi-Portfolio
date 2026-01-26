@@ -5,7 +5,7 @@ const projects = {
     video: "./public/assets/video/thismachine.mp4",
     title: "This Machine is a Stranger",
     description:
-      '"This Machine is a Stranger" is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
+      '"This Machine is a Stranger" emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
     url: "./public/project-pages/this-machine-is-a-stranger.html",
   },
   "fleeting-states": {
@@ -13,7 +13,7 @@ const projects = {
     video: "./public/assets/video/fleetingstates.mp4",
     title: "Fleeting States + Measured Values",
     description:
-      "This project depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
+      "This work depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
     url: "./public/project-pages/fleeting-states.html",
   },
   "move-a-bit": {
@@ -21,14 +21,14 @@ const projects = {
     video: "./public/assets/video/moveabit.mp4",
     title: "Move A Bit",
     description:
-      "Move a Bit is a live motion capture project bringing quantum computing to life through an interactive display that visually showcases entanglement.",
+      "Move a Bit features a live motion capture experience bringing quantum computing to life through an interactive display that visually showcases entanglement.",
     url: "./public/project-pages/move-a-bit.html",
   },
   "sights-and-insights": {
     image: "./public/assets/images/thumbnails/sights-and-insights.png",
     title: "Sights and Insights",
     description:
-      "Sights and Insights is a web based application that transforms ordinary walks into ones filled with curious interventions. It is a voice based AI application encouraging users to engage with the spaces they finds themselves in.",
+      "Sights and Insights is a web application that transforms ordinary walks into ones filled with curious interventions. It consists of a voice based AI encouraging users to engage with the spaces they finds themselves in.",
     url: "./public/project-pages/sights-and-insights.html",
   },
 };
