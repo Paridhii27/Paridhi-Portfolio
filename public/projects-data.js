@@ -11,7 +11,7 @@ const ProjectsData = {
       class: "research",
       year: "2025",
       description:
-        '"This Machine is a Stranger" is a project that emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
+        '"This Machine is a Stranger" emerged from a curiosity to explore how one can navigate life at the intersection of human intuition and the quiet, calculated logic of autonomous machines, questioning how much a person implicitly trusts or mistrusts a machine.',
       thumbnail: "./assets/images/thumbnails/machine-stranger.jpg",
       url: "./project-pages/this-machine-is-a-stranger.html",
       categories: ["interactive", "aiweb"],
@@ -26,7 +26,7 @@ const ProjectsData = {
       title: "Fleeting States + Measured Values",
       year: "2024",
       description:
-        "This project depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand, we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
+        "Fleeting States + Measured Values depicts the two sides of quantum computing. The separation of the worlds is analytical. On the one hand, we have the values we can measure, probabilistic results in units. It is how we are trained/used to interact with phenomena. Superpositioning and entanglement on the other hand are neither accessible to our senses nor to measurement. They are states in motion that are truly random.",
       thumbnail: "./assets/images/thumbnails/fleeting-states.jpg",
       url: "./project-pages/fleeting-states.html",
       categories: ["interactive"],
@@ -43,7 +43,7 @@ const ProjectsData = {
       title: "Move a Bit",
       year: "2022",
       description:
-        "Move a Bit is a live motion capture project bringing quantum computing to life through an interactive display that visually showcases entanglement.",
+        "Move a Bit is a live motion capture experience bringing quantum computing to life through an interactive display that visually showcases entanglement.",
       thumbnail: "./assets/images/thumbnails/move-a-bit.jpg",
       url: "./project-pages/move-a-bit.html",
       categories: ["interactive"],
@@ -59,7 +59,7 @@ const ProjectsData = {
       class: "research",
       year: "2023",
       description:
-        '"Computerized memories" is a project that explores the biological structure and psychological character of memory.',
+        '"Computerized memories" explores the biological structure and psychological character of memory.',
       thumbnail: "./assets/images/thumbnails/computerized-memories.jpg",
       url: "./project-pages/computerized-memories.html",
       categories: ["narrative"],
@@ -81,7 +81,7 @@ const ProjectsData = {
       title: "Sights and Insights",
       year: "2025",
       description:
-        "Sights and Insights is a web-based application that transforms ordinary walks into ones filled with curious interventions. It is a voice-based AI application encouraging users to engage with the spaces they find themselves in.",
+        "Sights and Insights is a web application that transforms ordinary walks into ones filled with curious interventions. It is a voice-based AI application encouraging users to engage with the spaces they find themselves in.",
       thumbnail: "./assets/images/thumbnails/sights-and-insights.png",
       url: "./project-pages/sights-and-insights.html",
       categories: ["aiweb"],
@@ -106,7 +106,7 @@ const ProjectsData = {
       title: "Warped Memories of Digital Ghosts",
       year: "2023",
       description:
-        "This project welcomes you to a world in which people go to a data store to access their digital memories in the form of differently flavored cookies.",
+        "This speculative environment draws a poetic parallel between human memories and browser cookies, inviting participants into a data store where personal memories become uniquely flavored cookies—each representing a different emotion or experience. The project explores data monopoly, digital identities, and memory ownership. .",
       thumbnail: "./assets/images/thumbnails/warped-memories.png",
       url: "./project-pages/warped-memories.html",
       categories: ["narrative"],
@@ -122,7 +122,7 @@ const ProjectsData = {
       class: "research",
       year: "2024",
       description:
-        "Granny Bytes is a project that explores intergenerational connections and how they can manifest within our interactions with technology.",
+        "Granny Bytes explores intergenerational connections and how they can manifest within our interactions with technology.",
       thumbnail: "./assets/images/project-pages/granny-bytes/kitchen.png",
       url: "./project-pages/granny-bytes.html",
       categories: ["aiweb"],
@@ -159,7 +159,7 @@ const ProjectsData = {
       title: "Echoes",
       year: "2023",
       description:
-        "Echoes from another place and time is a visual narrative created in TouchDesigner exploring the idea of alternative parallel realities.",
+        "Echoes from another place and time is a visual narrative investigating the idea of alternate parallel realities.",
       thumbnail: "./assets/images/thumbnails/echoes.jpg",
       url: "./project-pages/echoes.html",
       categories: ["others"],
@@ -167,12 +167,12 @@ const ProjectsData = {
     },
     {
       id: "light-and-darkness",
-      title: "Light and Darkness",
+      title: "Intermittent",
       year: "2023",
       description:
-        "A project that explores concepts of Light and Darkness and the intermittent phases between them through the technique of image generation.",
+        "How can we capture the intermittent phases between Light and Darkness through making an image generation model?",
       thumbnail: "./assets/images/thumbnails/light-and-darkness.png",
-      url: "./project-pages/light-and-darkness.html",
+      url: "./project-pages/intermittent.html",
       categories: ["aiweb"],
       tools: ["Machine Learning", "Text Generation", "StyleGANs", "Graphics"],
     },
@@ -252,7 +252,7 @@ const ProjectsData = {
               alt="Thumbnail image of ${project.title} project"
               loading="lazy"
               decoding="async"
-              fetchpriority="${project.id === 'machine-stranger' || project.id === 'fleeting-states' ? 'high' : 'auto'}"
+              fetchpriority="${project.id === "machine-stranger" || project.id === "fleeting-states" ? "high" : "auto"}"
             />
           </a>
         </div>

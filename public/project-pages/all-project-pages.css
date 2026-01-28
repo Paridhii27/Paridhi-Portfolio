@@ -394,12 +394,14 @@ h1 {
 
 .documentation .inline-img-container.side-by-side {
   flex-direction: row;
-  gap: var(--spacing-md);
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
 }
 
+.documentation .inline-img-container.side-by-side .inline-img {
+  width: 49.5%;
+}
 .documentation .inline-img-container.right-align {
   justify-content: flex-end;
 }
@@ -429,14 +431,15 @@ h1 {
 }
 
 .documentation .inline-img-container.side-by-side .inline-img {
-  max-width: calc(50% - 0.5rem);
+  max-width: calc(49.5% - 0.25rem);
   margin: 0;
+  max-height: 65vh;
 }
 
 .documentation .inline-img-container.side-by-side > div {
   display: flex;
   flex-direction: column;
-  max-width: calc(50% - 0.5rem);
+  max-width: calc(49.5% - 0.25rem);
   align-items: center;
 }
 
@@ -1433,11 +1436,12 @@ h1 {
   }
 
   .documentation .inline-img-container.side-by-side .inline-img {
-    max-width: calc(50% - 0.5rem);
+    max-width: calc(49.5% - 0.25rem);
+    max-height: 60vh;
   }
 
   .documentation .inline-img-container.side-by-side > div {
-    max-width: calc(50% - 0.5rem);
+    max-width: calc(49.5% - 0.25rem);
   }
 
   .documentation .inline-img-container.right-align .inline-img,
