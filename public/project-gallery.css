@@ -67,6 +67,10 @@ body {
   padding: var(--section-spacing);
 }
 
+::selection {
+  background: #3d479c;
+}
+
 a {
   color: var(--text-color);
   font-size: var(--font-size-paragraph);
@@ -166,7 +170,9 @@ p {
   box-sizing: border-box;
   opacity: 0;
   transform: translateY(30px) scale(0.98);
-  transition: opacity var(--animation-duration) var(--animation-easing), transform var(--animation-duration) var(--animation-easing);
+  transition:
+    opacity var(--animation-duration) var(--animation-easing),
+    transform var(--animation-duration) var(--animation-easing);
   content-visibility: auto;
   contain-intrinsic-size: auto 400px;
 }
@@ -272,7 +278,11 @@ p {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform-origin: center;
   will-change: transform;
-  background: linear-gradient(135deg, rgba(164, 156, 224, 0.05) 0%, rgba(61, 71, 156, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(164, 156, 224, 0.05) 0%,
+    rgba(61, 71, 156, 0.05) 100%
+  );
 }
 
 .thumbnail:hover img {

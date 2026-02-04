@@ -38,6 +38,10 @@ body {
   align-items: center;
 }
 
+::selection {
+  background: #3d479c;
+}
+
 .homepage-container {
   position: relative;
   width: 100%;
