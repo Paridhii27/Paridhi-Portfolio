@@ -43,7 +43,7 @@ const ProjectsData = {
       title: "Move a Bit",
       year: "2022",
       description:
-        "Move a Bit is a live motion capture experience bringing quantum computing to life through an interactive display that visually showcases entanglement.",
+        "Move a Bit is an experience capturing motion to bring quantum computing to life through an interactive display that visually showcases entanglement.",
       thumbnail: "./assets/images/thumbnails/move-a-bit.jpg",
       url: "./project-pages/move-a-bit.html",
       categories: ["interactive"],
