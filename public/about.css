@@ -299,7 +299,7 @@ body {
 
 .modal-content {
   width: min(960px, 100%);
-  max-height: calc(100dvh - (var(--modal-padding) * 2));
+  max-height: calc(95dvh - (var(--modal-padding) * 2));
   background-color: var(--bg-color);
   border: 1px dashed var(--border-color);
   margin: 0;
