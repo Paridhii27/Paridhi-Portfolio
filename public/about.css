@@ -56,6 +56,21 @@ body {
 
 ::selection {
   background: #3d479c;
+<<<<<<< HEAD
+=======
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: calc(var(--pg-margin) * 0.7);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: calc(var(--pg-margin) * 0.6);
+  }
+>>>>>>> c839fd6dbbf11ac82bdd2aadaee34dd21ce2975a
 }
 
 .about-container {

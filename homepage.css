@@ -66,6 +66,10 @@ body.home-page {
   overflow-x: hidden;
 }
 
+::selection {
+  background: #3d479c;
+}
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
@@ -886,7 +890,11 @@ html {
   /* Logo link touch interactions */
   .logo a:active {
     opacity: 0.8;
-    transform: scale(0.95);
+    transform: none;
+  }
+
+  .logo:active {
+    transform: scale(1);
   }
 
   .logo a:focus {
@@ -1251,7 +1259,11 @@ html {
   /* Logo link touch interactions */
   .logo a:active {
     opacity: 0.8;
-    transform: scale(0.95);
+    transform: none;
+  }
+
+  .logo:active {
+    transform: scale(1);
   }
 
   .logo a:focus {

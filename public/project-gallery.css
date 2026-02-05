@@ -66,6 +66,10 @@ body {
   padding: var(--section-spacing);
 }
 
+::selection {
+  background: #3d479c;
+}
+
 a {
   color: var(--text-color);
   font-size: var(--font-size-paragraph);

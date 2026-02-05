@@ -394,13 +394,10 @@ h1 {
 
 .documentation .inline-img-container.side-by-side {
   flex-direction: row;
+  gap: var(--spacing-md);
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-}
-
-.documentation .inline-img-container.side-by-side .inline-img {
-  width: 49.5%;
 }
 .documentation .inline-img-container.right-align {
   justify-content: flex-end;
