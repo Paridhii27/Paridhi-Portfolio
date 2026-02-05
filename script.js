@@ -3,15 +3,52 @@
 // ============================================================================
 
 const modal = document.getElementById("modal");
+const buttonsContainer = document.querySelector(".buttons-container");
+const modalOriginalParent = modal?.parentElement || null;
 const resumeContent = document.getElementById("resume-content");
 const galleryContent = document.getElementById("gallery-content");
+let currentModalType = null;
+
+function isMobileModal() {
+  return window.matchMedia("(max-width: 768px)").matches;
+}
+
+function updateModalPlacement(isOpen, modalType) {
+  if (!modal || !modalOriginalParent) {
+    return;
+  }
+
+  if (isMobileModal()) {
+    modal.classList.add("modal-inline");
+    const targetButton = buttonsContainer?.querySelector(
+      `[data-modal-type="${modalType}"]`,
+    );
+    if (targetButton && modal.previousElementSibling !== targetButton) {
+      targetButton.insertAdjacentElement("afterend", modal);
+    } else if (buttonsContainer && modal.parentElement !== buttonsContainer) {
+      buttonsContainer.appendChild(modal);
+    }
+    if (isOpen) {
+      modal.style.display = "block";
+    }
+  } else {
+    modal.classList.remove("modal-inline");
+    if (modal.parentElement !== modalOriginalParent) {
+      modalOriginalParent.appendChild(modal);
+    }
+    if (isOpen) {
+      modal.style.display = "flex";
+    }
+  }
+}
 
 /**
  * Opens a modal and displays either resume or gallery content
  * @param {string} type - "resume" to show resume, anything else shows gallery
  */
 function openModal(type) {
-  modal.style.display = "block";
+  currentModalType = type;
+  updateModalPlacement(true, currentModalType);
 
   // Trigger modal animation after a brief delay
   setTimeout(() => {
@@ -25,7 +62,7 @@ function openModal(type) {
     galleryContent.style.display = "none";
   } else {
     resumeContent.style.display = "none";
-    galleryContent.style.display = "grid";
+    galleryContent.style.display = "block";
   }
 }
 
@@ -42,6 +79,7 @@ function closeModal() {
     modal.style.display = "none";
     resumeContent.style.display = "none";
     galleryContent.style.display = "none";
+    updateModalPlacement(false, currentModalType);
   }, 300);
 }
 
@@ -57,6 +95,14 @@ document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     closeModal();
   }
+});
+
+window.addEventListener("resize", () => {
+  if (!modal) {
+    return;
+  }
+  const isOpen = modal.style.display !== "none" && modal.style.display !== "";
+  updateModalPlacement(isOpen, currentModalType);
 });
 
 // ============================================================================

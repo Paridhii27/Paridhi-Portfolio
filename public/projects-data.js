@@ -70,7 +70,7 @@ const ProjectsData = {
       title: "Postcards Between Worlds",
       year: "2023",
       description:
-        "It delves into the story of two people living in the future who send each other postcards because they can't see each other. The inherent systems of the society at the time have created physical barriers between them.",
+        "The story of two people living in the future who send each other postcards because they can't see each other. The inherent systems of the society at the time have created physical barriers between them.",
       thumbnail: "./assets/images/thumbnails/two-loves.png",
       url: "./project-pages/postcards-between-worlds.html",
       categories: ["narrative"],
@@ -106,7 +106,7 @@ const ProjectsData = {
       title: "Warped Memories of Digital Ghosts",
       year: "2023",
       description:
-        "This speculative environment draws a poetic parallel between human memories and browser cookies, inviting participants into a data store where personal memories become uniquely flavored cookies—each representing a different emotion or experience. The project explores data monopoly, digital identities, and memory ownership. .",
+        "This speculative environment draws a poetic parallel between human memories and browser cookies, inviting participants into a data store where personal memories become uniquely flavored cookies—each representing a different emotion or experience.",
       thumbnail: "./assets/images/thumbnails/warped-memories.png",
       url: "./project-pages/warped-memories.html",
       categories: ["narrative"],

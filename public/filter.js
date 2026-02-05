@@ -82,8 +82,8 @@ function initializeFilters() {
 }
 
 // Wait for DOM to be ready and projects to be rendered
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', function() {
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () {
     // Wait a bit for projects to be rendered
     setTimeout(initializeFilters, 100);
   });

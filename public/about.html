@@ -51,29 +51,24 @@
           <!-- ABOUT ME  -->
           <div class="introduction-text fadeInText">
             <p>
-              Hi, I’m Paridhi — a creative technologist and experiential
-              designer currently based in New York. I recently graduated with a
-              Bachelor’s in Design and Technology from Parsons School of Design.
-              I’m interested in creating interactive experiences that encourage
-              people to engage with their tactile surroundings, using technology
-              as a bridge to deepen their connection to the physical world
-              rather than distancing them from it.
+              Hi, I'm Paridhi — a creative technologist and experiential
+              designer based in New York. I recently graduated with a Bachelor's
+              in Design and Technology from Parsons School of Design. My
+              creative practice revolves around designing and developing
+              experimental web interfaces and interactions, as well as
+              sensor-based physical immersive experiences, with the intent of
+              bringing people together and introducing creative ways of
+              thinking. Through this work, I aim to encourage people to engage
+              with their physical surroundings, using technology to deepen their
+              connection to the physical world rather than distancing them from
+              it.
             </p>
             <p>
-              I have a background in designing and developing interactive
-              experiences which take various forms from experimental web
-              interactions to playing with sensors in real time within physical
-              spaces to create narrative-driven immersive experiences. These
-              experiences and digital products are designed to bring people
-              together and introduce them to creative ways of thinking and
-              being.
-            </p>
-            <p>
-              While creating my projects I often find myself tinkering with
-              various emerging technologies and ideating human machine
-              interactions. I’ve previously collaborated with scientists from
-              IBM Quantum and DLR Institute for AI safety and Security to create
-              interactive exhibits to represent quantum computing.
+              I often find myself tinkering with emerging technologies and
+              researching human-machine interactions. I've previously
+              collaborated with scientists from IBM Quantum and the DLR
+              Institute for AI Safety and Security to create interactive
+              exhibits to represent quantum computing.
             </p>
           </div>
 
@@ -103,8 +98,18 @@
 
           <!-- BUTTONS RESUME AND GALLERY  -->
           <div class="buttons-container">
-            <button class="button" onclick="openModal('resume')">Resume</button>
-            <button class="button" onclick="openModal('gallery')">
+            <button
+              class="button"
+              data-modal-type="resume"
+              onclick="openModal('resume')"
+            >
+              Resume
+            </button>
+            <button
+              class="button"
+              data-modal-type="gallery"
+              onclick="openModal('gallery')"
+            >
               Gallery
             </button>
 
@@ -142,7 +147,7 @@
   <script src="./about-data.js"></script>
   <script>
     // Initialize about page when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener("DOMContentLoaded", function () {
       // Render contact links, gallery, and skills
       AboutData.renderContactLinks();
       AboutData.renderGallery();
